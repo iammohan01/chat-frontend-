@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+
+}
+
+.Chat--window{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+.side--nav--bar{
+    border: 1px solid red;
+    height: 100%;
+    width: 10%;
+    max-width: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0 10px 10px 0;
+}
+.nav-bar-items{
+    /* border: 1px solid red; */
+    flex-grow: 1;
+    display: flex ;
+    flex-direction: column;
+    gap: 30px;
+    
+}
+.profile-img{
+    /* border: 1px solid red; */
+    width: 100%;
+    aspect-ratio: 1/1;
+    padding: 20px;
+}
+.profile-img:hover{
+    cursor: pointer ;
+}
+.iconsList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-evenly; */
+    gap: 45px;
+    flex-grow: 1;
+}
+.icon{
+    /* border: 1px solid red; */
+    font-size: 20px;
+}
+.settings{
+    flex-grow: 1;
+    position: relative;
+}
+.setting-icon{
+    position: absolute;
+    bottom: 10px;
+    /* border: 1px solid red; */
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+
+}
+.bi{
+    font-size: 20px;
+}
+.user--pannel{
+    width: 300px;
+    border: 1px solid red;
+}
+.chat--pannel{
+    flex-grow: 1;
+}
+.user--chat--box{
+    border: 1px solid red;
+    display: flex;
+    /* background-color: aqua; */
+    height: 70px;
+}
+.user--chat--box > *{
+    border: 1px solid red;
+}
+.user--image{
+    height: 100%;
+    /* width: 60px; */
+    aspect-ratio: 1/1;
+}
+.chats{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 5px;
+    
+}
+.user{
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+}
+.user--name{
+    font-weight: 700;
+}
+.chats p{
+    padding: 0 5px;
+}
+
+.messaged--time{
+    opacity: 0.5;
+}
+
+svg{
+    cursor: pointer;
+}

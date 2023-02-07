@@ -1,0 +1,21 @@
+.main--page{
+    /* border: 1px solid red; */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.imageView, .auth--window{
+    /* border: 1px solid  red; */
+    width: 40%;
+    height: 60%;
+}
+.imageView{
+    background-image: url("../../public/test.svg");
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y:center ;
+}
