@@ -1,32 +1,41 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 export function ChatPannel({userName}){
 
     // alert(userName)
 
-    console.log(userName);
+    const [chats,setChats] = React.useState([]);
 
 
 
     function reqChats(username){
 
         const xhr = new XMLHttpRequest();
-        xhr.open("GET",`http://localhost:8080/demo2_war_exploded/getChats?id=${username}`)
+        // alert(userName)
+        xhr.open("GET",`http://localhost:8080/demo2_war_exploded/getChats?targetId=${username}&reqId=${localStorage.getItem("uid")}`)
         xhr.onreadystatechange =()=>{
+            console.log(xhr.status)
             if(xhr.status === 200){
                 console.log(xhr.response)
+                
+                let res = JSON.parse(xhr.response)
+                setChats(res)
             }
         }
         xhr.send()
     }
 
 
-    reqChats(userName)
+
+    useEffect(() => {
+        reqChats(userName)
+    }, [userName])
+    
 
     return (
         <div className="chat--pannel"> 
             <UserHead />
-            <Chats />
+            <Chats chats={chats} />
             <ChatInput />
         </div>
     )
@@ -44,12 +53,29 @@ function UserHead(){
 }
 
 
-function Chats(){
+function Chats({chats}){
+
+    
+   console.log(chats)
+
+   
+   let c 
+     c = chats.map((val)=>{
+        // console.log(val.message)
+        return  <p className="end"><span className="msg">{val.message}</span></p>
+       })
+   
+
+
+   
+    
     return(
         <div className="chat--list">
 
-            <p className="end"><span className="msg">end</span></p>
-            <p className="start"><span className="msg">start</span></p>
+
+        {c}
+           
+            {/* <p className="start"><span className="msg">start</span></p>
             <p className="end"><span className="msg">end</span></p>
             <p className="start"><span className="msg">start</span></p>
             <p className="end"><span className="msg">end</span></p>
@@ -90,7 +116,7 @@ function Chats(){
             <p className="start"><span className="msg">{`staa\nsdfbkashd
             
             fkjhasdkjfhaksjdhfrt`}</span></p>
-            
+             */}
            
 
 

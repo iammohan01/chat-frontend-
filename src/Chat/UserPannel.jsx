@@ -1,15 +1,12 @@
 import { Input } from 'antd';
 import { useState } from 'react';
+import Users from './Users' ;
 
 export function UserPannel({selectedUser,setSelectedUser}){
     const [userSearch , seUserSearch]  =  useState("");
     const [users,setUsers] = useState([])
-    // console.log(users);
-
-
 
     let usersList = users.map((val)=>{
-        // console.log(val)
         return <Users user={selectedUser} setUser={setSelectedUser} name={val.name} username={val.userName} key={val.userName} />
     })
 
@@ -31,7 +28,6 @@ export function UserPannel({selectedUser,setSelectedUser}){
             }
         }
         reqUserList.send(JSON.stringify({userKey:userSearch}))
-        // console.log("asdfas")
     }
 
     return (
@@ -64,37 +60,4 @@ function Head(){
             <h1>Messages</h1>
         </div>
     )
-}
-function Users({user, name ,setUser,username}){
-
-
-
-
-
-    return (
-        <div className='user--chat--box'
-            onClick={()=>{
-                setUser(username ? username : "a")
-            }}
-
-            style={{backgroundColor : user === username ? "purple" : ""}}
-            >
-            <div className='user--image'></div>
-            <div className="chats">
-                <div className="user">
-                    <p className="user--name">
-                        {name}
-                    </p>
-                    <p className="messaged--time">
-                        12s
-                    </p>
-                    
-                </div>
-                <p className="message">
-                    Chat 00
-                </p>
-            </div>
-        </div>
-    )
-
 }

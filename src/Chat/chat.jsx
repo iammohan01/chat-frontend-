@@ -11,7 +11,7 @@ export  default  function Chat(){
     const [selectedUser, setSelectedUser]= useState("");
 
 
-    console.log(selectedUser);
+    // console.log(selectedUser);
     function getContactList(){
         let xhr = new XMLHttpRequest();
         xhr.open("GET","http://localhost:8080/demo2_war_exploded/GetUserList",true)
