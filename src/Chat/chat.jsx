@@ -2,7 +2,7 @@ import React from "react";
 import '../Styles/Chat.css';
 import '../Styles/index.css';
 import '../Styles/message.css';
-import { ChatPannel } from "./MessagePannel";
+import { ChatPanel } from "./MessagePannel";
 import { UserPannel } from "./UserPannel";
 import { useState } from "react";
 
@@ -40,7 +40,7 @@ export  default  function Chat(){
         <div className="Chat--window">
             <ChatNavPannel />
             <UserPannel setSelectedUser={setSelectedUser} selectedUser={selectedUser} />
-            <ChatPannel userName={selectedUser}/>
+            <ChatPanel userName={selectedUser}/>
 
         </div>
     )

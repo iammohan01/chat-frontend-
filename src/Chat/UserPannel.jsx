@@ -10,18 +10,17 @@ export function UserPannel({selectedUser,setSelectedUser}){
         return <Users user={selectedUser} setUser={setSelectedUser} userL={val} name={val.name} username={val.userName} key={val.userName} />
     })
 
-    function getuserDetails(){
+    function getUserDetails(){
         
         let reqUserList = new XMLHttpRequest();
         let end  = `http://localhost:8080/demo2_war_exploded/GetUserList?userKey=${userSearch}`
-        console.log(end)
         reqUserList.open("GET",end)
         reqUserList.onreadystatechange = ()=>{
             if (reqUserList.status === 200){
                 let UserListResponse  = reqUserList.response
                 if (UserListResponse){
                     UserListResponse = JSON.parse(UserListResponse)
-                setUsers(UserListResponse.userList)
+                setUsers(UserListResponse["userList"])
                 }
 
             }
@@ -40,7 +39,7 @@ export function UserPannel({selectedUser,setSelectedUser}){
                 }} 
                 onKeyDown={(e)=>{
                     if (e.code === "Enter"){
-                        getuserDetails()
+                        getUserDetails()
                     }
                 }
                 }
