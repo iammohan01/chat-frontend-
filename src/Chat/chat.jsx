@@ -11,14 +11,13 @@ export  default  function Chat(){
     const [selectedUser, setSelectedUser]= useState("");
 
 
-    // console.log(selectedUser);
     function getContactList(){
         let xhr = new XMLHttpRequest();
         xhr.open("GET","http://localhost:8080/demo2_war_exploded/GetUserList",true)
         xhr.onreadystatechange = ()=>{
             let res = JSON.parse(this.responseText);
             if (xhr.status === 200){
-                console.log(res);
+                console.log(res + "line 21");
             }
         }
     }
@@ -33,7 +32,7 @@ export  default  function Chat(){
         } 
     }
 
-   
+    // console.log(selectedUser)
     // getProfile()
 
 

@@ -33,7 +33,7 @@
 }
 .UserHead{
     /* background-color: rebeccapurple; */
-    height: 15vh;
+    min-height: 80px;
     display: flex;
     /* width: 100%; */
 }

@@ -3,31 +3,31 @@ import { useState } from 'react';
 import Users from './Users' ;
 
 export function UserPannel({selectedUser,setSelectedUser}){
+
     const [userSearch , seUserSearch]  =  useState("");
     const [users,setUsers] = useState([])
-
     let usersList = users.map((val)=>{
-        return <Users user={selectedUser} setUser={setSelectedUser} name={val.name} username={val.userName} key={val.userName} />
+        return <Users user={selectedUser} setUser={setSelectedUser} userL={val} name={val.name} username={val.userName} key={val.userName} />
     })
 
     function getuserDetails(){
-        if (userSearch.length < 3) {
-            // return
-        }
+        
         let reqUserList = new XMLHttpRequest();
-        reqUserList.open("GET",`http://localhost:8080/demo2_war_exploded/GetUserList?userKey=${userSearch}`)
+        let end  = `http://localhost:8080/demo2_war_exploded/GetUserList?userKey=${userSearch}`
+        console.log(end)
+        reqUserList.open("GET",end)
         reqUserList.onreadystatechange = ()=>{
-           
-
             if (reqUserList.status === 200){
-                let res = JSON.parse(reqUserList.response);
-                console.log(res)
-                setUsers(res.userList)
-                console.log(reqUserList.response);
+                let UserListResponse  = reqUserList.response
+                if (UserListResponse){
+                    UserListResponse = JSON.parse(UserListResponse)
+                setUsers(UserListResponse.userList)
+                }
 
             }
         }
         reqUserList.send(JSON.stringify({userKey:userSearch}))
+
     }
 
     return (
@@ -41,7 +41,6 @@ export function UserPannel({selectedUser,setSelectedUser}){
                 onKeyDown={(e)=>{
                     if (e.code === "Enter"){
                         getuserDetails()
-                        console.log(e.code);
                     }
                 }
                 }

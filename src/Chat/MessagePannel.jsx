@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 export function ChatPannel({userName}){
 
-    // alert(userName)
 
     const [chats,setChats] = React.useState([]);
 
@@ -11,18 +10,18 @@ export function ChatPannel({userName}){
     function reqChats(username){
 
         const xhr = new XMLHttpRequest();
-        // alert(userName)
-        xhr.open("GET",`http://localhost:8080/demo2_war_exploded/getChats?targetId=${username}&reqId=${localStorage.getItem("uid")}`)
+        xhr.open("GET",`http://localhost:8080/demo2_war_exploded/getChats?targetId=${username.userName}&reqId=${localStorage.getItem("uid")}`)
         xhr.onreadystatechange =()=>{
-            console.log(xhr.status)
-            if(xhr.status === 200){
-                console.log(xhr.response)
-                
-                let res = JSON.parse(xhr.response)
-                setChats(res)
+            xhr.onloadend = ()=>{
+                if(xhr.status === 200){
+                    let res = JSON.parse(xhr.responseText)
+                    setChats(res)
+                }
             }
         }
-        xhr.send()
+        if (username.userName){
+            xhr.send()
+        }
     }
 
 
@@ -34,18 +33,21 @@ export function ChatPannel({userName}){
 
     return (
         <div className="chat--pannel"> 
-            <UserHead />
-            <Chats chats={chats} />
+            <UserHead user={userName} />
+            <Chats  chats={chats} />
             <ChatInput />
         </div>
     )
 }
 
-function UserHead(){
+function UserHead({user}){
     return(
         <div className="UserHead">
         <div className="userImg"></div>
-        <div className="userDetail"></div>
+        <div className="userDetail">
+            <p className="chat--user--name">{user.name}</p>
+            <p>@{user.userName}</p>
+        </div>
         <div className="moreFunctions"></div>
         </div>
     )
@@ -56,26 +58,21 @@ function UserHead(){
 function Chats({chats}){
 
     
-   console.log(chats)
 
-   
+
+
    let c 
      c = chats.map((val)=>{
-        // console.log(val.message)
-        return  <p className="end"><span className="msg">{val.message}</span></p>
+        return <p key={val.time} className="end"><span className="msg">{val.message}</span></p>
        })
-   
 
-
-   
-    
     return(
         <div className="chat--list">
 
 
         {c}
            
-            {/* <p className="start"><span className="msg">start</span></p>
+            <p className="start"><span className="msg">start</span></p>
             <p className="end"><span className="msg">end</span></p>
             <p className="start"><span className="msg">start</span></p>
             <p className="end"><span className="msg">end</span></p>
@@ -113,13 +110,7 @@ function Chats({chats}){
             <p className="end"><span className="msg">end</span></p>
             <p className="start"><span className="msg">start</span></p>
             <p className="end"><span className="msg">end</span></p>
-            <p className="start"><span className="msg">{`staa\nsdfbkashd
-            
-            fkjhasdkjfhaksjdhfrt`}</span></p>
-             */}
-           
-
-
+            <p className="start"><span className="msg">{`staa\nsdfbkashdfkjhasdkjfhaksjdhfrt`}</span></p>
 
         </div>
     )
@@ -147,9 +138,10 @@ function ChatInput(){
                     setChatinput(event.target.value)
                 }}
                 onKeyDown={(event)=>{
-                    console.log(event.code);
+                    // console.log(event.code);
                     if(event.code == "Enter"){
-                        // alert("jj")
+                        // alert(chatInput)
+                        socket.send(chatInput)
                         enter = true ;
 
                     }
@@ -157,11 +149,11 @@ function ChatInput(){
 
                 }}
                 onKeyUp={(event)=>{
-                    console.log(enter)
+                    // console.log(enter)
                     if(event.code === "Enter"){
                         enter = false ;
                     }
-                    console.log(event);
+                    // console.log(event);
                 }}
             />
             <svg className="chat--input-icons" id="sendButton" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
