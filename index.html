@@ -29,6 +29,17 @@
         } 
         xhr.send();
     }
+    
+      // let socket = new WebSocket('ws://localhost:8080/demo2_war_exploded/websocket/chat')
+      let socket = new WebSocket('ws://10.191.255.47:8080/demo2_war_exploded/chat/1234567')
+      socket.open = ()=>{
+        console.log("socket opened");
+      }
+      socket.onmessage =(e)=>{
+        console.log(e.data)
+        
+      }
+    
     </script>
    
   </body>
