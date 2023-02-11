@@ -5,9 +5,7 @@ import './Styles/index.css'
 import Chat from './Chat/chat'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-   { getCookie("uid") ?  <Chat /> :  <App />}
-  </React.StrictMode>,
+    getCookie("uid") ?  <Chat /> :  <App />
 )
 
 

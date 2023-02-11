@@ -18,6 +18,7 @@ export default function ChatInput({chatInput,setChatInput,onSend}){
                 onKeyDown={(event)=>{
                     if(event.code === "Enter"){
 
+                        setChatInput("")
                         onSend()
                         // socket.send(chatInput)
                     }

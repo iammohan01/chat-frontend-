@@ -2,18 +2,19 @@ import { Input } from 'antd';
 import { useState } from 'react';
 import Users from './Users' ;
 
-export function UserPannel({selectedUser,setSelectedUser}){
+export function UserPanel({selectedUser,setSelectedUser}){
 
     const [userSearch , seUserSearch]  =  useState("");
     const [users,setUsers] = useState([])
     let usersList = users.map((val)=>{
-        return <Users user={selectedUser} setUser={setSelectedUser} userL={val} name={val.name} username={val.userName} key={val.userName} />
+        return (  val.userName !== localStorage.getItem("userName") && <Users user={selectedUser} setUser={setSelectedUser} userL={val} name={val.name} username={val.userName} key={val.userName} />)
     })
 
     function getUserDetails(){
         
         let reqUserList = new XMLHttpRequest();
-        let end  = `http://localhost:8080/demo2_war_exploded/GetUserList?userKey=${userSearch}`
+        let end = `http://localhost:8080/demo2_war_exploded/GetUserList?userKey=${userSearch}`
+        // let end  = `http://${localStorage.getItem("host")}/demo2_war_exploded/GetUserList?userKey=${userSearch}`
         reqUserList.open("GET",end)
         reqUserList.onreadystatechange = ()=>{
             if (reqUserList.status === 200){
@@ -55,7 +56,7 @@ export function UserPannel({selectedUser,setSelectedUser}){
 function Head(){
     return(
         <div>
-            <h1>Messages</h1>
+            <h1>{localStorage.getItem("user")}</h1>
         </div>
     )
 }

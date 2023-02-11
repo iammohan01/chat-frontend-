@@ -1,53 +1,52 @@
-import React from "react";
+import React, {useEffect} from "react";
 import '../Styles/Chat.css';
 import '../Styles/index.css';
 import '../Styles/message.css';
 import { ChatPanel } from "./MessagePannel";
-import { UserPannel } from "./UserPannel";
+import { UserPanel } from "./UserPanel.jsx";
 import { useState } from "react";
 
 
 export  default  function Chat(){
     const [selectedUser, setSelectedUser]= useState("");
+    const [UserChatsList,setUserChatsList] = useState({});
 
 
     function getContactList(){
         let xhr = new XMLHttpRequest();
         xhr.open("GET","http://localhost:8080/demo2_war_exploded/GetUserList",true)
+        // xhr.open("GET",`http://${localStorage.getItem("host")}/demo2_war_exploded/GetUserList`,true)
+
         xhr.onreadystatechange = ()=>{
             let res = JSON.parse(this.responseText);
             if (xhr.status === 200){
-                console.log(res + "line 21");
             }
         }
     }
     function getProfile(){
         let xhr = new XMLHttpRequest();
         xhr.open("GET","http://localhost:8080/demo2_war_exploded/GetProfileImg",true)
+        // xhr.open("GET",`http://${localStorage.getItem("host")}/demo2_war_exploded/GetProfileImg`,true)
         xhr.onreadystatechange = ()=>{
             let res = JSON.parse(this.responseText);
             if (xhr.status === 200){
-                console.log(res);
             }
         } 
     }
 
-    // console.log(selectedUser)
-    // getProfile()
-
 
     return(
         <div className="Chat--window">
-            <ChatNavPannel />
-            <UserPannel setSelectedUser={setSelectedUser} selectedUser={selectedUser} />
-            <ChatPanel userName={selectedUser}/>
+            <ChatNavPanel />
+            <UserPanel setSelectedUser={setSelectedUser} selectedUser={selectedUser} />
+            <ChatPanel userChatList={{chats : UserChatsList , setChats:setUserChatsList}} userName={selectedUser}/>
 
         </div>
     )
 }
 
 
-function ChatNavPannel() {
+function ChatNavPanel() {
 
     return (
         <div className="side--nav--bar">
@@ -63,7 +62,6 @@ function Nav(){
         console.log(event.target);
         console.log(event.target.dataset.name);
         console.log(focus);
-        // console.log(event.target.children[0].attributes.stroke.nodeValue = "none");
         setFocus(event.target.dataset.name);
         
     }
@@ -75,6 +73,7 @@ function Nav(){
 
         const xhr = new XMLHttpRequest();
         xhr.open('POST', 'http://localhost:8080/demo2_war_exploded/set-profile', true);
+        // xhr.open('POST', `http://${localStorage.getItem("host")}/demo2_war_exploded/set-profile`, true);
         xhr.send(formData);
             
             

@@ -36,7 +36,8 @@ export function SignUp ({sign}) {
         let stre = strength.test(values.password);
         let xhr = new XMLHttpRequest();
 
-        xhr.open("POST", "http://localhost:8080/demo2_war_exploded/signUp",true);
+        // xhr.open("POST", "http://localhost:8080/demo2_war_exploded/signUp",true);
+        xhr.open("POST", `http://${localStorage.getItem("host")}/demo2_war_exploded/signUp`,true);
         xhr.onreadystatechange = function() {
             if (this.status === 200) {
                 xhr.onloadend = ()=>{

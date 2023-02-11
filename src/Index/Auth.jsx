@@ -42,8 +42,11 @@ export default function SignIn ({sign,auth}) {
                         alert("success","login successfully")
                         setCookie("uid",res.uid,10);
                         localStorage.setItem("uid",res.uid);
-                        window.location.href = window.location.href;
-
+                        // window.location.href = window.location.href;
+                        console.log(res);
+                        localStorage.setItem("user",res.name)
+                        localStorage.setItem("userName",res.username)
+                        
                         setTimeout(()=>{
                             window.location.reload();
                         },1000)
