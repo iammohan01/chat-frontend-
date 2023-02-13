@@ -5,16 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/dist/assets/index-357949b9.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/assets/index-67ce351d.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/assets/test-32aa9aa5.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/calender.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/chPro.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/chat.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/home.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/profile-test.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/search.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/settings.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/mount.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/UserHead.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Chat/ChatReqRes/ReqChat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Chat/ChatReqRes/SendMessage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Chat/NavigationPanel/ChatNavPanelComponent.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Chat/NavigationPanel/NavigationComponect.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Chat/NavigationPanel/SettingsComponent.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Chat/ThreeDotMenu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Messenger-App.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Messenger-App.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/chat.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist" beforeDir="false" afterPath="$PROJECT_DIR$/dist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/index-28801ea9.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/index-bb9284cb.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/test-2d288306.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/test.svg" beforeDir="false" afterPath="$PROJECT_DIR$/dist/test.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps_temp/package.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/chat.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chat/MessagePannel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/MessagePannel.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chat/UserPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/UserPanel.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chat/Users.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/Users.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chat/chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/chatComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Index/Auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Index/Auth.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Index/SignUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Index/SignUp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Styles/message.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/message.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,22 +69,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/mohanasundaram/Zoho WorkDrive (Enterprise)/My Folders/ZS/Projects/Messenger-App",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mohanasundaram/Zoho WorkDrive (Enterprise)/My Folders/ZS/Projects/Messenger-App&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Chat" />
@@ -73,7 +103,8 @@
       <updated>1674928115154</updated>
       <workItem from="1674928116169" duration="106000" />
       <workItem from="1674928294489" duration="6802000" />
-      <workItem from="1675131979559" duration="39610000" />
+      <workItem from="1675131979559" duration="50747000" />
+      <workItem from="1676295430553" duration="9572000" />
     </task>
     <servers />
   </component>

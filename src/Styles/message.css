@@ -25,7 +25,7 @@
 
 
 }
-.chat--pannel{
+.chat--panel{
     /* height: 100vh; */
     border: 1px solid red;
     display: flex;
@@ -80,4 +80,31 @@
 .chat--input-icons{
     margin: 0 20px;
     /* border: 1px solid red; */
+}
+.msg{
+position: relative;
+}
+.three--dot{
+    visibility: hidden;
+    background-color: transparent;
+    /*position: absolute;*/
+    bottom: 0;
+    z-index: 1;
+}
+.material-symbols-outlined{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     font-variation-settings:
+             'FILL' 0,
+             'wght' 400,
+             'GRAD' 0,
+             'opsz' 48
+}
+.three--dot:focus , .three--dot:hover{
+    outline: none;
+    border-color: transparent;
+}
+.msg:hover .three--dot{
+    visibility: visible;
 }

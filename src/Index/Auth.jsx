@@ -30,7 +30,9 @@ export default function SignIn ({sign,auth}) {
     function reqSignIn(event) {
         event.preventDefault();
         let xhr = new XMLHttpRequest()
-        xhr.open("POST","http://localhost:8080/demo2_war_exploded/SignIn",true);
+        // xhr.open("POST","http://localhost:8080/demo2_war_exploded/SignIn",true);
+        xhr.open("POST","/SignIn",true);
+
         xhr.onreadystatechange = function(){
             xhr.onloadend = ()=>{
                 console.log(this.response)

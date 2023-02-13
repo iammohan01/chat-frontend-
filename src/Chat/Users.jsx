@@ -17,7 +17,7 @@ export default function Users({user,userL, name ,setUser,username}){
                 <div className="user">
                     <p className="user--name">
                         {name}
-                        
+                     
                     </p>
                     <p className="messaged--time">
                         12s

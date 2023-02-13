@@ -32,12 +32,12 @@ export function SignUp ({sign}) {
 
         
 
-        let strength = /^.*(?=.{6,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).*$/
-        let stre = strength.test(values.password);
+        let strength = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{6,}$/
+        let passwordStrength = strength.test(values.password);
         let xhr = new XMLHttpRequest();
 
         // xhr.open("POST", "http://localhost:8080/demo2_war_exploded/signUp",true);
-        xhr.open("POST", `http://${localStorage.getItem("host")}/demo2_war_exploded/signUp`,true);
+        xhr.open("POST", `/signUp`,true);
         xhr.onreadystatechange = function() {
             if (this.status === 200) {
                 xhr.onloadend = ()=>{
@@ -67,7 +67,7 @@ export function SignUp ({sign}) {
         };
 
         if (values.password === values.confirmPassword ){
-            if (true){
+            if (passwordStrength){
                 xhr.send(JSON.stringify({...values , password : hash(values.password) , confirmPassword :""  , time : Date.now()}));
             }
             else{

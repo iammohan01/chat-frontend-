@@ -14,7 +14,7 @@ export function UserPanel({selectedUser,setSelectedUser}){
         
         let reqUserList = new XMLHttpRequest();
         let end = `http://localhost:8080/demo2_war_exploded/GetUserList?userKey=${userSearch}`
-        // let end  = `http://${localStorage.getItem("host")}/demo2_war_exploded/GetUserList?userKey=${userSearch}`
+        // let end = `/GetUserList?userKey=${userSearch}`
         reqUserList.open("GET",end)
         reqUserList.onreadystatechange = ()=>{
             if (reqUserList.status === 200){

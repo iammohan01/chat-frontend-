@@ -1,120 +1,68 @@
 import React, {useEffect, useRef, useState} from "react";
 import ChatInput from "./ChatInput.jsx";
-export function ChatPanel({ userName, userChatList }) {
-  const [chats, setChats] = React.useState([]);
+import {ThreeDotMenu} from "./ThreeDotMenu.jsx";
+import {UserHead} from "./ChatPanel/UserHead.jsx";
+import {sendMessage} from "./ChatReqRes/SendMessage.js";
+import {reqCurrentUserChats} from "./ChatReqRes/ReqChat.js";
+
+export function ChatPanel({ CurrentUser, userChatList }) {
+  const [currentUserChatList, setCurrentUserChatList] = React.useState([]);
+
   const [chatInput, setChatInput] = React.useState("");
 
-  // console.log(chats)
+
   useEffect(() => {
     socketa.onmessage = (message) => {
+    console.log("socket message")
+
       console.log(userChatList.chats);
-      console.log(message.data);
+      console.log(message?.data);
 
       message = JSON.parse(message.data);
       if (message) {
         console.log(message);
+        console.log(userChatList.chats)
+        console.log(Object.keys(userChatList.chats))
         if (Object.keys(userChatList.chats).includes(message.from)) {
+          console.log('in line 22')
           userChatList.setChats((prevState) => {
+            console.log(prevState)
             return {
-              ...prevState,
+              // ...prevState,
               [prevState[message.from]]: [
                 prevState[message.from].push(message),
               ],
             };
           });
+          console.log(currentUserChatList)
         } else {
           let user = {};
           user.userName = message.from;
+          console.log(message)
           console.log(message.data);
-          reqChats(user);
+          reqCurrentUserChats(user);
         }
       }
     };
   }, []);
 
-  function reqChats(username) {
-    if (userChatList.chats[username.userName]) {
-      console.warn("getting chats form userBase");
-      console.log(userChatList.chats[username.userName]);
-    } else {
-      console.error("cant find chats");
-    }
-
-    const xhr = new XMLHttpRequest();
-    xhr.open(
-      "GET",
-      `http://localhost:8080/demo2_war_exploded/getChats?targetId=${
-        username.userName
-      }&reqId=${localStorage.getItem("uid")}`
-    );
-    xhr.onreadystatechange = () => {
-      xhr.onloadend = () => {
-        if (xhr.status === 200) {
-          let res = JSON.parse(xhr.responseText);
-          console.log(res);
-          setChats(res);
-          userChatList.setChats((prevState) => {
-            return { ...prevState, [username.userName]: res };
-          });
-          // console.log(userChatList.chats)
-        }
-      };
-    };
-    if (username.userName) {
-      xhr.send();
-    }
-  }
-
-  function sendMessage() {
-    let time = Date.now();
-    let ch = {
-      type: "chat",
-      from: localStorage.getItem("uid"),
-      to: userName.userName,
-      message: chatInput,
-      time: time,
-    };
-    if (!chatInput) {
-      setChatInput(`${Date.now()}`);
-    }
-    if (chatInput && userName.userName) {
-      console.log(JSON.stringify(ch));
-      userChatList.setChats((prevState) => {
-        console.warn(prevState);
-        let obj = {
-          isSentByMe: true,
-          time: time,
-          message: chatInput,
-          from: userName.userName,
-        };
-        let o = {
-          ...prevState,
-          [userName.userName]: [...prevState[userName.userName], obj],
-        };
-        console.log(o);
-        return o;
-      });
-
-      socketa.send(JSON.stringify(ch));
-    }
-  }
 
   useEffect(() => {
-    reqChats(userName);
-  }, [userName]);
+    reqCurrentUserChats(CurrentUser , userChatList ,setCurrentUserChatList);
+  }, [CurrentUser]);
 
   const [chatsComponent,setChatsComponent] = useState(<></>) //= <Chats chats={chats} />;
   useEffect(() => {
     console.warn("something changing");
-    setChatsComponent(<Chats chats={userChatList.chats[userName.userName]} />)
-  }, [userChatList.chats[userName.userName]]);
+    setChatsComponent(<Chats chats={userChatList.chats[CurrentUser.userName]} />)
+  }, [userChatList.chats[CurrentUser.userName]]);
 
   return (
-    <div className="chat--pannel">
-      <UserHead user={userName} />
+    <div className="chat--panel">
+      <UserHead user={CurrentUser} />
       {chatsComponent}
       <ChatInput
-        onSend={sendMessage}
+        onSend={()=>{sendMessage(CurrentUser.userName,chatInput,setChatInput,setCurrentUserChatList)}}
         chatInput={chatInput}
         setChatInput={setChatInput}
       />
@@ -122,47 +70,49 @@ export function ChatPanel({ userName, userChatList }) {
   );
 }
 
-function UserHead({ user }) {
-  return (
-    <div className="UserHead">
-      <div className="userImg"></div>
-      <div className="userDetail">
-        <p className="chat--user--name">{user.name}</p>
-        <p>@{user.userName}</p>
-      </div>
-      <div className="moreFunctions"></div>
-    </div>
-  );
-}
+
 
 function Chats({ chats}) {
-  console.log(chats);
-  const [chatsStateHolder,setChatsStateHolder] = useState([]);
+
+  const [chatsListElement,setChatsListElement] = useState([]);
 
   useEffect(() => {
   if (chats){
-     let s = chats.map((val) => {
+     let s = chats.map((val,index,arr) => {
+
       return (
-          <p key={val.time} className={val.isSentByMe ? "end" : ""}>
-            <span className="msg">{val.message}</span>
+          <p
+              key={val.time}
+              className={`${val.isSentByMe ? "end" : ""} msg`}
+          >
+            {val.isSentByMe && <ThreeDotMenu chatDetails={val}  /> }
+            <span
+                className="msg"
+            >
+              {val.message}
+            </span>
+
+            {!val.isSentByMe && <ThreeDotMenu chatDetails={val} /> }
+
           </p>
+
       );
     });
-     setChatsStateHolder(s)
+
+    // for last element to scroll
+     s.push(<div ref={scrollToRef}></div>)
+     setChatsListElement(s)
   }
   }, [chats]);
+  const scrollToRef = useRef(null);
 
+    if (scrollToRef.current){
+      scrollToRef.current.scrollIntoView()
+    }
 
-
-  console.log(chatsStateHolder)
   return (
     <div className="chat--list">
-      {chatsStateHolder}
-      <ScrollToBottomMessage />
+      {chatsListElement}
     </div>
   );
-}
-function ScrollToBottomMessage(){
-  const scrollToRef = useRef();
-  return <div ref={scrollToRef} onLoad={() => scrollToRef.current.scrollIntoView()}></div>
 }
