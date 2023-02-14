@@ -15,6 +15,7 @@
     <script type="module" src="/src/main.jsx"></script>
     <script>
       const end = `localhost:8080`;
+       // let socketForMessageTransfer = new WebSocket(`ws://localhost:8080/demo2_war_exploded/chat/${localStorage.getItem("uid")}`)
 
       function getProfile(){
 
@@ -34,14 +35,6 @@
         xhr.send();
     }
 
-      let socketa = new WebSocket(`ws://localhost:8080/demo2_war_exploded/chat/${localStorage.getItem("uid")}`)
-      // let socketa = new WebSocket(`ws://${end}/demo2_war_exploded/chat/${localStorage.getItem("uid")}`)
-      socketa.open = ()=>{
-        console.log("socket opened");
-      }
-      socketa.message =(message)=>{
-        console.log(message)
-      }
 
 
     </script>

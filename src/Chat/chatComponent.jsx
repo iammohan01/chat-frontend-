@@ -12,15 +12,18 @@ import {ChatNavPanelComponent} from "./NavigationPanel/ChatNavPanelComponent.jsx
 
 export  default  function ChatComponent(){
     const [selectedUser, setSelectedUser]= useState("");
-    const [AllUsersChats,setAllUsersChats] = useState({});
-    
+    const [AllUsersChats,setAllUsersChats] = useState([]);
 
+
+    // console.error('in chat main component parent')
+    useEffect(()=>{
+        // alert('all users chat modified')
+    },[AllUsersChats])
     return(
         <div className="Chat--window">
             <ChatNavPanelComponent />
             <UserPanel setSelectedUser={setSelectedUser} selectedUser={selectedUser} />
-            <ChatPanel userChatList={{chats : AllUsersChats , setChats:setAllUsersChats}} CurrentUser={selectedUser}/>
-
+            <ChatPanel allUsersChats={AllUsersChats} allUsersChatList={{chats : AllUsersChats , setChats:setAllUsersChats}} CurrentUser={selectedUser}/>
         </div>
     )
 }

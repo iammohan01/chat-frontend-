@@ -4,6 +4,8 @@ import Users from './Users' ;
 
 export function UserPanel({selectedUser,setSelectedUser}){
 
+    // console.error('User Panel Component')
+
     const [userSearch , seUserSearch]  =  useState("");
     const [users,setUsers] = useState([])
     let usersList = users.map((val)=>{
@@ -11,6 +13,8 @@ export function UserPanel({selectedUser,setSelectedUser}){
     })
 
     function getUserDetails(){
+
+        // console.error('in get user Details component')
         
         let reqUserList = new XMLHttpRequest();
         let end = `http://localhost:8080/demo2_war_exploded/GetUserList?userKey=${userSearch}`
@@ -31,7 +35,7 @@ export function UserPanel({selectedUser,setSelectedUser}){
     }
 
     return (
-        <div className="user--pannel">
+        <div className="user--panel">
             <Head />
             <Input 
                 placeholder="Search Users" 

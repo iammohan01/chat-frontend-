@@ -1,29 +1,33 @@
-export function reqCurrentUserChats(username, userChatList, setChats) {
-    if (userChatList.chats[username.userName]) {
-        console.warn("getting chats form userBase");
-        console.log(userChatList.chats[username.userName]);
+// import alert from "../../Scripts/alert.js";
+
+export function reqCurrentUserChats(requestingUser, userChatList, setCurrentUserChatList) {
+
+    // alert(`requesting user chats of ${requestingUser.userName}`)
+    if (userChatList && userChatList.chats[requestingUser.userName]) {
+        // console.warn("getting chats form local base");
+        // alert('getting in side of req')
+        // console.log(userChatList.chats[requestingUser.userName]);
         return
-    } else {
-        console.error("cant find chats");
     }
 
     const xhr = new XMLHttpRequest();
-    xhr.open("GET",`http://localhost:8080/demo2_war_exploded/getChats?targetId=${username.userName}&reqId=${localStorage.getItem("uid")}`);
+    xhr.open("GET",`http://localhost:8080/demo2_war_exploded/getChats?targetId=${requestingUser.userName}&reqId=${localStorage.getItem("uid")}`);
     // xhr.open("GET",`/getChats?targetId=${username.userName}&reqId=${localStorage.getItem("uid")}`);
     xhr.onreadystatechange = () => {
         xhr.onloadend = () => {
             if (xhr.status === 200) {
                 let res = JSON.parse(xhr.responseText);
-                console.log(res);
-                setChats(res);
+                // console.log(res);
+                setCurrentUserChatList(res);
                 userChatList.setChats((prevState) => {
-                    return { ...prevState, [username.userName]: res };
+                    // console.log(prevState)
+                    return { ...prevState, [requestingUser.userName]: res };
                 });
                 // console.log(userChatList.chats)
             }
         };
     };
-    if (username.userName) {
+    if (requestingUser.userName) {
         xhr.send();
     }
 }

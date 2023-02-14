@@ -1,118 +1,124 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ChatInput from "./ChatInput.jsx";
-import {ThreeDotMenu} from "./ThreeDotMenu.jsx";
-import {UserHead} from "./ChatPanel/UserHead.jsx";
-import {sendMessage} from "./ChatReqRes/SendMessage.js";
-import {reqCurrentUserChats} from "./ChatReqRes/ReqChat.js";
+import { ThreeDotMenu } from "./ThreeDotMenu.jsx";
+import { UserHead } from "./ChatPanel/UserHead.jsx";
+import { sendMessage } from "./ChatReqRes/SendMessage.js";
+import { reqCurrentUserChats } from "./ChatReqRes/ReqChat.js";
+import { socketOnMessage } from "./ChatReqRes/SocketForMessageTransfer.js";
 
-export function ChatPanel({ CurrentUser, userChatList }) {
+export function ChatPanel({ CurrentUser, allUsersChatList, allUsersChats }) {
   const [currentUserChatList, setCurrentUserChatList] = React.useState([]);
+  useEffect(()=>{
+    alert(`changing current user state ${currentUserChatList.length}`)
+    setCurrentUserChatList(allUsersChatList.chats[CurrentUser.userName] || [])
+  },[CurrentUser])
+
+
 
   const [chatInput, setChatInput] = React.useState("");
 
+  // console.error("in Chat Panel");
+  // console.log(currentUserChatList);
 
   useEffect(() => {
-    socketa.onmessage = (message) => {
-    console.log("socket message")
-
-      console.log(userChatList.chats);
-      console.log(message?.data);
-
-      message = JSON.parse(message.data);
-      if (message) {
-        console.log(message);
-        console.log(userChatList.chats)
-        console.log(Object.keys(userChatList.chats))
-        if (Object.keys(userChatList.chats).includes(message.from)) {
-          console.log('in line 22')
-          userChatList.setChats((prevState) => {
-            console.log(prevState)
-            return {
-              // ...prevState,
-              [prevState[message.from]]: [
-                prevState[message.from].push(message),
-              ],
-            };
-          });
-          console.log(currentUserChatList)
-        } else {
-          let user = {};
-          user.userName = message.from;
-          console.log(message)
-          console.log(message.data);
-          reqCurrentUserChats(user);
-        }
-      }
-    };
+    console.log(allUsersChatList)
+    socketOnMessage(allUsersChatList, CurrentUser, setCurrentUserChatList);
   }, []);
 
 
+  // console.log(CurrentUser)
   useEffect(() => {
-    reqCurrentUserChats(CurrentUser , userChatList ,setCurrentUserChatList);
+    // alert('user changed')
+    CurrentUser &&
+      reqCurrentUserChats(
+        CurrentUser,
+        allUsersChatList,
+        setCurrentUserChatList
+      );
   }, [CurrentUser]);
 
-  const [chatsComponent,setChatsComponent] = useState(<></>) //= <Chats chats={chats} />;
+  const [chatsComponent, setChatsComponent] = useState(<></>);
+
   useEffect(() => {
-    console.warn("something changing");
-    setChatsComponent(<Chats chats={userChatList.chats[CurrentUser.userName]} />)
-  }, [userChatList.chats[CurrentUser.userName]]);
+    // console.error("something changing");
+
+    // alert("crating chats elements");
+    //todo:here is the problem store this to parent then everything will work : fixed
+    allUsersChatList.chats[CurrentUser.userName] && allUsersChatList.setChats((prevChats)=>{
+      // console.log(prevChats)
+      //todo : spread and insert
+
+      let hh = [CurrentUser.userName]
+      // console.log(hh)
+      let obj ={
+
+      }
+      return {...prevChats ,[CurrentUser.userName]:currentUserChatList }
+    })
+
+    allUsersChatList.chats[CurrentUser.userName] &&
+      setChatsComponent(<Chats chats={currentUserChatList} />);
+  }, [currentUserChatList]);
+  useEffect(()=>{
+
+    // alert(`all users chat list chat changed`)
+    setChatsComponent(<Chats chats={currentUserChatList} />);
+
+  },[allUsersChatList.chats])
+
+
 
   return (
     <div className="chat--panel">
       <UserHead user={CurrentUser} />
       {chatsComponent}
       <ChatInput
-        onSend={()=>{sendMessage(CurrentUser.userName,chatInput,setChatInput,setCurrentUserChatList)}}
+        onSend={() => {
+          sendMessage(
+            CurrentUser.userName,
+            chatInput,
+            setChatInput,
+            setCurrentUserChatList,
+            Date.now() + ""
+          );
+        }}
         chatInput={chatInput}
         setChatInput={setChatInput}
+        currentUserChatList={currentUserChatList}
+        setCurrentUserChatList={setCurrentUserChatList}
       />
     </div>
   );
 }
 
-
-
-function Chats({ chats}) {
-
-  const [chatsListElement,setChatsListElement] = useState([]);
+function Chats({ chats }) {
+  // console.log(chats);
+  // console.error("in chat element function");
+  const [chatsListElement, setChatsListElement] = useState([]);
 
   useEffect(() => {
-  if (chats){
-     let s = chats.map((val,index,arr) => {
+    if (chats) {
+      let s = chats.map((val, index, arr) => {
+        return (
+          <p key={val.time} className={`${val.isSentByMe ? "end" : ""} msg`}>
+            {val.isSentByMe && <ThreeDotMenu key={val.time} chatDetails={val} />}
+            <span className="msg">{val.message}</span>
 
-      return (
-          <p
-              key={val.time}
-              className={`${val.isSentByMe ? "end" : ""} msg`}
-          >
-            {val.isSentByMe && <ThreeDotMenu chatDetails={val}  /> }
-            <span
-                className="msg"
-            >
-              {val.message}
-            </span>
-
-            {!val.isSentByMe && <ThreeDotMenu chatDetails={val} /> }
-
+            {!val.isSentByMe && <ThreeDotMenu key={val.time} chatDetails={val} />}
           </p>
+        );
+      });
 
-      );
-    });
-
-    // for last element to scroll
-     s.push(<div ref={scrollToRef}></div>)
-     setChatsListElement(s)
-  }
+      // for last element to scroll
+      s.push(<div ref={scrollToRef}></div>);
+      setChatsListElement(s);
+    }
   }, [chats]);
   const scrollToRef = useRef(null);
 
-    if (scrollToRef.current){
-      scrollToRef.current.scrollIntoView()
-    }
+  if (scrollToRef.current) {
+    scrollToRef.current.scrollIntoView();
+  }
 
-  return (
-    <div className="chat--list">
-      {chatsListElement}
-    </div>
-  );
+  return <div className="chat--list">{chatsListElement}</div>;
 }

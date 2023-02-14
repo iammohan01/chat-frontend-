@@ -45,7 +45,7 @@ export function  ThreeDotMenu({chatDetails}){
                     }
                 }
             >
-                Delete
+                Unsend
             </MenuItem>
         </MenuList>
     </Menu>

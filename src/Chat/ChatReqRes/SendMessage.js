@@ -1,5 +1,6 @@
-export  function sendMessage(userNameOfOtherSideUser , MessageToSend , ChatInputBoxState , setChats) {
-    let time = Date.now();
+import {socketForMessageTransfer} from "./SocketForMessageTransfer.js";
+
+export  function sendMessage(userNameOfOtherSideUser , MessageToSend , ChatInputBoxState , setChats, time) {
     let objectForServerToProcessChat = {
         type: "chat",
         from: localStorage.getItem("uid"),
@@ -21,14 +22,18 @@ export  function sendMessage(userNameOfOtherSideUser , MessageToSend , ChatInput
                 message: MessageToSend,
                 from: userNameOfOtherSideUser,
             };
-            let o = {
-                ...prevState,
-                [userNameOfOtherSideUser]: [...prevState[userNameOfOtherSideUser], objectForUpdatingLocalPreviousChats],
-            };
-            console.log(o);
-            return o;
-        });
+            // let o = {
+            //     ...prevState,
+            //     [userNameOfOtherSideUser]: [...prevState[userNameOfOtherSideUser], objectForUpdatingLocalPreviousChats],
+            // };
 
-        socketa.send(JSON.stringify(objectForServerToProcessChat));
+            let o = prevState || []
+            o.push(objectForUpdatingLocalPreviousChats)
+            console.log(o);
+            return o.slice();
+        });
+        console.log("sending messages to server")
+        socketForMessageTransfer.send(JSON.stringify(objectForServerToProcessChat));
     }
 }
+
