@@ -15,15 +15,15 @@ export  default  function ChatComponent(){
     const [AllUsersChats,setAllUsersChats] = useState([]);
 
 
-    // console.error('in chat main component parent')
     useEffect(()=>{
-        // alert('all users chat modified')
+        alert('all users changed')
     },[AllUsersChats])
+
     return(
         <div className="Chat--window">
             <ChatNavPanelComponent />
             <UserPanel setSelectedUser={setSelectedUser} selectedUser={selectedUser} />
-            <ChatPanel allUsersChats={AllUsersChats} allUsersChatList={{chats : AllUsersChats , setChats:setAllUsersChats}} CurrentUser={selectedUser}/>
+            <ChatPanel allUsersChats={AllUsersChats} setAllUsersChat={setAllUsersChats} CurrentUser={selectedUser}/>
         </div>
     )
 }

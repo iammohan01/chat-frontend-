@@ -14,15 +14,15 @@ socketForMessageTransfer.onclose =()=>{
 export function socketOnMessage(userChatList,CurrentUser,setCurrentUserChatList){
     socketForMessageTransfer.onmessage = (message) => {
         console.log("socket OnMessage")
-
+        alert(`${JSON.stringify(CurrentUser)} current user`)
         message = JSON.parse(message.data);
         console.log(message);
         if (message) {
-            console.log(message);
-            console.log(userChatList.chats)
-            console.log(Object.keys(userChatList.chats))
+            // console.log(message);
+            // console.log(userChatList.chats)
+            // console.log(Object.keys(userChatList.chats))
             // if (Object.keys(userChatList.chats).includes(message.from)) {
-                console.log(userChatList)
+            //     console.log(userChatList)
                 userChatList.setChats((prevState) => {
                     console.log(prevState)
                     prevState[message.from].push(message)
@@ -30,6 +30,16 @@ export function socketOnMessage(userChatList,CurrentUser,setCurrentUserChatList)
                         ...prevState
                     };
                 });
+
+
+            // alert(CurrentUser.userName +"----------" +message.from)
+            if(CurrentUser.userName === message.from){
+                // alert('insert in current user now')
+                setCurrentUserChatList((prevCurrentUserChatList)=>{
+                    return [...prevCurrentUserChatList,message]
+                })
+                alert('updated current user state')
+            }
 
             // } else {
             //     let user = {};

@@ -1,8 +1,10 @@
-export default function Users({user,userL, name ,setUser,username}){
+export default function Users({user,userL ,setUser}){
 
 
-
-
+    console.log(userL)
+    console.log(user)
+    console.log(setUser)
+    console.log(username)
     return (
         <div className={`user--chat--box ${user.userName === username ? 'selected--user' : ''}`}
             onClick={()=>{

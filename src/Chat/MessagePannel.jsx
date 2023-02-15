@@ -5,120 +5,42 @@ import { UserHead } from "./ChatPanel/UserHead.jsx";
 import { sendMessage } from "./ChatReqRes/SendMessage.js";
 import { reqCurrentUserChats } from "./ChatReqRes/ReqChat.js";
 import { socketOnMessage } from "./ChatReqRes/SocketForMessageTransfer.js";
+import alert from "../Scripts/alert.js";
 
-export function ChatPanel({ CurrentUser, allUsersChatList, allUsersChats }) {
-  const [currentUserChatList, setCurrentUserChatList] = React.useState([]);
-  useEffect(()=>{
-    alert(`changing current user state ${currentUserChatList.length}`)
-    setCurrentUserChatList(allUsersChatList.chats[CurrentUser.userName] || [])
-  },[CurrentUser])
+export function ChatPanel({ CurrentUser, setAllUsersChat, allUsersChats }) {
 
 
-
-  const [chatInput, setChatInput] = React.useState("");
-
-  // console.error("in Chat Panel");
-  // console.log(currentUserChatList);
-
+  //when user changed, request new chat list from server
   useEffect(() => {
-    console.log(allUsersChatList)
-    socketOnMessage(allUsersChatList, CurrentUser, setCurrentUserChatList);
-  }, []);
+    alert('user changed')
 
-
-  // console.log(CurrentUser)
-  useEffect(() => {
-    // alert('user changed')
-    CurrentUser &&
-      reqCurrentUserChats(
-        CurrentUser,
-        allUsersChatList,
-        setCurrentUserChatList
-      );
+    // current user to check , if current user data were not in allUsersChat then request from server and
+    // update through setAllUsersChat as a key value key : username and value : chat details array
+    CurrentUser && reqCurrentUserChats(CurrentUser, setAllUsersChat ,allUsersChats);
   }, [CurrentUser]);
 
-  const [chatsComponent, setChatsComponent] = useState(<></>);
+    console.log(CurrentUser.userName)
 
-  useEffect(() => {
-    // console.error("something changing");
-
-    // alert("crating chats elements");
-    //todo:here is the problem store this to parent then everything will work : fixed
-    allUsersChatList.chats[CurrentUser.userName] && allUsersChatList.setChats((prevChats)=>{
-      // console.log(prevChats)
-      //todo : spread and insert
-
-      let hh = [CurrentUser.userName]
-      // console.log(hh)
-      let obj ={
-
-      }
-      return {...prevChats ,[CurrentUser.userName]:currentUserChatList }
-    })
-
-    allUsersChatList.chats[CurrentUser.userName] &&
-      setChatsComponent(<Chats chats={currentUserChatList} />);
-  }, [currentUserChatList]);
+  //when current user chat changed in allUsersChats re-render chats
   useEffect(()=>{
+      alert('current user changed');
+    //chat component should be rendered here
+    },
+      [allUsersChats[CurrentUser]])
 
-    // alert(`all users chat list chat changed`)
-    setChatsComponent(<Chats chats={currentUserChatList} />);
+    useEffect(()=>{
+        alert('all users chat changed');
+        console.log(allUsersChats)
+    },[allUsersChats])
 
-  },[allUsersChatList.chats])
 
 
+    return <div className="chat--panel">
+              <UserHead user={CurrentUser} />
 
-  return (
-    <div className="chat--panel">
-      <UserHead user={CurrentUser} />
-      {chatsComponent}
-      <ChatInput
-        onSend={() => {
-          sendMessage(
-            CurrentUser.userName,
-            chatInput,
-            setChatInput,
-            setCurrentUserChatList,
-            Date.now() + ""
-          );
-        }}
-        chatInput={chatInput}
-        setChatInput={setChatInput}
-        currentUserChatList={currentUserChatList}
-        setCurrentUserChatList={setCurrentUserChatList}
-      />
-    </div>
-  );
-}
 
-function Chats({ chats }) {
-  // console.log(chats);
-  // console.error("in chat element function");
-  const [chatsListElement, setChatsListElement] = useState([]);
+              // it would be good if we update current user chat list in on chat input component
+              <ChatInput user={CurrentUser} setAllUsersChat={setAllUsersChat} />
+          </div>
 
-  useEffect(() => {
-    if (chats) {
-      let s = chats.map((val, index, arr) => {
-        return (
-          <p key={val.time} className={`${val.isSentByMe ? "end" : ""} msg`}>
-            {val.isSentByMe && <ThreeDotMenu key={val.time} chatDetails={val} />}
-            <span className="msg">{val.message}</span>
-
-            {!val.isSentByMe && <ThreeDotMenu key={val.time} chatDetails={val} />}
-          </p>
-        );
-      });
-
-      // for last element to scroll
-      s.push(<div ref={scrollToRef}></div>);
-      setChatsListElement(s);
-    }
-  }, [chats]);
-  const scrollToRef = useRef(null);
-
-  if (scrollToRef.current) {
-    scrollToRef.current.scrollIntoView();
-  }
-
-  return <div className="chat--list">{chatsListElement}</div>;
 }
