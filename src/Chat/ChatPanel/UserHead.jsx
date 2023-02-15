@@ -1,6 +1,9 @@
 import React from "react";
 
 export function UserHead({ user }) {
+
+
+    console.log(user)
     return (
         <div className="UserHead">
             <div className="userImg">

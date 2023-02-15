@@ -1,4 +1,5 @@
 import {useState} from "react";
+// import {sendMessage, socketForMessageTransfer} from "./ChatReqRes/SocketForMessageTransfer.js";
 
 export default function ChatInput({user,setAllUsersChat}){
 
@@ -24,6 +25,12 @@ export default function ChatInput({user,setAllUsersChat}){
             readyToUpdateInLocalBase.push(UpdateObject)
             return {...prevChats , [user.userName] : readyToUpdateInLocalBase}
         })
+
+
+        //send data to server
+
+        sendMessage(UpdateObject)
+        // socketForMessageTransfer.send('Hello');
     }
 
 
@@ -48,9 +55,16 @@ export default function ChatInput({user,setAllUsersChat}){
                     setInput(event.target.value)
                 }}
                 onKeyDown={(event)=>{
+
                     if(event.code === "Enter"){
-                        setInput("")
-                        updateAllUsersChat()
+                        setInput('')
+                        if(input){
+                            updateAllUsersChat()
+                        }
+                        else{
+                            setInput(Date.now()+'')
+                        }
+                        console.log(Boolean(input))
                         //call send message to server function
                     }
                 }}

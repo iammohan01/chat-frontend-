@@ -1,8 +1,8 @@
-import {reqCurrentUserChats} from "./ReqChat.js";
+
 
 export let socketForMessageTransfer = new WebSocket(`ws://localhost:8080/demo2_war_exploded/chat/${localStorage.getItem("uid")}`)
 // let socketForMessageTransfer = new WebSocket(`ws://${end}/demo2_war_exploded/chat/${localStorage.getItem("uid")}`))
-socketForMessageTransfer.open = ()=>{
+socketForMessageTransfer.onopen = ()=>{
     console.log("socket opened");
     alert('connection open')
 }
@@ -11,43 +11,7 @@ socketForMessageTransfer.onclose =()=>{
 }
 
 
-export function socketOnMessage(userChatList,CurrentUser,setCurrentUserChatList){
-    socketForMessageTransfer.onmessage = (message) => {
-        console.log("socket OnMessage")
-        alert(`${JSON.stringify(CurrentUser)} current user`)
-        message = JSON.parse(message.data);
-        console.log(message);
-        if (message) {
-            // console.log(message);
-            // console.log(userChatList.chats)
-            // console.log(Object.keys(userChatList.chats))
-            // if (Object.keys(userChatList.chats).includes(message.from)) {
-            //     console.log(userChatList)
-                userChatList.setChats((prevState) => {
-                    console.log(prevState)
-                    prevState[message.from].push(message)
-                    return {
-                        ...prevState
-                    };
-                });
-
-
-            // alert(CurrentUser.userName +"----------" +message.from)
-            if(CurrentUser.userName === message.from){
-                // alert('insert in current user now')
-                setCurrentUserChatList((prevCurrentUserChatList)=>{
-                    return [...prevCurrentUserChatList,message]
-                })
-                alert('updated current user state')
-            }
-
-            // } else {
-            //     let user = {};
-            //     user.userName = message.from;
-            //     console.log(message)
-            //     console.log(message.message);
-            //     reqCurrentUserChats(CurrentUser , userChatList ,setCurrentUserChatList);
-            }
-        // }
-    };
+export function sendMessage(data){
+    alert('message sent')
+       socketForMessageTransfer.send(data)
 }

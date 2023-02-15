@@ -1,18 +1,12 @@
-export default function Users({user,userL ,setUser}){
+export default function Users({className ,user ,setSelectedUser}){
 
 
-    console.log(userL)
-    console.log(user)
-    console.log(setUser)
-    console.log(username)
+
     return (
-        <div className={`user--chat--box ${user.userName === username ? 'selected--user' : ''}`}
+        <div className={`user--chat--box ${className}`}
             onClick={()=>{
-                setUser(username ? userL : "")
+                setSelectedUser(user)
             }}
-            
-    
-            // style={{backgroundColor : user.userName === username ? "purple" : ""}}
             >
             <div className='user--image'>
                 <img src={'https://secure.gravatar.com/avatar/84da92f298e5b124d92fb581b82cfdf4?s=1200&d=retro&r=pg'}  alt={''}/>
@@ -20,7 +14,7 @@ export default function Users({user,userL ,setUser}){
             <div className="chats">
                 <div className="user">
                     <p className="user--name">
-                        {name}
+                        {user.name}
                      
                     </p>
                     <p className="messaged--time">
@@ -29,7 +23,7 @@ export default function Users({user,userL ,setUser}){
                     
                 </div>
                 <span className="user--list--user--name">
-                        @{username}
+                        @{user.userName}
                         </span>
                 <p className="message">
                     Chat 00

@@ -4,12 +4,12 @@ import Users from './Users' ;
 
 export function UserPanel({selectedUser,setSelectedUser}){
 
-    // console.error('User Panel Component')
-
+    // console.log(setSelectedUser)
+    // alert(JSON.stringify(selectedUser))
     const [userSearch , seUserSearch]  =  useState("");
     const [users,setUsers] = useState([])
     let usersList = users.map((val)=>{
-        return (  val.userName !== localStorage.getItem("userName") && <Users user={selectedUser} setUser={setSelectedUser} userL={val} name={val.name} username={val.userName} key={val.userName} />)
+        return (  val.userName !== localStorage.getItem("userName") && <Users className={selectedUser.userName === val.userName ? 'selected--user':""} user={val} setSelectedUser={setSelectedUser} />)
     })
 
     function getUserDetails(){
