@@ -25,10 +25,10 @@
         xhr.responseType = "arraybuffer";
         xhr.onreadystatechange = ()=>{
             // console.log(this);
-            var arrayBuffer = xhr.response;
-            var blob = new Blob([arrayBuffer], { type: "image/jpeg" });
-            var url = URL.createObjectURL(blob);
-            console.log(blob);
+          const arrayBuffer = xhr.response;
+          const blob = new Blob([arrayBuffer], {type: "image/jpeg"});
+          const url = URL.createObjectURL(blob);
+          console.log(blob);
 
             document.getElementsByClassName("profile-img")[0].src = url ;
         }
