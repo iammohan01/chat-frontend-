@@ -36,8 +36,8 @@ export function SignUp ({sign}) {
         let passwordStrength = strength.test(values.password);
         let xhr = new XMLHttpRequest();
 
-        // xhr.open("POST", "http://localhost:8080/demo2_war_exploded/signUp",true);
-        xhr.open("POST", `/signUp`,true);
+        xhr.open("POST", "http://localhost:8080/demo2_war_exploded/signUp",true);
+        // xhr.open("POST", `/signUp`,true);
         xhr.onreadystatechange = function() {
             if (this.status === 200) {
                 xhr.onloadend = ()=>{
@@ -71,7 +71,7 @@ export function SignUp ({sign}) {
                 xhr.send(JSON.stringify({...values , password : hash(values.password) , confirmPassword :""  , time : Date.now()}));
             }
             else{
-                alert("warning","Week password..! Make sure your password has special characters , numbers and upper case letters")
+                alert("warning","Weak password..! Make sure your password has one special character, number , upper and lower case letters with min of 6 characters")
             }
 
         }

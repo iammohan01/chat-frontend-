@@ -1,13 +1,35 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
+import alert from "../Scripts/alert.js";
+import context from "../context.jsx";
 // import {sendMessage, socketForMessageTransfer} from "./ChatReqRes/SocketForMessageTransfer.js";
 
 export default function ChatInput({user,setAllUsersChat}){
 
     const [input,setInput] = useState('')
+    // const [socket,setSocket] = useState(useWebSocket(`ws://localhost:8080/demo2_war_exploded/chat/${localStorage.getItem("uid")}`,
+    //     {onOpen: (d)=>{
+    //             alert('success','Socket Opened')
+    //         },
+    //         onClose:()=>{
+    //             alert('error','Socket Connection Closed')
+    //         },
+    //         onMessage :(message)=>{
+    //             alert('success',`Message From Server ${message}`)
+    //             console.log(message)
+    //         },
+    //         retryOnError : true,
+    //         onError : (event)=>{
+    //             console.log(event)
+    //         }
+    //     })
+    // )
 
-
-    console.log(user.userName)
-
+    let socket = useContext(context);
+    console.log(socket)
+    socket.onmessage = (message)=>{
+        console.log(message)
+        // alert('success',message.data)
+    }
 
     //update into setAllUsers current users
     function updateAllUsersChat(){
@@ -29,9 +51,14 @@ export default function ChatInput({user,setAllUsersChat}){
 
         //send data to server
 
-        sendMessage(UpdateObject)
+        socket.sendMessage('Hello',true)
+        console.log(socket)
+
+
+        // sendMessage(UpdateObject)
         // socketForMessageTransfer.send('Hello');
     }
+
 
 
 
