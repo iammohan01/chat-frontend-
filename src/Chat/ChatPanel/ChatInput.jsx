@@ -1,31 +1,11 @@
 import {useContext, useState} from "react";
-import alert from "../Scripts/alert.js";
-import context from "../context.jsx";
-// import {sendMessage, socketForMessageTransfer} from "./ChatReqRes/SocketForMessageTransfer.js";
+import Context from "../../context.jsx";
+import {send} from "vite";
+import {sendMessage} from "../ChatReqRes/SendMessage.js";
 
 export default function ChatInput({user,setAllUsersChat}){
 
     const [input,setInput] = useState('')
-    // const [socket,setSocket] = useState(useWebSocket(`ws://localhost:8080/demo2_war_exploded/chat/${localStorage.getItem("uid")}`,
-    //     {onOpen: (d)=>{
-    //             alert('success','Socket Opened')
-    //         },
-    //         onClose:()=>{
-    //             alert('error','Socket Connection Closed')
-    //         },
-    //         onMessage :(message)=>{
-    //             alert('success',`Message From Server ${message}`)
-    //             console.log(message)
-    //         },
-    //         retryOnError : true,
-    //         onError : (event)=>{
-    //             console.log(event)
-    //         }
-    //     })
-    // )
-
-
-    let {socket} = useContext(context);
 
     //update into setAllUsers current users
     function updateAllUsersChat(){
@@ -41,37 +21,17 @@ export default function ChatInput({user,setAllUsersChat}){
         setAllUsersChat((prevChats)=>{
             let readyToUpdateInLocalBase = prevChats[user.userName] || []
             readyToUpdateInLocalBase.push(UpdateObject)
+
+            // console.log(readyToUpdateInLocalBase)
+            // console.log(prevChats)
             return {...prevChats , [user.userName] : readyToUpdateInLocalBase}
         })
-
-
-        //send data to server
-
-
-        let obj = {
-            type : 'chat',
-            from : localStorage.getItem('uid'),
-            to : user.userName,
-            time : UpdateObject.time,
-            message :input
-
-        }
-
-        console.log(JSON.stringify(obj))
-        socket.send(JSON.stringify(obj))
-
-
-
-        // sendMessage(UpdateObject)
-        // socketForMessageTransfer.send('Hello');
     }
 
 
+    function sendMessageToServer() {
 
-
-
-
-
+    }
 
     return (
         <div className="chat--input">
@@ -89,16 +49,10 @@ export default function ChatInput({user,setAllUsersChat}){
                     setInput(event.target.value)
                 }}
                 onKeyDown={(event)=>{
-
                     if(event.code === "Enter"){
-                        setInput('')
-                        if(input){
-                            updateAllUsersChat()
-                        }
-                        else{
-                            setInput(Date.now()+'')
-                        }
-                        console.log(Boolean(input))
+                        setInput("")
+                        updateAllUsersChat()
+                        sendMessageToServer()
                         //call send message to server function
                     }
                 }}

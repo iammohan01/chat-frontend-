@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 import '../Styles/Chat.css';
 import '../Styles/index.css';
 import '../Styles/message.css';
@@ -7,23 +7,17 @@ import { UserPanel } from "./UserPanel.jsx";
 import { useState } from "react";
 import {ChatNavPanelComponent} from "./NavigationPanel/ChatNavPanelComponent.jsx";
 import alert from "../Scripts/alert.js";
-import {socketForMessageTransfer} from "./ChatReqRes/SocketForMessageTransfer.js";
 import useWebSocket , {ReadyState } from "react-use-websocket";
+import context from "../context.jsx";
 
 
 
 
 export  default  function ChatComponent(){
-    const [selectedUser, setSelectedUser]= useState({});
-    const [AllUsersChats,setAllUsersChats] = useState([]);
-    // const socket = useWebSocket(`ws://localhost:8080/demo2_war_exploded/chat/${localStorage.getItem("uid")}`,
-    //     {onOpen: (d)=>{
-    //             alert('success','Socket Opened')
-    //     },
-    //             onClose:()=>{
-    //         alert('error','Socket Connection Closed')
-    //             }
-    //     })
+
+    let {selectedUserState,allUsersState} = useContext(context)
+    const {selectedUser, setSelectedUser}= selectedUserState //   useState({});
+    const {AllUsersChats,setAllUsersChats} =allUsersState // useState([]);
 
 
 

@@ -11,6 +11,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </ContextProvider>
 )
 
+let permission = await Notification.requestPermission();
 
 
 function getCookie(cname) {
