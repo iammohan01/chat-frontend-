@@ -30,11 +30,18 @@ export default function ChatInput({user,setAllUsersChat}){
     //update into setAllUsers current users
     function updateAllUsersChat(){
 
+        let time = Date.now()
+        console.log(time,input)
+
+        let encryptedMessage = CryptoJS.AES.encrypt(input,time+'').toString()
+        console.log(encryptedMessage)
+        console.log(encryptedMessage.toString())
+
         let UpdateObject = {
             fromUser : '' ,
             toUser : user.userName,
             message : input,
-            time : Date.now(),
+            time : time ,
             isSentByMe : true
         }
 
@@ -53,7 +60,7 @@ export default function ChatInput({user,setAllUsersChat}){
             from : localStorage.getItem('uid'),
             to : user.userName,
             time : UpdateObject.time,
-            message :input
+            message :encryptedMessage
 
         }
 

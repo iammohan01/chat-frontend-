@@ -12,10 +12,16 @@ export function reqCurrentUserChats(CurrentUser, setAllUsersChat ,allUsersChats)
         xhr.onreadystatechange = function (){
             xhr.onloadend = function (){
                 if (xhr.status === 200){
-                    let res = JSON.parse(xhr.responseText);
-                    // console.log(res)
+                    let encryptedRes = JSON.parse(xhr.responseText);
+
+                    let decryptedRes = encryptedRes.map((val)=>{
+                        console.log(CryptoJS.AES.decrypt(val.message,val.time).toString(CryptoJS.enc.Utf8))
+                        return {...val ,message :CryptoJS.AES.decrypt(val.message,val.time).toString(CryptoJS.enc.Utf8) }
+                    })
+
+                    let res = [] ;
                     setAllUsersChat((prevAllUsersChat)=>{
-                        return {...prevAllUsersChat , [CurrentUser.userName] : res}
+                        return {...prevAllUsersChat , [CurrentUser.userName] : decryptedRes}
                     })
                 }
             }

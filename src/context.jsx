@@ -21,6 +21,7 @@ const ContextProvider = ({ children }) => {
         alert('success',`Message from server ${message.data}`)
 
         let fromUserData = JSON.parse(message.data)
+        fromUserData['message'] = CryptoJS.AES.decrypt(fromUserData['message'],fromUserData['time']).toString(CryptoJS.enc.Utf8)
         let fromUser = fromUserData['from']
 
 
