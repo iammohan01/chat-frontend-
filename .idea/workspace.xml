@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="&#10;1 : time view added ,&#10;2 : can send and receive messages">
+    <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="can send files to server through sevlet">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist" beforeDir="false" afterPath="$PROJECT_DIR$/dist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/ChatInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatInput.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/NavigationPanel/NavigationComponect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/NavigationPanel/NavigationComponect.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chat/ChatReqRes/ReqChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatReqRes/ReqChat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Styles/message.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/message.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676644892889</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="can send files to server through sevlet">
+      <created>1676661307516</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1676661307516</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,6 +187,7 @@
     <MESSAGE value="changed status to context.jsx , split chat component , can send push notification" />
     <MESSAGE value="messages are now encrypted" />
     <MESSAGE value="&#10;1 : time view added ,&#10;2 : can send and receive messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;1 : time view added ,&#10;2 : can send and receive messages" />
+    <MESSAGE value="can send files to server through sevlet" />
+    <option name="LAST_COMMIT_MESSAGE" value="can send files to server through sevlet" />
   </component>
 </project>

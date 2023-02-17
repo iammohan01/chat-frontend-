@@ -1,4 +1,5 @@
 import {useState} from "react";
+import alert from "../Scripts/alert.js";
 // import {sendMessage, socketForMessageTransfer} from "./ChatReqRes/SocketForMessageTransfer.js";
 
 export default function ChatInput({user,setAllUsersChat}){
@@ -40,7 +41,9 @@ export default function ChatInput({user,setAllUsersChat}){
             toUser : user.userName,
             message : input,
             time : time ,
-            isSentByMe : true
+            isSentByMe : true,
+            type :'chat',
+            ency : encryptedMessage
         }
 
         setAllUsersChat((prevChats)=>{
@@ -58,7 +61,7 @@ export default function ChatInput({user,setAllUsersChat}){
             from : localStorage.getItem('uid'),
             to : user.userName,
             time : UpdateObject.time,
-            message :encryptedMessage
+            message :encryptedMessage,
 
         }
 
@@ -87,6 +90,13 @@ export default function ChatInput({user,setAllUsersChat}){
             message : "",
         }
         input.onchange = ()=>{
+
+            console.log(input.files[0].size)
+            if (input.files[0].size > 973741824){
+                alert('warning','File Size Should be less than 1GB')
+                return
+            }
+            // alert(input.files[0].size / 1024 ** 2)
             console.log(input.files[0].name)
 
 
@@ -110,9 +120,23 @@ export default function ChatInput({user,setAllUsersChat}){
                 }
                 xhr.send(formData);
 
+                socket.send(JSON.stringify(objForSocket))
 
-                // socket.send(JSON.stringify(objForSocket))
+            let UpdateObject = {
+                fromUser : '' ,
+                toUser : user.userName,
+                message : input.files[0].name,
+                time : timeNow ,
+                isSentByMe : true,
+                type :'file',
+                ency : ency
+            }
 
+            setAllUsersChat((prevChats)=>{
+                let readyToUpdateInLocalBase = prevChats[user.userName] || []
+                readyToUpdateInLocalBase.push(UpdateObject)
+                return {...prevChats , [user.userName] : readyToUpdateInLocalBase}
+            })
 
 
         }
