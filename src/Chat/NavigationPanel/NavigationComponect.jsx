@@ -17,8 +17,8 @@ export function NavBar(){
         formData.append('file', file);
 
         const xhr = new XMLHttpRequest();
-        // xhr.open('POST', 'http://localhost:8080/demo2_war_exploded/set-profile', true);
-        xhr.open('POST', '/set-profile', true);
+        xhr.open('POST', 'http://localhost:8081/demo2_war_exploded/set-profile', true);
+        // xhr.open('POST', '/set-profile', true);
         xhr.send(formData);
 
 

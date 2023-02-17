@@ -14,7 +14,8 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
-      let socket = new WebSocket(`ws://${window.location.host}/chat/${localStorage.getItem("uid")}`)
+      // let socket = new WebSocket(`ws://${window.location.host}/chat/${localStorage.getItem("uid")}`)
+      let socket = new WebSocket(`ws://localhost:8081/demo2_war_exploded/chat/${localStorage.getItem("uid")}`)
       let endURL = 'http://localhost:8081/demo2_war_exploded'
       function getProfile(){
 

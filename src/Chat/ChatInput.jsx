@@ -1,6 +1,4 @@
-import {useContext, useState} from "react";
-import alert from "../Scripts/alert.js";
-import context from "../context.jsx";
+import {useState} from "react";
 // import {sendMessage, socketForMessageTransfer} from "./ChatReqRes/SocketForMessageTransfer.js";
 
 export default function ChatInput({user,setAllUsersChat}){
@@ -69,8 +67,57 @@ export default function ChatInput({user,setAllUsersChat}){
 
 
 
+
         // sendMessage(UpdateObject)
         // socketForMessageTransfer.send('Hello');
+    }
+
+    function uploadFile() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.click();
+
+
+        let timeNow = Date.now()
+        let objForSocket = {
+            type : 'file',
+            from : localStorage.getItem('uid'),
+            to : user.userName,
+            time : timeNow,
+            message : "",
+        }
+        input.onchange = ()=>{
+            console.log(input.files[0].name)
+
+
+                let ency = CryptoJS.AES.encrypt(input.files[0].name, timeNow + '').toString()
+                objForSocket.message = ency
+                console.log(JSON.stringify(objForSocket))
+
+
+
+                const formData = new FormData();
+                formData.append('name', ency);
+                formData.append('by',localStorage.getItem('uid'))
+                formData.append('file', input.files[0]);
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', `${endURL}/LoadFile`, true);
+                xhr.onreadystatechange = ()=>{
+                    xhr.onloadend =()=>{
+                        console.warn(xhr.responseText)
+                    }
+
+                }
+                xhr.send(formData);
+
+
+                // socket.send(JSON.stringify(objForSocket))
+
+
+
+        }
+
+        // var reader = new FileReader(input.files[0]);
     }
 
 
@@ -82,7 +129,7 @@ export default function ChatInput({user,setAllUsersChat}){
 
     return (
         <div className="chat--input">
-            <svg
+            <svg onClick={uploadFile}
                 className="chat--input-icons" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11.97 12V15.5C11.97 17.43 13.54 19 15.47 19C17.4 19 18.97 17.43 18.97 15.5V10C18.97 6.13 15.84 3 11.97 3C8.1 3 4.97 6.13 4.97 10V16C4.97 19.31 7.66 22 10.97 22" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeinejoin="round"/>
             </svg>
