@@ -32,11 +32,12 @@ export function SignUp ({sign}) {
 
         
 
-        let strength = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{6,}$/
+        let strength = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\d!@#$%^&*()_+{}|:"<>?,.\/';\\])[A-Za-z\d!@#$%^&*()_+{}|:"<>?,.\/';\\]{6,}$/
         let passwordStrength = strength.test(values.password);
         let xhr = new XMLHttpRequest();
 
-        xhr.open("POST", "http://localhost:8080/demo2_war_exploded/signUp",true);
+        xhr.open("POST", `${endURL}/signUp`,true);
+        // xhr.open("POST", "http://localhost:8080/demo2_war_exploded/signUp",true);
         // xhr.open("POST", `/signUp`,true);
         xhr.onreadystatechange = function() {
             if (this.status === 200) {

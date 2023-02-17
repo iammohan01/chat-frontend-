@@ -17,7 +17,8 @@ export function UserPanel({selectedUser,setSelectedUser}){
         // console.error('in get user Details component')
         
         let reqUserList = new XMLHttpRequest();
-        let end = `http://localhost:8080/demo2_war_exploded/GetUserList?userKey=${userSearch}`
+        // let end = `http://localhost:8080/demo2_war_exploded/GetUserList?userKey=${userSearch}`
+        let end = `${endURL}/GetUserList?userKey=${userSearch}`
         // let end = `/GetUserList?userKey=${userSearch}`
         reqUserList.open("GET",end)
         reqUserList.onreadystatechange = ()=>{
@@ -37,20 +38,18 @@ export function UserPanel({selectedUser,setSelectedUser}){
     return (
         <div className="user--panel">
             <Head />
-            <Input 
-                placeholder="Search Users" 
-                onChange={(e)=>{
+            {/*<Input*/}
+            {/*    placeholder="Search Users"*/}
+            {/*    onChange={(e)=>{*/}
+            {/*    seUserSearch(e.target.value)*/}
+            {/*    }}*/}
+            {/*    }*/}
+            {/*    value={userSearch}*/}
+            {/*/>*/}
+            <input placeholder="Search Users" type={"text"} className={'userSearch'} onChange={(e)=>{
                 seUserSearch(e.target.value)
-                }} 
-                onKeyDown={(e)=>{
-                    if (e.code === "Enter"){
-                        getUserDetails()
-                    }
-                }
-                }
-                value={userSearch}
-            />
-            
+                getUserDetails()
+            }} />
              {usersList}
         </div>
     )
@@ -60,7 +59,7 @@ export function UserPanel({selectedUser,setSelectedUser}){
 function Head(){
     return(
         <div>
-            <h1>{localStorage.getItem("user")}</h1>
+            <h1 className={'app--title'}>ChripChat</h1>
         </div>
     )
 }

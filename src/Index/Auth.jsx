@@ -20,17 +20,13 @@ export default function SignIn ({sign,auth}) {
         })
     }
 
-    function setCookie(cname, cvalue, exdays) {
-        const d = new Date();
-        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-        let expires = "expires="+d.toUTCString();
-        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-      }
+
 
     function reqSignIn(event) {
         event.preventDefault();
         let xhr = new XMLHttpRequest()
-        xhr.open("POST","http://localhost:8080/demo2_war_exploded/SignIn",true);
+        // xhr.open("POST","http://localhost:8080/demo2_war_exploded/SignIn",true);
+        xhr.open("POST",`${endURL}/SignIn`,true);
         // xhr.open("POST","/SignIn",true);
 
         xhr.onreadystatechange = function(){
@@ -99,4 +95,9 @@ function hash(str){
     return CryptoJS.SHA3(str, { outputLength: 512 }).toString();
 }
 
-
+export function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}

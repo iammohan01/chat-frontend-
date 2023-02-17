@@ -25,17 +25,17 @@ export default function ChatInput({user,setAllUsersChat}){
     // )
 
 
-    let {socket} = useContext(context);
+    // let {socket} = useContext(context);
 
     //update into setAllUsers current users
     function updateAllUsersChat(){
 
         let time = Date.now()
-        console.log(time,input)
+        // console.log(time,input)
 
         let encryptedMessage = CryptoJS.AES.encrypt(input,time+'').toString()
-        console.log(encryptedMessage)
-        console.log(encryptedMessage.toString())
+        // console.log(encryptedMessage)
+        // console.log(encryptedMessage.toString())
 
         let UpdateObject = {
             fromUser : '' ,
@@ -103,9 +103,9 @@ export default function ChatInput({user,setAllUsersChat}){
                             updateAllUsersChat()
                         }
                         else{
-                            setInput(Date.now()+'')
+                            // setInput(Date.now()+'')
                         }
-                        console.log(Boolean(input))
+                        // console.log(Boolean(input))
                         //call send message to server function
                     }
                 }}
@@ -113,6 +113,13 @@ export default function ChatInput({user,setAllUsersChat}){
             <svg
                 onClick={()=>{
                     //call send message to server function
+                    setInput('')
+                    if(input){
+                        updateAllUsersChat()
+                    }
+                    else{
+                        // setInput(Date.now()+'')
+                    }
                     setInput('')
                 }
             } className="chat--input-icons" id="sendButton" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -14,12 +14,15 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
-
+      let socket = new WebSocket(`ws://${window.location.host}/chat/${localStorage.getItem("uid")}`)
+      let endURL = 'http://localhost:8081/demo2_war_exploded'
       function getProfile(){
 
         let xhr = new XMLHttpRequest();
         // xhr.open("GET","/GetProfileImg",true)
-        xhr.open("GET","http://localhost:8080/demo2_war_exploded/GetProfileImg",true)
+        // xhr.open("GET","http://localhost:8080/demo2_war_exploded/GetProfileImg",true)
+        xhr.open("GET",`${endURL}/GetProfileImg`,true)
+
         xhr.responseType = "arraybuffer";
         xhr.onreadystatechange = ()=>{
             // console.log(this);

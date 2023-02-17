@@ -37,10 +37,12 @@ export function ChatPanel({ selectedUser, setAllUsersChat, allUsersChats }) {
 
 
     return <div className="chat--panel">
+
+
         <UserHead user={selectedUser} />
         <div className="chat--list">
             {chatsComponent}
-        </div>;
+        </div>
         <ChatInput user={selectedUser} setAllUsersChat={setAllUsersChat} />
     </div>
 

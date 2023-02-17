@@ -98,7 +98,8 @@
     /* border: 1px solid red; */
 }
 .msg{
-position: relative;
+    position: relative;
+    padding: 0 20px;
 }
 .three--dot{
     visibility: hidden;
@@ -128,4 +129,17 @@ position: relative;
     width: 80%;
     height: 80%;
     border-radius: 50%;
+}
+.userSearch{
+    /*border: 1px solid red;*/
+    width: 90%;
+    padding: 0 15px;
+    border-radius: 30px;
+    background-color: #f1f1f1;
+    margin: 10px 5%;
+    border: none;
+}
+.app--title{
+    /*border: 1px solid red;*/
+    padding-left: 10px ;
 }

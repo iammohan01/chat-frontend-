@@ -171,3 +171,28 @@ svg{
 .selected--user *{
     color: white;
 }
+.empty--panel{
+    height: 100%;
+    flex-grow: 1;
+    background-image: url("empty-panel.svg");
+    /*background-size: contain ;*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40%;
+    opacity: 0.8;
+    box-shadow: #00000017 0 3px 12px;
+}
+.chat--list > .msg > .time--in--msg{
+    font-size: 12px;
+    opacity: 0.5;
+    background-color: transparent;
+}
+.chat--list > .end > .time--in--msg{
+    color: black;
+}
+.msg:hover .time--in--msg{
+    visibility: visible;
+}
+.time--in--msg{
+    visibility: hidden;
+}

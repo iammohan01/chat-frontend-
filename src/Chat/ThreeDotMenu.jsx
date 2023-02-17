@@ -2,7 +2,7 @@ import {Menu, MenuButton, MenuItem, MenuList} from "@chakra-ui/react";
 import React from "react";
 import alert from "../Scripts/alert.js";
 
-export function  ThreeDotMenu({chatDetails}){
+export function  ThreeDotMenu({chatDetails,isByMe}){
 
     return <Menu
         outline={'none'} p={0} m={0} maxW={'15px'}
@@ -34,11 +34,11 @@ export function  ThreeDotMenu({chatDetails}){
 
             </MenuItem>
 
-            <MenuItem
+            {isByMe === 1 && <MenuItem
                 mt={'10px'}
                 _hover={{
-                        outline: 'none'
-                    }}
+                    outline: 'none'
+                }}
                 _focus={
                     {
                         outline: 'none'
@@ -46,7 +46,7 @@ export function  ThreeDotMenu({chatDetails}){
                 }
             >
                 Unsend
-            </MenuItem>
+            </MenuItem>}
         </MenuList>
     </Menu>
 }

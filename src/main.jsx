@@ -4,17 +4,19 @@ import App from './App'
 import './Styles/index.css'
 import ChatComponent from './Chat/chatComponent.jsx'
 import  {ContextProvider} from "./context.jsx";
+import {setCookie} from "./Index/Auth.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <ContextProvider>
-      {getCookie("uid") ? <ChatComponent/> : <App/>}
+      {getCookie('uid') ? <ChatComponent/> : <App/>}
     </ContextProvider>
 )
 
-let permission = await Notification.requestPermission();
 
 
-function getCookie(cname) {
+
+
+export function getCookie(cname) {
   let name = cname + "=";
   let ca = document.cookie.split(';');
   for(let i = 0; i < ca.length; i++) {

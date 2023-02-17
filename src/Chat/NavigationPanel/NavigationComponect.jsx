@@ -7,9 +7,6 @@ export function NavBar(){
     const [focus,setFocus] = React.useState("chat");
 
     function changeFocus(event){
-        console.log(event.target);
-        console.log(event.target.dataset.name);
-        console.log(focus);
         setFocus(event.target.dataset.name);
 
     }
@@ -20,8 +17,8 @@ export function NavBar(){
         formData.append('file', file);
 
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:8080/demo2_war_exploded/set-profile', true);
-        // xhr.open('POST', '/set-profile', true);
+        // xhr.open('POST', 'http://localhost:8080/demo2_war_exploded/set-profile', true);
+        xhr.open('POST', '/set-profile', true);
         xhr.send(formData);
 
 
