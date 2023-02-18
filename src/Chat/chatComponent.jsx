@@ -61,6 +61,7 @@ function EmptyPanel(){
 }
 function verifyUser(){
     let uid = getCookie('uid');
+    if(!uid) return
     let xhr =  new XMLHttpRequest();
     // xhr.open("GET", `/verifyUser?id=${uid}`,true);
     xhr.open("GET", `${endURL}/verifyUser?id=${uid}`,true);
@@ -69,7 +70,7 @@ function verifyUser(){
     xhr.onreadystatechange = ()=>{
         xhr.onloadend = ()=>{
             let res = JSON.parse(xhr.responseText)
-            console.log(res)
+            // console.log(res)
             if (res['status'] === 1){
             }
             else{

@@ -9,7 +9,7 @@ export function ChatsComponent( chats ) {
              s = chats.map((val, index, arr) => {
                  let time = new Date(Number(val.time))
                  let hours = `${time.getHours()%12}:${time.getMinutes()} ${time.getHours() > 11? 'PM' : 'AM'}`
-                 console.log(val)
+                 // console.log(val)
                 return (
                     <p key={val.time} className={`${val.isSentByMe ? "end" : ""} msg`}>
                         {val.isSentByMe && <ThreeDotMenu key={val.time}  isByMe={1} chatDetails={val}/>  }

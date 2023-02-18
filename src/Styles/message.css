@@ -146,3 +146,15 @@
 .chat--list .msg .file{
     background-color: red;
 }
+.connection{
+    font-size: 15px;
+    padding: 10px;
+    font-weight: 900;
+}
+.online{
+    color: green;
+}
+.last--seen , .offline{
+    color: grey;
+    font-weight: 500;
+}

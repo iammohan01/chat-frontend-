@@ -4,12 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="can send files to server through sevlet">
+    <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="can send and receive and download files">
+      <change afterPath="$PROJECT_DIR$/dist/assets/index-43782987.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/assets/index-d7bb36bd.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/ChatInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatInput.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/index-6ca85ba6.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/index-932fc46f.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/ChatReqRes/ReqChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatReqRes/ReqChat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chat/ChatPanel/UserHead.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/UserHead.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chat/UserPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/UserPanel.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chat/chatComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/chatComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Styles/message.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/message.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676661307516</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="can send and receive and download files">
+      <created>1676668316048</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1676668316048</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,6 +203,7 @@
     <MESSAGE value="messages are now encrypted" />
     <MESSAGE value="&#10;1 : time view added ,&#10;2 : can send and receive messages" />
     <MESSAGE value="can send files to server through sevlet" />
-    <option name="LAST_COMMIT_MESSAGE" value="can send files to server through sevlet" />
+    <MESSAGE value="can send and receive and download files" />
+    <option name="LAST_COMMIT_MESSAGE" value="can send and receive and download files" />
   </component>
 </project>

@@ -9,7 +9,7 @@ export function UserPanel({selectedUser,setSelectedUser}){
     const [userSearch , seUserSearch]  =  useState("");
     const [users,setUsers] = useState([])
     let usersList = users.map((val)=>{
-        return (  val.userName !== localStorage.getItem("userName") && <Users className={selectedUser.userName === val.userName ? 'selected--user':""} user={val} setSelectedUser={setSelectedUser} />)
+        return (  val.userName !== localStorage.getItem("userName") && <Users key={val.userName} className={selectedUser.userName === val.userName ? 'selected--user':""} user={val} setSelectedUser={setSelectedUser} />)
     })
 
     function getUserDetails(){
