@@ -16,9 +16,9 @@ const ContextProvider = ({ children }) => {
     const allUsersState = {AllUsersChats,setAllUsersChats}
 
 
-    useEffect(()=>{
-        console.log(selectedUser)
-    },[selectedUser])
+    // useEffect(()=>{
+    //     console.log(selectedUser)
+    // },[selectedUser])
     // let socket = new WebSocket(`ws://${window.location.host}/chat/${localStorage.getItem("uid")}`)
 
     // let [socket,setSocket] = useState(new WebSocket(`ws://${window.location.host}/chat/${localStorage.getItem("uid")}`)) ;
@@ -27,9 +27,7 @@ const ContextProvider = ({ children }) => {
         connectionSocket.onmessage = (message)=>{
             // alert('warning','Message from server')
             let res = JSON.parse(message.data);
-            console.log(res)
             setSelectedUser((prev)=>{
-                console.log(prev)
                 return {...prev,Status : res['Status'] , lastOnline : res['lastOnline']}
             })}
     // const socket = new WebSocket(`ws://localhost:8080/demo2_war_exploded/chat/${localStorage.getItem("uid")}`)

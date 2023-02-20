@@ -195,4 +195,5 @@ svg{
 }
 .time--in--msg{
     visibility: hidden;
+    padding: 0 10px;
 }

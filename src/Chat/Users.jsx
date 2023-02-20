@@ -1,5 +1,22 @@
+import React from "react";
 export default function Users({className ,user ,setSelectedUser}){
 
+    let [sec,setSec] = React.useState(Math.ceil((Date.now() - Number(user.time))/1000))
+    let interval = 1000 ;
+
+    React.useEffect(()=>{
+        sec = Math.ceil((Date.now() - Number(user.time))/1000)
+    if(sec < 60){
+        interval = 1000
+    }
+    else if((sec / 60) < 60){
+        interval = 1000 * 60
+    }
+    else{
+        interval = 1000 * 60 *60
+    }
+    setInterval(()=>{setSec(Math.ceil((Date.now() - Number(user.time))/1000))},interval)
+    },[sec])
 
 
     return (
@@ -18,15 +35,19 @@ export default function Users({className ,user ,setSelectedUser}){
                      
                     </p>
                     <p className="messaged--time">
-                        12s
+                        {sec < 60 ? `${sec}s` : (sec / 60) < 60 ? `${Math.ceil(sec/60)}m ` :   sec/(60*60) < 24 ? `${Math.ceil(sec/(60*60))}h ` :`${Math.ceil(sec/(60*60*24))}d`  }
+                        {/*{sec}*/}
+                        {/*{time}*/}
                     </p>
-                    
+
                 </div>
                 <span className="user--list--user--name">
-                        @{user.userName}
+                        @{user['userName']}
                         </span>
                 <p className="message">
-                    Chat 00
+                    {CryptoJS.AES.decrypt(user.Message, user.time).toString(CryptoJS.enc.Utf8)}
+                    {user.isByMe === '1' ? <i className="bi arrow bi-arrow-down"></i> :<i className="bi arrow bi-arrow-up"></i>  }
+
                 </p>
             </div>
         </div>

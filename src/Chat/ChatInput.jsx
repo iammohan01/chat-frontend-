@@ -115,12 +115,20 @@ export default function ChatInput({user,setAllUsersChat}){
                 xhr.onreadystatechange = ()=>{
                     xhr.onloadend =()=>{
                         console.warn(xhr.responseText)
+                        let res = JSON.parse(xhr.responseText)
+                        if(res['status'] ===1 ){
+                            socket.send(JSON.stringify(objForSocket))
+                        }
+                        else{
+                            alert('error','failed to send file')
+                        }
+
                     }
 
                 }
                 xhr.send(formData);
 
-                socket.send(JSON.stringify(objForSocket))
+
 
             let UpdateObject = {
                 fromUser : '' ,
@@ -159,6 +167,7 @@ export default function ChatInput({user,setAllUsersChat}){
             </svg>
 
             <input
+                autoFocus={true}
                 type="text"
                 id="chat--input--box"
                 placeholder="Type a message"

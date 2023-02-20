@@ -7,25 +7,29 @@ export function UserPanel({selectedUser,setSelectedUser}){
     // console.log(setSelectedUser)
     // alert(JSON.stringify(selectedUser))
     const [userSearch , seUserSearch]  =  useState("");
-    const [users,setUsers] = useState([])
+    const [users,setUsers] = useState([]);
+    const [recentChats,setRecentChats] = useState();
     let usersList = users.map((val)=>{
         return (  val.userName !== localStorage.getItem("userName") && <Users key={val.userName} className={selectedUser.userName === val.userName ? 'selected--user':""} user={val} setSelectedUser={setSelectedUser} />)
     })
 
-    function getUserDetails(){
+    function getRecentUserDetails(){
 
-        // console.error('in get user Details component')
-        
         let reqUserList = new XMLHttpRequest();
         // let end = `http://localhost:8080/demo2_war_exploded/GetUserList?userKey=${userSearch}`
-        let end = `${endURL}/GetUserList?userKey=${userSearch}`
-        // let end = `/GetUserList?userKey=${userSearch}`
+        // let end = `${endURL}/GetUserList?userKey=${userSearch}`
+
+        // let end = `http://localhost:8080/demo2_war_exploded/GetUserList?userKey=${userSearch}`
+        let end = `${endURL}/RecentChats?userId=${localStorage.getItem("userName")}`
+
         reqUserList.open("GET",end)
         reqUserList.onreadystatechange = ()=>{
             if (reqUserList.status === 200){
                 let UserListResponse  = reqUserList.response
+
                 if (UserListResponse){
                     UserListResponse = JSON.parse(UserListResponse)
+                    console.log(UserListResponse)
                 setUsers(UserListResponse["userList"])
                 }
 
@@ -35,6 +39,7 @@ export function UserPanel({selectedUser,setSelectedUser}){
 
     }
 
+    getRecentUserDetails()
     return (
         <div className="user--panel">
             <Head />
@@ -48,7 +53,7 @@ export function UserPanel({selectedUser,setSelectedUser}){
             {/*/>*/}
             <input placeholder="Search Users" type={"text"} className={'userSearch'} onChange={(e)=>{
                 seUserSearch(e.target.value)
-                getUserDetails()
+                getRecentUserDetails()
             }} />
              {usersList}
         </div>
@@ -59,7 +64,21 @@ export function UserPanel({selectedUser,setSelectedUser}){
 function Head(){
     return(
         <div>
-            <h1 className={'app--title'}>ChripChat</h1>
+            <h1 className={'app--title'}>Hello 👋🏻</h1>
         </div>
     )
+}
+
+
+function getRecentChatsList(){
+    let xhr = new XMLHttpRequest();
+    let end = `${endURL}/RecentUsers?userId=${localStorage.getItem('userName')}`
+    console.log(end)
+    xhr.open('GET',end)
+    xhr.onreadystatechange =()=>{
+        xhr.onloadend =()=>{
+            console.log(xhr.response)
+        }
+    }
+    xhr.send();
 }

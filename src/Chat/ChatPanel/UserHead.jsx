@@ -4,13 +4,12 @@ import alert from "../../Scripts/alert.js";
 export function UserHead({ user }) {
 
 
+    let lastSeen = Math.ceil((Date.now() - Number(user['lastOnline']))/(1000 * 60))
+    let hour = Math.ceil(lastSeen / 60)
     useEffect(()=>{
-
             connectionSocket.send(user['userName'])
-
     },[user.userName])
 
-    console.log(user)
     return (
         <div className="UserHead">
             <div className="userImg">
@@ -19,8 +18,8 @@ export function UserHead({ user }) {
             <div className="userDetail">
                 <p className="chat--user--name">{user.name}
                     {user['Status'] === 1 && <span className={'connection online'}>Online </span>}
-                    {user['Status'] === 2 && <span className={'connection last--seen'}>Last Seen {Math.ceil((Date.now() - Number(user['lastOnline']))/(1000 * 60))} mins ago</span>}
-                    {user['Status'] === -1 && <span className={'connection offline'}>Offline</span>}
+                    {user['Status'] === 2 && <span className={'connection last--seen'}>Last Seen {lastSeen < 60 ? `${lastSeen} mins ago`: hour < 24 ? `${hour} hours ago`:  `${Math.ceil(hour / 24)} days ago `} </span>}
+                    {user['Status'] === -1 && <span className={'connection offline'}>Offline </span> }
                 </p>
                 <p>@{user.userName}</p>
             </div>

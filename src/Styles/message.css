@@ -68,18 +68,18 @@
 
     
 }
-.chat--list > p{
+.chat--list > div{
     /* border: 1px solid red; */
     padding: 10px 30px;
 }
-.chat--list > p > span{
+.chat--list > div > .msg{
     /* border: 1px solid red; */
     padding: 4px 14px;
     border-radius: 12px 12px 12px 0;
     background-color: #F1F1F1;
 
 }
-.chat--list > .end > span {
+.chat--list > .end > .msg {
     border-radius: 12px 12px 0px 12px;
     background-color: #615EF0;
     color: white;
@@ -143,9 +143,24 @@
     /*border: 1px solid red;*/
     padding-left: 10px ;
 }
-.chat--list .msg .file{
-    background-color: red;
+.file{
+    display: inline;
+    width: 30%;
+    /*border: 1px grey solid;*/
 }
+.file > * {
+    /*border: 1px grey solid;*/
+}
+.file > p{
+    display: inline;
+}
+.file > .msg {
+    height: 100px;
+}
+.chat--list .msg .file{
+    /*background-color: red;*/
+}
+
 .connection{
     font-size: 15px;
     padding: 10px;
@@ -157,4 +172,8 @@
 .last--seen , .offline{
     color: grey;
     font-weight: 500;
+}
+.arrow{
+    font-size: 12px;
+    padding: 0 10px;
 }

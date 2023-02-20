@@ -70,7 +70,7 @@ export default function SignIn ({sign,auth}) {
                     <input
                         type="text"
                         name="email"
-                        placeholder="Enter your Email"
+                        placeholder="Enter your Email/Username"
                         value={values.email}
                         onChange={updateInputs}
                         autoComplete="on"
