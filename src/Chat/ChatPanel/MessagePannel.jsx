@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useRef, useState} from "react";
 import ChatInput from "../ChatInput.jsx";
 import { ThreeDotMenu } from "../ThreeDotMenu.jsx";
 import { UserHead } from "./UserHead.jsx";
-import { reqCurrentUserChats } from "../ChatReqRes/ReqChat.js";
+import { reqCurrentUserChats } from "../ChatReqRes/ReqChat.jsx";
 import alert from "../../Scripts/alert.js";
 import {ChatsComponent} from "./ChatsComponent.jsx";
 import Context from "../../context.jsx";

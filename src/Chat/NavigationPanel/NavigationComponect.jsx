@@ -1,15 +1,19 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
+import context from "../../context.jsx";
 
 
 
 export function NavBar(){
 
-    const [focus,setFocus] = React.useState("chat");
+    const {focusState} = useContext(context);
+    const {focus,setFocus} = focusState
 
     function changeFocus(event){
         setFocus(event.target.dataset.name);
-
     }
+    useEffect(()=>{
+        console.log(focus)
+    },[focus])
     function changeProfileImg(file){
 
         const formData = new FormData();

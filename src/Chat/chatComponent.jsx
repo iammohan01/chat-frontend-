@@ -2,15 +2,14 @@ import React, {useContext, useEffect} from "react";
 import '../Styles/Chat.css';
 import '../Styles/index.css';
 import '../Styles/message.css';
+import '../Styles/SearchComponent.css'
 import { ChatPanel } from "./ChatPanel/MessagePannel.jsx";
 import { UserPanel } from "./UserPanel.jsx";
-import { useState } from "react";
 import {ChatNavPanelComponent} from "./NavigationPanel/ChatNavPanelComponent.jsx";
-import alert from "../Scripts/alert.js";
-import useWebSocket , {ReadyState } from "react-use-websocket";
 import context from "../context.jsx";
 import {setCookie} from "../Index/Auth.jsx";
 import {getCookie} from "../main.jsx";
+import {SearchComponent} from "../SearchComponent.jsx";
 
 
 
@@ -21,6 +20,7 @@ export  default  function ChatComponent(){
     const {selectedUser, setSelectedUser}= selectedUserState //   useState({});
     const {AllUsersChats,setAllUsersChats} =allUsersState // useState([]);
 
+    const {focusState} = useContext(context);
 
     useEffect(()=>{
      verifyUser()
@@ -36,19 +36,17 @@ export  default  function ChatComponent(){
         // alert('error','selected user changed')
     },[selectedUser])
 
-    // console.log(selectedUser)
 
     return(
         <div className="Chat--window">
             <ChatNavPanelComponent />
-            <UserPanel setSelectedUser={setSelectedUser} selectedUser={selectedUser} />
-            {selectedUser['userName'] && <ChatPanel allUsersChats={AllUsersChats} setAllUsersChat={setAllUsersChats} selectedUser={selectedUser}/> }
-            {!selectedUser['userName'] && <EmptyPanel /> }
+            {focusState['focus'] === 'search' && <SearchComponent />}
+            { focusState['focus'] === 'chat' && <UserPanel setSelectedUser={setSelectedUser} selectedUser={selectedUser}/>}
+            {focusState['focus'] === 'chat' &&selectedUser['userName'] && <ChatPanel allUsersChats={AllUsersChats} setAllUsersChat={setAllUsersChats} selectedUser={selectedUser}/>}
+            {focusState['focus'] === 'chat' &&!selectedUser['userName'] && <EmptyPanel />}
         </div>
     )
 }
-
-
 
 
 

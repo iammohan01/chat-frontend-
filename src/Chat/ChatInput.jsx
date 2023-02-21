@@ -1,30 +1,11 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import alert from "../Scripts/alert.js";
+import context from "../context.jsx";
 // import {sendMessage, socketForMessageTransfer} from "./ChatReqRes/SocketForMessageTransfer.js";
 
 export default function ChatInput({user,setAllUsersChat}){
 
     const [input,setInput] = useState('')
-    // const [socket,setSocket] = useState(useWebSocket(`ws://localhost:8080/demo2_war_exploded/chat/${localStorage.getItem("uid")}`,
-    //     {onOpen: (d)=>{
-    //             alert('success','Socket Opened')
-    //         },
-    //         onClose:()=>{
-    //             alert('error','Socket Connection Closed')
-    //         },
-    //         onMessage :(message)=>{
-    //             alert('success',`Message From Server ${message}`)
-    //             console.log(message)
-    //         },
-    //         retryOnError : true,
-    //         onError : (event)=>{
-    //             console.log(event)
-    //         }
-    //     })
-    // )
-
-
-    // let {socket} = useContext(context);
 
     //update into setAllUsers current users
     function updateAllUsersChat(){
@@ -65,8 +46,8 @@ export default function ChatInput({user,setAllUsersChat}){
 
         }
 
-        console.log(JSON.stringify(obj))
         socket.send(JSON.stringify(obj))
+        updateRecentChats(encryptedMessage,UpdateObject.time)
 
 
 
@@ -74,6 +55,7 @@ export default function ChatInput({user,setAllUsersChat}){
         // sendMessage(UpdateObject)
         // socketForMessageTransfer.send('Hello');
     }
+
 
     function uploadFile() {
         const input = document.createElement('input');
@@ -118,6 +100,7 @@ export default function ChatInput({user,setAllUsersChat}){
                         let res = JSON.parse(xhr.responseText)
                         if(res['status'] ===1 ){
                             socket.send(JSON.stringify(objForSocket))
+                            updateRecentChats(ency,timeNow)
                         }
                         else{
                             alert('error','failed to send file')
@@ -150,6 +133,29 @@ export default function ChatInput({user,setAllUsersChat}){
         }
 
         // var reader = new FileReader(input.files[0]);
+    }
+    const {recentUsersState}= useContext(context)
+    const {recentUsers,setRecentUsers} = recentUsersState ;
+
+    function updateRecentChats(message,time){
+        let recentArrayToChange = []
+        for (let i of recentUsers){
+            if(user['userName'] === i['userName']){
+                recentArrayToChange.push({...i , Message : message , time :time+'' , isByMe : 'true'})
+            }
+            else {
+                recentArrayToChange.push(i)
+            }
+
+        }
+        console.log(recentArrayToChange)
+        let x = recentArrayToChange.sort((a, b) =>{
+            let c = Number(b['time']) - Number(a['time'])
+            console.log(a,b)
+            return c
+        });
+        console.log(x)
+        setRecentUsers(recentArrayToChange)
     }
 
 

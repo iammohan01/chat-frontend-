@@ -1,6 +1,6 @@
 import {createContext, useEffect, useState} from "react";
 import alert from "./Scripts/alert.js";
-import {reqCurrentUserChats} from "./Chat/ChatReqRes/ReqChat.js";
+import {reqCurrentUserChats} from "./Chat/ChatReqRes/ReqChat.jsx";
 
 const Context = createContext({});
 
@@ -11,14 +11,21 @@ const ContextProvider = ({ children }) => {
 
     const [selectedUser, setSelectedUser]= useState({});
     const [AllUsersChats,setAllUsersChats] = useState({});
+    const [recentUsers,setRecentUsers] = useState([]);
+    const [focus,setFocus] = useState('chat');
 
     const selectedUserState = {selectedUser,setSelectedUser}
     const allUsersState = {AllUsersChats,setAllUsersChats}
+    const recentUsersState = {recentUsers,setRecentUsers}
+    const focusState = {focus,setFocus}
+
+    //for selected search user
+    const changeSearch = {setSelectedUser,setFocus}
 
 
-    // useEffect(()=>{
-    //     console.log(selectedUser)
-    // },[selectedUser])
+    useEffect(()=>{
+        console.log(selectedUser)
+    },[selectedUser])
     // let socket = new WebSocket(`ws://${window.location.host}/chat/${localStorage.getItem("uid")}`)
 
     // let [socket,setSocket] = useState(new WebSocket(`ws://${window.location.host}/chat/${localStorage.getItem("uid")}`)) ;
@@ -72,7 +79,7 @@ const ContextProvider = ({ children }) => {
 
 
     return (
-        <Context.Provider value={{socket,selectedUserState,allUsersState}}>
+        <Context.Provider value={{socket,selectedUserState,allUsersState,recentUsersState,focusState,changeSearch}}>
             { children }
         </Context.Provider>
     )

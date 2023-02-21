@@ -1,15 +1,19 @@
 import { Input } from 'antd';
-import { useState } from 'react';
+import {useContext, useEffect, useState} from 'react';
 import Users from './Users' ;
+import context from "../context.jsx";
 
 export function UserPanel({selectedUser,setSelectedUser}){
 
-    // console.log(setSelectedUser)
-    // alert(JSON.stringify(selectedUser))
+
+
+    const {recentUsersState}= useContext(context)
+
     const [userSearch , seUserSearch]  =  useState("");
     const [users,setUsers] = useState([]);
-    const [recentChats,setRecentChats] = useState();
-    let usersList = users.map((val)=>{
+    console.log(recentUsersState)
+    const {recentUsers,setRecentUsers} = recentUsersState ;
+    let usersList = recentUsers.map((val)=>{
         return (  val.userName !== localStorage.getItem("userName") && <Users key={val.userName} className={selectedUser.userName === val.userName ? 'selected--user':""} user={val} setSelectedUser={setSelectedUser} />)
     })
 
@@ -22,6 +26,7 @@ export function UserPanel({selectedUser,setSelectedUser}){
         // let end = `http://localhost:8080/demo2_war_exploded/GetUserList?userKey=${userSearch}`
         let end = `${endURL}/RecentChats?userId=${localStorage.getItem("userName")}`
 
+        console.log(selectedUser)
         reqUserList.open("GET",end)
         reqUserList.onreadystatechange = ()=>{
             if (reqUserList.status === 200){
@@ -30,7 +35,13 @@ export function UserPanel({selectedUser,setSelectedUser}){
                 if (UserListResponse){
                     UserListResponse = JSON.parse(UserListResponse)
                     console.log(UserListResponse)
-                setUsers(UserListResponse["userList"])
+                    UserListResponse["userList"].sort((a, b) =>{
+                        let c = Number(b['time']) - Number(a['time'])
+                        console.log(a,b)
+                        return c
+                    });
+                    setRecentUsers(UserListResponse["userList"])
+                    setUsers(UserListResponse["userList"])
                 }
 
             }
@@ -38,8 +49,10 @@ export function UserPanel({selectedUser,setSelectedUser}){
         reqUserList.send(JSON.stringify({userKey:userSearch}))
 
     }
+    useEffect(()=>{
+        getRecentUserDetails()
 
-    getRecentUserDetails()
+    },[])
     return (
         <div className="user--panel">
             <Head />
