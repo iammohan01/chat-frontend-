@@ -68,9 +68,9 @@ export default function SignIn ({sign,auth}) {
                 }} href="#">Sign Up</a></p>
                 <form action="src" className="input--forms" onSubmit={reqSignIn}>
                     <input
-                        type="text"
+                        type="email"
                         name="email"
-                        placeholder="Enter your Email/Username"
+                        placeholder="Enter your Email"
                         value={values.email}
                         onChange={updateInputs}
                         autoComplete="on"

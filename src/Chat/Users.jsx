@@ -24,6 +24,7 @@ export default function Users({className ,user ,setSelectedUser}){
         x = setInterval(()=>{setSec(Math.ceil((Date.now() - Number(user.time))/1000))},interval)
     },[sec])
 
+    let message = CryptoJS.AES.decrypt(user.Message, user.time).toString(CryptoJS.enc.Utf8) ;
 
     return (
         <div className={`user--chat--box ${className}`}
@@ -37,7 +38,7 @@ export default function Users({className ,user ,setSelectedUser}){
             <div className="chats">
                 <div className="user">
                     <p className="user--name">
-                        {user.name}
+                        {user.name.length > 15 ? user.name.slice(0,14)+'...' : user.name}
                      
                     </p>
                     <p className="messaged--time">
@@ -49,8 +50,7 @@ export default function Users({className ,user ,setSelectedUser}){
                         @{user['userName']}
                         </span>
                 <p className="message">
-                    {CryptoJS.AES.decrypt(user.Message, user.time).toString(CryptoJS.enc.Utf8)}
-
+                    {message.length > 15 ? message.slice(0,14)+'...':message}
                     {/* todo : i think some problems here*/}
                     {user.isByMe === '1' ? <i className="bi arrow bi-arrow-down"></i> :<i className="bi arrow bi-arrow-up"></i>  }
 

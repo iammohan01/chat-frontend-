@@ -10,6 +10,7 @@ import context from "../context.jsx";
 import {setCookie} from "../Index/Auth.jsx";
 import {getCookie} from "../main.jsx";
 import {SearchComponent} from "../SearchComponent.jsx";
+import DateView from "../DateView.jsx";
 
 
 
@@ -44,6 +45,7 @@ export  default  function ChatComponent(){
             { focusState['focus'] === 'chat' && <UserPanel setSelectedUser={setSelectedUser} selectedUser={selectedUser}/>}
             {focusState['focus'] === 'chat' &&selectedUser['userName'] && <ChatPanel allUsersChats={AllUsersChats} setAllUsersChat={setAllUsersChats} selectedUser={selectedUser}/>}
             {focusState['focus'] === 'chat' &&!selectedUser['userName'] && <EmptyPanel />}
+            {focusState['focus'] === 'date' && <DateView /> }
         </div>
     )
 }

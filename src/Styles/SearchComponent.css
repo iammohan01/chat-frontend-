@@ -1,11 +1,11 @@
 .search--component{
-    /*border: 1px solid red;*/
+    border: 1px solid red;
     width: 30%;
 }
 .search--area{
-    height: 25%;
+    height: 15%;
     width: 100%;
-    /*border: 1px solid red;*/
+    border: 1px solid red;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,7 +13,7 @@
 }
 .result--area{
     height: 75%;
-    /*border: 1px solid red;*/
+    border: 1px solid red;
     width: 100%;
     display: flex;
     align-items: center;
@@ -30,7 +30,7 @@
     transition: 100ms transform linear;
 }
 .search--box:focus{
-    transform: translateY(-30%);
+    transform: translateY(30%);
 }
 .search--user{
     /*border: 1px solid red;*/
@@ -66,5 +66,5 @@
 
 }
 .userSearch{
-    visibility: hidden;
+    /*visibility: hidden;*/
 }

@@ -11,6 +11,12 @@ export function ChatPanel({ selectedUser, setAllUsersChat, allUsersChats }) {
 
 
     let [chatsComponent,setChatsComponent] = useState([])
+    const element = useRef();
+
+    useEffect(() => {
+        element.current.scrollIntoView({behavior: "smooth"});
+    })
+
 
     //when user changed, request new chat list from server
     useEffect(() => {
@@ -42,6 +48,7 @@ export function ChatPanel({ selectedUser, setAllUsersChat, allUsersChats }) {
         <UserHead user={selectedUser} />
         <div className="chat--list">
             {chatsComponent}
+            <div ref={element}></div>
         </div>
         <ChatInput user={selectedUser} setAllUsersChat={setAllUsersChat} />
     </div>

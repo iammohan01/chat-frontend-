@@ -68,7 +68,11 @@
 }
 .user--panel{
     min-width: 300px;
+    overflow: scroll;
     /*border: 1px solid red;*/
+}
+.user--panel::-webkit-scrollbar {
+    display: none;
 }
 .chat--panel{
     flex-grow: 1;
@@ -196,4 +200,14 @@ svg{
 .time--in--msg{
     visibility: hidden;
     padding: 0 10px;
+}
+.msg {
+    display: inline-block;
+}
+textarea {
+    resize: none;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    font-family: inherit;
 }

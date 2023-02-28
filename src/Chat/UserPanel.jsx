@@ -1,13 +1,12 @@
-import { Input } from 'antd';
 import {useContext, useEffect, useState} from 'react';
-import Users from './Users' ;
+import Users from './Users';
 import context from "../context.jsx";
 
 export function UserPanel({selectedUser,setSelectedUser}){
 
 
 
-    const {recentUsersState}= useContext(context)
+    const {recentUsersState,focusState}= useContext(context)
 
     const [userSearch , seUserSearch]  =  useState("");
     const [users,setUsers] = useState([]);
@@ -36,9 +35,7 @@ export function UserPanel({selectedUser,setSelectedUser}){
                     UserListResponse = JSON.parse(UserListResponse)
                     console.log(UserListResponse)
                     UserListResponse["userList"].sort((a, b) =>{
-                        let c = Number(b['time']) - Number(a['time'])
-                        console.log(a,b)
-                        return c
+                        return Number(b['time']) - Number(a['time'])
                     });
                     setRecentUsers(UserListResponse["userList"])
                     setUsers(UserListResponse["userList"])
@@ -64,9 +61,12 @@ export function UserPanel({selectedUser,setSelectedUser}){
             {/*    }*/}
             {/*    value={userSearch}*/}
             {/*/>*/}
-            <input placeholder="Search Users" type={"text"} className={'userSearch'} onChange={(e)=>{
+            <input placeholder="Search Users" type={"text"} className={'userSearch'} onClick={()=>{
+                focusState.setFocus('search')
+            }} onChange={(e)=>{
                 seUserSearch(e.target.value)
-                getRecentUserDetails()
+                // getRecentUserDetails()
+
             }} />
              {usersList}
         </div>

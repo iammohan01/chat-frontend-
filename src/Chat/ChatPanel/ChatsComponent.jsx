@@ -1,6 +1,7 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {ThreeDotMenu} from "../ThreeDotMenu.jsx";
 import alert from "../../Scripts/alert.js";
+import {Text} from "@chakra-ui/react";
 
 export function ChatsComponent( chats ) {
 
@@ -10,6 +11,20 @@ export function ChatsComponent( chats ) {
              s = chats.map((val, index, arr) => {
                  let time = new Date(Number(val.time))
                  let hours = `${time.getHours()%12}:${time.getMinutes()} ${time.getHours() > 11? 'PM' : 'AM'}`
+                 let message = val.message.trim()
+
+                 message.replaceAll('\n','<br>')
+
+                 let temp = message[0];
+                 for (let i = 1 ; i < message.length ; i++){
+                     if(i%80 === 0){
+                         temp+=`<br>${message[i]}`
+                     }
+                     else{
+                         temp += message[i]
+                     }
+                 }
+
                  // console.log(val)
                 return (
                     <div key={val.time} className={`${val.isSentByMe ? "end" : ""} msg`}>
@@ -18,8 +33,12 @@ export function ChatsComponent( chats ) {
                         {/*{val['type'] === 'file' && <> </>}*/}
 
                         {val['type'] === 'chat' &&
-                            <span className={`msg`}>
-                            {val.message}
+                            <span className={`msg`} >
+                                <span dangerouslySetInnerHTML={{ __html: temp}}>
+                                {/*{val.message}*/}
+
+                                </span>
+                            {/*    {str}*/}
                         </span>}
 
                         {val['type'] === 'file' &&

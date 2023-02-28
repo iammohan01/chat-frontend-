@@ -9,12 +9,13 @@ export  function SearchComponent(){
     const {changeSearch} =useContext(context);
 
 
-    const [input , setInput] = useState("")
+    const [input , setInput] = useState()
     const [usersList,setUsersList] = useState([])
     let [usersComp,setUsersComp] = useState([])
 
     let changeUser = changeSearch['setSelectedUser']
     let changeFocus = changeSearch['setFocus']
+
 
     function startChat(user) {
 
@@ -40,7 +41,7 @@ export  function SearchComponent(){
                     <div key={userObj['userName']} className={'search--user'}>
                         <img className={'profile--img'} src={'./profile-test.svg'} alt={'user image'}/>
                         <div className={'details--section'}>
-                            <p>{userObj.name}</p>
+                            <p>{userObj.name.length > 10 ? userObj.name.slice(0,13) +'...' : userObj.name }</p>
                             <p>@{userObj['userName']}</p>
                         </div>
                         <div className={'start--message'} onClick={() => {
@@ -57,7 +58,7 @@ export  function SearchComponent(){
 
     },[usersList])
     function reqUsers(){
-        if (!input.trim()) return
+        // if (!input.trim()) return
         let xhr = new XMLHttpRequest();
         let end = `${endURL}/GetUserList?userKey=${input}`
         xhr.open("GET",end)
@@ -76,7 +77,13 @@ export  function SearchComponent(){
         reqUsers()
     },[input])
     return (
-        <div className={'search--component'}>
+        <div className={'search--component'}
+            onKeyDown={(event)=>{
+                if (event.key === "Escape"){
+                    changeFocus('chat')
+                }
+            }}
+        >
             <div className={'search--area'}>
                 <input
                     type={"text"}

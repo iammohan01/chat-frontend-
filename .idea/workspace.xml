@@ -4,25 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="Can login with username also , can view recent users now . also added dynamic time rendering  . chat messages are seperated now . into messages -&gt; span , files-&gt; div">
-      <change afterPath="$PROJECT_DIR$/dist/assets/index-17aadc03.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/assets/index-d0ee6716.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/chat.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SearchComponent.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Styles/SearchComponent.css" afterDir="false" />
+    <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="added for specific date chats filter">
+      <change afterPath="$PROJECT_DIR$/dist/assets/index-fb22a4ec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DateView.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Styles/DateView.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Styles/ROOT.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_23,_6_13_pm_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_23,_6_13_pm_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_23__6_13_pm__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_23__6_13_pm__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/assets/index-285a35b0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/assets/index-a2699d2e.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist" beforeDir="false" afterPath="$PROJECT_DIR$/dist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/index-f06e9449.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/ChatInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatInput.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/ChatPanel/MessagePannel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/MessagePannel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/ChatReqRes/ReqChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatReqRes/ReqChat.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/NavigationPanel/NavigationComponect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/NavigationPanel/NavigationComponect.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/UserPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/UserPanel.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/Users.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/Users.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/chatComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/chatComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Index/Auth.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Index/Auth.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SearchComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/SearchComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Styles/Chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/Chat.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Styles/SearchComponent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/SearchComponent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,23 +65,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/mohanasundaram/Zoho WorkDrive (Enterprise)/My Folders/ZS/Projects/Messenger-App/src/Styles",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mohanasundaram/Zoho WorkDrive (Enterprise)/My Folders/ZS/Projects/Messenger-App/src/Styles&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Styles" />
@@ -129,6 +137,8 @@
       <workItem from="1674928294489" duration="6802000" />
       <workItem from="1675131979559" duration="50747000" />
       <workItem from="1676295430553" duration="46052000" />
+      <workItem from="1677147904314" duration="6231000" />
+      <workItem from="1677233720541" duration="18937000" />
     </task>
     <task id="LOCAL-00001" summary="Can send and update ui in react . almost all issues fixed . Only problem here is can't update in other person's chat">
       <created>1676383810530</created>
@@ -200,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676901058721</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="demo version and its working file">
+      <created>1676982199182</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1676982199182</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,6 +258,8 @@
     <MESSAGE value="can send and receive and download files" />
     <MESSAGE value="Online , Offline , Last Seen Views are added" />
     <MESSAGE value="Can login with username also , can view recent users now . also added dynamic time rendering  . chat messages are seperated now . into messages -&gt; span , files-&gt; div" />
-    <option name="LAST_COMMIT_MESSAGE" value="Can login with username also , can view recent users now . also added dynamic time rendering  . chat messages are seperated now . into messages -&gt; span , files-&gt; div" />
+    <MESSAGE value="demo version and its working file" />
+    <MESSAGE value="added for specific date chats filter" />
+    <option name="LAST_COMMIT_MESSAGE" value="added for specific date chats filter" />
   </component>
 </project>
