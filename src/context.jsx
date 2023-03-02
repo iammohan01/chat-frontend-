@@ -22,6 +22,9 @@ const ContextProvider = ({ children }) => {
     //for selected search user
     const changeSearch = {setSelectedUser,setFocus}
 
+    useEffect(()=>{
+        console.log(recentUsersState)
+    },[recentUsers])
 
     useEffect(()=>{
         // console.log(selectedUser)
@@ -44,21 +47,24 @@ const ContextProvider = ({ children }) => {
         // alert('success','Socket Opened')
         console.log('Connection Open')
     }
-    socket.onmessage = (message)=>{
+    socket.onmessage = (message)=> {
+        console.log(message.data)
         // alert('success',`Message from server ${message.data}`)
 
         let fromUserData = JSON.parse(message.data)
-        fromUserData['message'] = CryptoJS.AES.decrypt(fromUserData['message'],fromUserData['time']).toString(CryptoJS.enc.Utf8)
-        let fromUser = fromUserData['from']
 
+
+
+        if (fromUserData['type'] === 'chat') {
+            fromUserData['message'] = CryptoJS.AES.decrypt(fromUserData['message'], fromUserData['time']).toString(CryptoJS.enc.Utf8)
+            let fromUser = fromUserData['from']
 
         // send notification
         new Notification(`Hey , You got new message from  ${fromUser}`);
 
 
-
-        setAllUsersChats((prevAllUsersChat)=>{
-            if(!prevAllUsersChat[fromUser]){
+        setAllUsersChats((prevAllUsersChat) => {
+            if (!prevAllUsersChat[fromUser]) {
                 // alert('warning','get a request from server')
                 return {}
             }
@@ -68,10 +74,24 @@ const ContextProvider = ({ children }) => {
             fromUserPrevData.push(fromUserData)
             // console.log(fromUserPrevData)
             return {
-                ...prevAllUsersChat ,
-                [fromUser] : fromUserPrevData
+                ...prevAllUsersChat,
+                [fromUser]: fromUserPrevData
             }
         })
+    }
+        if(fromUserData['type'] === 'delete'){
+            console.log(fromUserData)
+            setAllUsersChats((prev)=>{
+                let temp = prev
+                console.log(temp)
+                delete temp[fromUserData['from']]
+                console.log(temp)
+                return temp
+
+            })
+            console.log({userName:fromUserData['from']},setAllUsersChats,AllUsersChats)
+            reqCurrentUserChats({userName:fromUserData['from']},setAllUsersChats,AllUsersChats)
+        }
     }
 
     },[true])

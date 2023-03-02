@@ -168,7 +168,7 @@ svg{
 }
 
 .selected--user{
-    filter: drop-shadow( 2px 3px 8px rgba(0,0,0,0.4));
+    /*filter: drop-shadow( 2px 3px 8px rgba(0,0,0,0.4));*/
     background-color: #615EF0;
     color: white;
 }

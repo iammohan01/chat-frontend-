@@ -14,7 +14,7 @@ export function ChatPanel({ selectedUser, setAllUsersChat, allUsersChats }) {
     const element = useRef();
 
     useEffect(() => {
-        element.current.scrollIntoView({behavior: "smooth"});
+        element.current.scrollIntoView()//{behavior: "smooth"});
     })
 
 

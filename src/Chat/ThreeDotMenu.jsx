@@ -7,7 +7,7 @@ import {reqCurrentUserChats} from "./ChatReqRes/ReqChat.jsx";
 export function  ThreeDotMenu({chatDetails,isByMe}){
 
 
-    let {selectedUserState, allUsersState} = useContext(Context);
+    let {selectedUserState, allUsersState,recentUsersState} = useContext(Context);
     function deleteMessage(){
         let delReqJson = {
 
@@ -38,6 +38,17 @@ export function  ThreeDotMenu({chatDetails,isByMe}){
                         }
                     })
                     reqCurrentUserChats(selectedUserState.selectedUser, allUsersState.setAllUsersChats ,allUsersState.AllUsersChats)
+                    console.log(recentUsersState.setRecentUsers(prev=>{
+                       return prev.map((val)=>{
+                           if (val.userName === selectedUserState.selectedUser.userName ){
+                             // let x =  {
+                             //       message: "asdf"
+                             //   }
+                               console.log(allUsersState.AllUsersChats)
+                           }
+                           return {...val}
+                       })
+                    }))
                 }
             }
         }
