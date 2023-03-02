@@ -10,7 +10,7 @@ export function UserPanel({selectedUser,setSelectedUser}){
 
     const [userSearch , seUserSearch]  =  useState("");
     const [users,setUsers] = useState([]);
-    console.log(recentUsersState)
+    // console.log(recentUsersState)
     const {recentUsers,setRecentUsers} = recentUsersState ;
     let usersList = recentUsers.map((val)=>{
         return (  val.userName !== localStorage.getItem("userName") && <Users key={val.userName} className={selectedUser.userName === val.userName ? 'selected--user':""} user={val} setSelectedUser={setSelectedUser} />)
@@ -25,7 +25,7 @@ export function UserPanel({selectedUser,setSelectedUser}){
         // let end = `http://localhost:8080/demo2_war_exploded/GetUserList?userKey=${userSearch}`
         let end = `${endURL}/RecentChats?userId=${localStorage.getItem("userName")}`
 
-        console.log(selectedUser)
+        // console.log(selectedUser)
         reqUserList.open("GET",end)
         reqUserList.onreadystatechange = ()=>{
             if (reqUserList.status === 200){
@@ -33,7 +33,7 @@ export function UserPanel({selectedUser,setSelectedUser}){
 
                 if (UserListResponse){
                     UserListResponse = JSON.parse(UserListResponse)
-                    console.log(UserListResponse)
+                    // console.log(UserListResponse)
                     UserListResponse["userList"].sort((a, b) =>{
                         return Number(b['time']) - Number(a['time'])
                     });

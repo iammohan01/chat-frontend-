@@ -11,9 +11,9 @@ export function NavBar(){
     function changeFocus(event){
         setFocus(event.target.dataset.name);
     }
-    useEffect(()=>{
-        console.log(focus)
-    },[focus])
+    // useEffect(()=>{
+    //     console.log(focus)
+    // },[focus])
     function changeProfileImg(file){
 
         const formData = new FormData();

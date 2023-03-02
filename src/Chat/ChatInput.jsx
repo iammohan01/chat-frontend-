@@ -148,13 +148,12 @@ export default function ChatInput({user,setAllUsersChat}){
             }
 
         }
-        console.log(recentArrayToChange)
+        // console.log(recentArrayToChange)
         let x = recentArrayToChange.sort((a, b) =>{
             let c = Number(b['time']) - Number(a['time'])
-            console.log(a,b)
             return c
         });
-        console.log(x)
+        // console.log(x)
         setRecentUsers(recentArrayToChange)
     }
 

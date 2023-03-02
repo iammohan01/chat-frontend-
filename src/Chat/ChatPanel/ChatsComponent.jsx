@@ -28,7 +28,7 @@ export function ChatsComponent( chats ) {
                  // console.log(val)
                 return (
                     <div key={val.time} className={`${val.isSentByMe ? "end" : ""} msg`}>
-                        {val.isSentByMe && <ThreeDotMenu key={val.time}  isByMe={1} chatDetails={val}/>  }
+                        {val.isSentByMe && <ThreeDotMenu key={val.time}  isByMe={1} chatDetails={val} />   }
                         {val.isSentByMe && <span className={'time--in--msg'}>{month[time.getMonth()]} {time.getDate()} {hours}</span>}
                         {/*{val['type'] === 'file' && <> </>}*/}
 

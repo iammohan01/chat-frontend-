@@ -13,7 +13,7 @@ export default function DateView(){
     function change(value){
         let date = new Date(value.format('YYYY-MM-DD'))
         date = date.getTime()
-        console.log(date)
+        // console.log(date)
         let user = localStorage.getItem('uid')
 
         let xhr = new XMLHttpRequest();
@@ -22,7 +22,7 @@ export default function DateView(){
 
         xhr.onreadystatechange =()=>{
             xhr.onloadend =()=>{
-                console.log(JSON.parse(xhr.response)[0]);
+                // console.log(JSON.parse(xhr.response)[0]);
                 setChat(JSON.parse(xhr.responseText))
             }
 
@@ -31,8 +31,6 @@ export default function DateView(){
 
     }
     useEffect(()=>{
-        console.log(selectedUserState)
-        console.log(focusState)
         let month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
         let x = chat.map((chat)=>{
             let time = new Date(Number(chat.time)) ;

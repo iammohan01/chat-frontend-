@@ -24,7 +24,7 @@ const ContextProvider = ({ children }) => {
 
 
     useEffect(()=>{
-        console.log(selectedUser)
+        // console.log(selectedUser)
     },[selectedUser])
     // let socket = new WebSocket(`ws://${window.location.host}/chat/${localStorage.getItem("uid")}`)
 

@@ -66,7 +66,7 @@ export  function SearchComponent(){
             xhr.onloadend = ()=>{
                 let res = JSON.parse(xhr.responseText)
                 setUsersList(res['userList'])
-                console.log(res)
+                // console.log(res)
             }
         }
         xhr.send()
