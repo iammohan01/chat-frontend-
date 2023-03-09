@@ -20,15 +20,33 @@
     /*justify-content: center;*/
     flex-direction: column;
     overflow: scroll;
+    position: relative;
 }
 .filtered-message{
     width: 70%;
     max-height: 80px;
     display: flex;
-    margin: 10px;
-    border-radius: 15px;
-    border: 1px solid red;
+    margin: 5px;
+    padding-bottom: 5px;
+    /*border-radius: 15px;*/
+    /*border: 1px solid red;*/
+    border-bottom: 1px solid rgba(128, 128, 128, 0.35);
 
+}
+.calender-messages > span{
+    /*border: 1px solid red;*/
+    width: 100%;
+    font-size: 25px ;
+    padding-left: 60px;
+    margin-bottom: 30px;
+    height: 80px;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    text-decoration: underline;
+}
+.calender-messages > *:last-child{
+    border-bottom: none;
 }
 .filtered-message * {
     /*border: 1px solid red;*/

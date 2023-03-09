@@ -1,11 +1,11 @@
 .search--component{
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     width: 30%;
 }
 .search--area{
     height: 15%;
     width: 100%;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,7 +13,7 @@
 }
 .result--area{
     height: 75%;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     width: 100%;
     display: flex;
     align-items: center;
@@ -22,7 +22,7 @@
     overflow: scroll;
 }
 .search--box{
-    border: 1px solid red;
+    border: 1px solid rgba(83, 91, 242, 0.46);
     height: 60px;
     border-radius: 40px ;
     width: 70%;

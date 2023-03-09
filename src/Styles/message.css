@@ -147,9 +147,23 @@
     display: inline;
     width: 30%;
     /*border: 1px grey solid;*/
+    /*height: 40px;*/
+    /*align-items: center;*/
+}
+.download{
+
 }
 .file > * {
     /*border: 1px grey solid;*/
+}
+.file > div{
+    background-color: #535bf2;
+}
+.download{
+    /*border: 1px solid red;*/
+    padding: 0 5px;
+    scale: 1.5;
+    cursor: pointer;
 }
 .file > p{
     display: inline;

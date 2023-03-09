@@ -184,7 +184,7 @@ export default function ChatInput({user,setAllUsersChat}){
 
                     if(event.code === "Enter"){
                         setInput('')
-                        if(input){
+                        if(input.trim()){
                             updateAllUsersChat()
                         }
                         else{

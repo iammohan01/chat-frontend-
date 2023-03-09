@@ -52,6 +52,8 @@ export function UserPanel({selectedUser,setSelectedUser}){
     },[])
     return (
         <div className="user--panel">
+            <div className={'user--panel--header'}>
+
             <Head />
             {/*<Input*/}
             {/*    placeholder="Search Users"*/}
@@ -68,6 +70,7 @@ export function UserPanel({selectedUser,setSelectedUser}){
                 // getRecentUserDetails()
 
             }} />
+            </div>
              {usersList}
         </div>
     )
@@ -76,9 +79,9 @@ export function UserPanel({selectedUser,setSelectedUser}){
 
 function Head(){
     return(
-        <div>
-            <h1 className={'app--title'}>Hello 👋🏻</h1>
-        </div>
+        // <div>
+            <h1 className={'app--title'}>ChatterBox</h1>
+        // </div>
     )
 }
 

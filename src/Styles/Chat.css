@@ -69,7 +69,14 @@
 .user--panel{
     min-width: 300px;
     overflow: scroll;
+    position: relative;
     /*border: 1px solid red;*/
+}
+.user--panel--header{
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 10;
 }
 .user--panel::-webkit-scrollbar {
     display: none;
@@ -82,8 +89,8 @@
      background-color: #F1F1F1;
     height: 70px;
     border-radius: 10px;
-    margin: 9px 4px;
-
+    margin: 8px 4px;
+    cursor: pointer;
 
 }
 .user--chat--box > *{

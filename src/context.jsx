@@ -23,12 +23,12 @@ const ContextProvider = ({ children }) => {
     const changeSearch = {setSelectedUser,setFocus}
 
     useEffect(()=>{
-        console.log(recentUsersState)
+        console.log(recentUsers)
     },[recentUsers])
 
     useEffect(()=>{
-        // console.log(selectedUser)
-    },[selectedUser])
+        // alert("success",selectedUser)
+    },[AllUsersChats])
     // let socket = new WebSocket(`ws://${window.location.host}/chat/${localStorage.getItem("uid")}`)
 
     // let [socket,setSocket] = useState(new WebSocket(`ws://${window.location.host}/chat/${localStorage.getItem("uid")}`)) ;
@@ -45,14 +45,15 @@ const ContextProvider = ({ children }) => {
 
     socket.onopen =()=>{
         // alert('success','Socket Opened')
-        console.log('Connection Open')
+        // console.log('Connection Open')
     }
     socket.onmessage = (message)=> {
-        console.log(message.data)
-        // alert('success',`Message from server ${message.data}`)
+        // console.log(message.data)
+
 
         let fromUserData = JSON.parse(message.data)
 
+        let EncryptMessage = fromUserData['message']
 
 
         if (fromUserData['type'] === 'chat') {
@@ -78,22 +79,55 @@ const ContextProvider = ({ children }) => {
                 [fromUser]: fromUserPrevData
             }
         })
-    }
+
+            // console.log(recentUsers)
         if(fromUserData['type'] === 'delete'){
             console.log(fromUserData)
             setAllUsersChats((prev)=>{
                 let temp = prev
-                console.log(temp)
+                // console.log(temp)
                 delete temp[fromUserData['from']]
-                console.log(temp)
+                // console.log(temp)
                 return temp
 
             })
             console.log({userName:fromUserData['from']},setAllUsersChats,AllUsersChats)
             reqCurrentUserChats({userName:fromUserData['from']},setAllUsersChats,AllUsersChats)
         }
+            setRecentUsers((prev)=>{
+                // console.log(prev)
+
+                let x = []
+                let isFound = false
+                for(let i of prev){
+
+                    if(fromUserData['from'] === i['userName']){
+
+                        isFound = true ;
+                        i['Message'] = EncryptMessage
+                        i['time'] = fromUserData['time']
+                        i['isByMe'] = fromUserData['isSentByMe']
+                    }
+                    x.push(i)
+                }
+
+                if(!isFound){
+                    let temp =  {
+                        Status: -1,
+                        Message: EncryptMessage,
+                        isByMe: fromUserData['isSentByMe'].toString(),
+                        name: fromUserData['from'],
+                        lastOnline: "Offline",
+                        time: fromUserData['time'],
+                        userName: fromUserData['from']
+                    }
+                    x.push(temp)
+                }
+                return x
+            })
     }
 
+    }
     },[true])
 
 

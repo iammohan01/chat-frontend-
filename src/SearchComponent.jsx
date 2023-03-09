@@ -76,6 +76,7 @@ export  function SearchComponent(){
     useEffect(()=>{
         reqUsers()
     },[input])
+
     return (
         <div className={'search--component'}
             onKeyDown={(event)=>{

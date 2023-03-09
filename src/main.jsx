@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './Styles/index.css'
@@ -8,9 +8,35 @@ import {setCookie} from "./Index/Auth.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <ContextProvider>
-      {getCookie('uid') ? <ChatComponent/> : <App/>}
+      <RenderPage/>
     </ContextProvider>
 )
+
+function RenderPage(){
+  let [verifyUserState,setVerifyUser] = useState(false);
+  function verifyUser(){
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET",`${endURL}/verify?uid=${getCookie("uid")}`)
+    xhr.onreadystatechange =()=>{
+      xhr.onloadend = ()=>{
+        console.log(xhr.response)
+        let resJSON = JSON.parse(xhr.response);
+        setVerifyUser(resJSON.verify)
+      }
+    }
+    xhr.send()
+  }
+  useEffect(()=>{
+    verifyUser()
+  },[])
+
+
+  return  <>
+    {verifyUserState &&  <ChatComponent/> }
+    {!verifyUserState && <App/>}
+  </>
+
+}
 
 
 

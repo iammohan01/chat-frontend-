@@ -33,7 +33,7 @@ export function SignUp ({sign}) {
         
 
         let strength = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\d!@#$%^&*()_+{}|:"<>?,.\/';\\])[A-Za-z\d!@#$%^&*()_+{}|:"<>?,.\/';\\]{6,}$/
-        let passwordStrength = strength.test(values.password);
+        let passwordStrength = values.password.length  > 6 ;// strength.test(values.password);
         let xhr = new XMLHttpRequest();
 
         xhr.open("POST", `${endURL}/signUp`,true);
@@ -54,7 +54,7 @@ export function SignUp ({sign}) {
                         changeSign(sign,2)
                     }
                     else if (res.status === -1) {
-                        alert("error","Account already exists")
+                        alert("error","Email already used")
                     }
                     else if(res.status === - 2){
                         alert("warning","User name already taken")

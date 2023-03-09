@@ -2,6 +2,8 @@ import {useEffect, useRef, useState} from "react";
 import {ThreeDotMenu} from "../ThreeDotMenu.jsx";
 import alert from "../../Scripts/alert.js";
 import {Text} from "@chakra-ui/react";
+import {Tooltip} from "antd";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export function ChatsComponent( chats ) {
 
@@ -46,9 +48,10 @@ export function ChatsComponent( chats ) {
                                 <p className={'file--name'}>
                                     {val.message}
                                 </p>
-
-                            <i onClick={()=>{downloadFile(val.ency,val.message)}} className="bi bi-cloud-arrow-down-fill"></i>
-                        </div>}
+                                <Tooltip title={`Download file`} >
+                                        <i onClick={()=>{downloadFile(val.ency,val.message)}} className="download bi bi-cloud-arrow-down-fill"></i>
+                                </Tooltip>
+                                </div>}
 
                         {!val.isSentByMe && <span className={'time--in--msg'}>{month[time.getMonth()]} {time.getDate()} {hours}</span>}
                         {!val.isSentByMe && <ThreeDotMenu key={val.time} chatDetails={val}/>}

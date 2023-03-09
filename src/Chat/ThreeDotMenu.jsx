@@ -22,11 +22,8 @@ export function  ThreeDotMenu({chatDetails,isByMe}){
         xhr.open("POST",end)
         xhr.onreadystatechange = ()=>{
             xhr.onloadend =()=>{
-                console.log("res from server")
-                console.log(xhr.responseText)
-                if(xhr.status === 200){
                     alert('success','Message deleted');
-                    console.log(selectedUserState.selectedUser.userName, allUsersState.setAllUsersChats ,allUsersState.AllUsersChats)
+                    // console.log(selectedUserState.selectedUser.userName, allUsersState.setAllUsersChats ,allUsersState.AllUsersChats)
                     // reqCurrentUserChats(selectedUserState.selectedUser.userName, allUsersState.setAllUsersChat ,allUsersState.allUsersChats)
                     allUsersState.setAllUsersChats((prev)=>{
                         let temp = prev
@@ -38,18 +35,18 @@ export function  ThreeDotMenu({chatDetails,isByMe}){
                         }
                     })
                     reqCurrentUserChats(selectedUserState.selectedUser, allUsersState.setAllUsersChats ,allUsersState.AllUsersChats)
-                    console.log(recentUsersState.setRecentUsers(prev=>{
-                       return prev.map((val)=>{
-                           if (val.userName === selectedUserState.selectedUser.userName ){
-                             // let x =  {
-                             //       message: "asdf"
-                             //   }
-                               console.log(allUsersState.AllUsersChats)
-                           }
-                           return {...val}
-                       })
-                    }))
-                }
+                    // recentUsersState.setRecentUsers(prev=>{
+                    //    return prev.map((val)=>{
+                    //        if (val.userName === selectedUserState.selectedUser.userName ){
+                    //          // let x =  {
+                    //          //       message: "asdf"
+                    //          //   }
+                    //            console.log(allUsersState.AllUsersChats)
+                    //        }
+                    //        return {...val}
+                    //    })
+                    // })
+
             }
         }
         xhr.send(JSON.stringify(delReqJson));
