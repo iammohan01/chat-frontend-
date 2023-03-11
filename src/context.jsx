@@ -27,8 +27,8 @@ const ContextProvider = ({ children }) => {
     },[recentUsers])
 
     useEffect(()=>{
-        // alert("success",selectedUser)
-    },[AllUsersChats])
+        // console.log(selectedUser)
+    },[selectedUser])
     // let socket = new WebSocket(`ws://${window.location.host}/chat/${localStorage.getItem("uid")}`)
 
     // let [socket,setSocket] = useState(new WebSocket(`ws://${window.location.host}/chat/${localStorage.getItem("uid")}`)) ;
@@ -40,12 +40,9 @@ const ContextProvider = ({ children }) => {
             setSelectedUser((prev)=>{
                 return {...prev,Status : res['Status'] , lastOnline : res['lastOnline']}
             })}
-    // const socket = new WebSocket(`ws://localhost:8080/demo2_war_exploded/chat/${localStorage.getItem("uid")}`)
-     // socket = new WebSocket(`ws://${window.location.host}/chat/${localStorage.getItem("uid")}`)
 
     socket.onopen =()=>{
-        // alert('success','Socket Opened')
-        // console.log('Connection Open')
+        console.log('Connection Open')
     }
     socket.onmessage = (message)=> {
         // console.log(message.data)
@@ -60,42 +57,32 @@ const ContextProvider = ({ children }) => {
             fromUserData['message'] = CryptoJS.AES.decrypt(fromUserData['message'], fromUserData['time']).toString(CryptoJS.enc.Utf8)
             let fromUser = fromUserData['from']
 
-        // send notification
-        new Notification(`Hey , You got new message from  ${fromUser}`);
+            // send notification
+            let greeting = new Notification(`Hey , You got new message from  ${fromUser}`);
+            greeting.onclick = () => {
+                window.parent.focus();
+                greeting.close();
+                setSelectedUser(prev=>{
 
-
-        setAllUsersChats((prevAllUsersChat) => {
-            if (!prevAllUsersChat[fromUser]) {
-                // alert('warning','get a request from server')
-                return {}
+                })
             }
 
-            let fromUserPrevData = prevAllUsersChat[fromUser]
-            // console.log(fromUserPrevData)
-            fromUserPrevData.push(fromUserData)
-            // console.log(fromUserPrevData)
-            return {
-                ...prevAllUsersChat,
-                [fromUser]: fromUserPrevData
-            }
-        })
 
-            // console.log(recentUsers)
-        if(fromUserData['type'] === 'delete'){
-            console.log(fromUserData)
-            setAllUsersChats((prev)=>{
-                let temp = prev
-                // console.log(temp)
-                delete temp[fromUserData['from']]
-                // console.log(temp)
-                return temp
-
+            setAllUsersChats((prevAllUsersChat) => {
+                if (!prevAllUsersChat[fromUser]) {
+                    return {}
+                }
+                let fromUserPrevData = prevAllUsersChat[fromUser]
+                // console.log(fromUserPrevData)
+                fromUserPrevData.push(fromUserData)
+                // console.log(fromUserPrevData)
+                return {
+                    ...prevAllUsersChat,
+                    [fromUser]: fromUserPrevData
+                }
             })
-            console.log({userName:fromUserData['from']},setAllUsersChats,AllUsersChats)
-            reqCurrentUserChats({userName:fromUserData['from']},setAllUsersChats,AllUsersChats)
-        }
             setRecentUsers((prev)=>{
-                // console.log(prev)
+                // console.log(AllUsersChats)
 
                 let x = []
                 let isFound = false
@@ -113,11 +100,9 @@ const ContextProvider = ({ children }) => {
 
                 if(!isFound){
                     let temp =  {
-                        Status: -1,
                         Message: EncryptMessage,
                         isByMe: fromUserData['isSentByMe'].toString(),
                         name: fromUserData['from'],
-                        lastOnline: "Offline",
                         time: fromUserData['time'],
                         userName: fromUserData['from']
                     }
@@ -125,9 +110,24 @@ const ContextProvider = ({ children }) => {
                 }
                 return x
             })
-    }
+
+        }
+        if(fromUserData['type'] === 'delete'){
+            setAllUsersChats((prev)=>{
+                let temp = prev
+                // console.log(temp)
+                delete temp[fromUserData['from']]
+                // console.log(temp)
+                return temp
+
+            })
+            console.log({userName:fromUserData['from']},setAllUsersChats,AllUsersChats)
+            reqCurrentUserChats({userName:fromUserData['from']},setAllUsersChats,AllUsersChats)
+        }
+
 
     }
+
     },[true])
 
 

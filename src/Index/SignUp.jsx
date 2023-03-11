@@ -92,7 +92,7 @@ export function SignUp ({sign}) {
             <h1>Sign Up</h1>
             <p>Already Have an account ? <a onClick={() => {
                 changeSign(sign,2)
-            }} href="#">Sign in</a></p>
+            }} >Sign in</a></p>
             <form action="" className="input--forms" onSubmit={reqSignUp}>
                 <input
                     type="text"
@@ -159,6 +159,6 @@ export function SignUp ({sign}) {
 
 
 
-function hash(str){
+export function hash(str){
     return CryptoJS.SHA3(str, { outputLength: 512 }).toString();
 }

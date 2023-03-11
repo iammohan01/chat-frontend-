@@ -1,7 +1,5 @@
 import {useContext, useState} from "react";
-import Context from "../../context.jsx";
-import {send} from "vite";
-import {sendMessage} from "../ChatReqRes/SendMessage.js";
+
 
 export default function ChatInput({user,setAllUsersChat}){
 
@@ -22,8 +20,6 @@ export default function ChatInput({user,setAllUsersChat}){
             let readyToUpdateInLocalBase = prevChats[user.userName] || []
             readyToUpdateInLocalBase.push(UpdateObject)
 
-            // console.log(readyToUpdateInLocalBase)
-            // console.log(prevChats)
             return {...prevChats , [user.userName] : readyToUpdateInLocalBase}
         })
     }

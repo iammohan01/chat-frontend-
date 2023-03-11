@@ -66,6 +66,9 @@ export default function SignIn ({sign,auth}) {
                 <p>New to Messenger ? <a onClick={() => {
                     changeSign(sign,1)
                 }} href="#">Sign Up</a></p>
+                <p>
+                    Forget Password ? <a onClick={()=>{changeSign(sign,3)}} href={'#'}>Reset Password</a>
+                </p>
                 <form action="src" className="input--forms" onSubmit={reqSignIn}>
                     <input
                         type="email"
