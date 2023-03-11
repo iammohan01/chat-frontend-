@@ -6,6 +6,8 @@ import { reqCurrentUserChats } from "../ChatReqRes/ReqChat.jsx";
 import alert from "../../Scripts/alert.js";
 import {ChatsComponent} from "./ChatsComponent.jsx";
 import Context from "../../context.jsx";
+import EmojiPicker from "emoji-picker-react";
+
 
 export function ChatPanel({ selectedUser, setAllUsersChat, allUsersChats }) {
 
@@ -48,9 +50,13 @@ export function ChatPanel({ selectedUser, setAllUsersChat, allUsersChats }) {
         <UserHead user={selectedUser} />
         <div className="chat--list">
             {chatsComponent}
+            <div>
+
+            </div>
             <div ref={element}></div>
         </div>
         <ChatInput user={selectedUser} setAllUsersChat={setAllUsersChat} />
+        {/*<EmojiPicker />*/}
     </div>
 
 }

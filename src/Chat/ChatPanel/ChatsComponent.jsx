@@ -78,11 +78,7 @@ function downloadFile(file,fileName){
     xhr.open("POST",`${endURL}/GetFile`,true)
     xhr.responseType = "blob";
     xhr.onreadystatechange = ()=>{
-        xhr.onprogress =(progress)=>{
 
-            console.log(Math.floor((progress.loaded/progress.total)*100))
-            alert("success",`${Math.floor((progress.loaded/progress.total)*100)}% downloaded`)
-        }
         xhr.onloadend =()=>{
             var blob = xhr.response;
             // var blob = new Blob([arrayBuffer]);
@@ -97,6 +93,11 @@ function downloadFile(file,fileName){
             downEle.click()
         }
 
+    }
+    xhr.onprogress =(progress)=>{
+
+        console.log(Math.floor((progress.loaded/progress.total)*100))
+        alert("success",`${Math.floor((progress.loaded/progress.total)*100)}% downloaded`)
     }
     xhr.send(form)
 

@@ -1,8 +1,4 @@
 import React, {useContext, useEffect} from "react";
-import '../Styles/Chat.css';
-import '../Styles/index.css';
-import '../Styles/message.css';
-import '../Styles/SearchComponent.css'
 import { ChatPanel } from "./ChatPanel/MessagePannel.jsx";
 import { UserPanel } from "./UserPanel.jsx";
 import {ChatNavPanelComponent} from "./NavigationPanel/ChatNavPanelComponent.jsx";

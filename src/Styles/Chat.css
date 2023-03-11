@@ -19,7 +19,6 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 0 10px 10px 0;
-    box-shadow: rgba(0, 0, 0, 0.09) 0 3px 12px;
 }
 .nav-bar-items{
     /* border: 1px solid red; */
@@ -81,9 +80,7 @@
 .user--panel::-webkit-scrollbar {
     display: none;
 }
-.chat--panel{
-    flex-grow: 1;
-}
+
 .user--chat--box{
     display: flex;
      background-color: #F1F1F1;
@@ -93,9 +90,7 @@
     cursor: pointer;
 
 }
-.user--chat--box > *{
-    /*border: 1px solid red;*/
-}
+
 .user--image{
     height: 100%;
     /* width: 60px; */
@@ -166,12 +161,12 @@ svg{
     font-size: 13px;
 }
 .user--list--user--name{
-    font-weight: 100;
+    font-weight: 400;
     font-size: 12px;
     height: calc(100% / 4);
     line-height: 100%;
     overflow: hidden;
-    color: #00000080;
+    color: rgba(0, 0, 0, 0.68);
 }
 
 .selected--user{

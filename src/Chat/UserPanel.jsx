@@ -19,10 +19,6 @@ export function UserPanel({selectedUser,setSelectedUser}){
     function getRecentUserDetails(){
 
         let reqUserList = new XMLHttpRequest();
-        // let end = `http://localhost:8080/demo2_war_exploded/GetUserList?userKey=${userSearch}`
-        // let end = `${endURL}/GetUserList?userKey=${userSearch}`
-
-        // let end = `http://localhost:8080/demo2_war_exploded/GetUserList?userKey=${userSearch}`
         let end = `${endURL}/RecentChats?userId=${localStorage.getItem("userName")}`
 
         // console.log(selectedUser)
@@ -55,19 +51,11 @@ export function UserPanel({selectedUser,setSelectedUser}){
             <div className={'user--panel--header'}>
 
             <Head />
-            {/*<Input*/}
-            {/*    placeholder="Search Users"*/}
-            {/*    onChange={(e)=>{*/}
-            {/*    seUserSearch(e.target.value)*/}
-            {/*    }}*/}
-            {/*    }*/}
-            {/*    value={userSearch}*/}
-            {/*/>*/}
-            <input placeholder="Search Users" type={"text"} className={'userSearch'} onClick={()=>{
+            <input placeholder="Search for chats, users…"
+                   type={"text"} className={'userSearch'} onClick={()=>{
                 focusState.setFocus('search')
             }} onChange={(e)=>{
                 seUserSearch(e.target.value)
-                // getRecentUserDetails()
 
             }} />
             </div>
@@ -80,7 +68,7 @@ export function UserPanel({selectedUser,setSelectedUser}){
 function Head(){
     return(
         // <div>
-            <h1 className={'app--title'}>ChatterBox</h1>
+            <h1 className={'app--title'}>Chats</h1>
         // </div>
     )
 }

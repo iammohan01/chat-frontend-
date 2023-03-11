@@ -1,3 +1,4 @@
+
 .UserHead{
     /*border: 1px solid green;*/
     border-radius: 0 0 15px 15px;
@@ -42,6 +43,7 @@
     display: flex;
     flex-direction: column;
     margin-left: 10px;
+    flex-grow: 1;
     /*box-shadow: rgba(0, 0, 0, 0.22) 0 0 08px;*/
     box-shadow: rgb(0 0 0 / 9%) 0 3px 12px;
 }
@@ -63,10 +65,26 @@
     display: flex;
     align-items: center;
     min-height: 80px;
-
     /* justify-content: flex-start; */
-
-    
+}
+.emoji-list{
+    position: absolute;
+    bottom: 80px;
+    display: none;
+    margin-left: 15px;
+    user-select: none;
+}
+.emoji-icon{
+    /*border: 1px solid ;*/
+    display: flex;
+    padding: 3px;
+}
+.select{
+    background-color: #F1F1F1;
+    border-radius: 50%;
+}
+.emoji-visible{
+    display: unset;
 }
 .chat--list > div{
     /* border: 1px solid red; */
@@ -131,7 +149,6 @@
     border-radius: 50%;
 }
 .userSearch{
-    /*border: 1px solid red;*/
     width: 90%;
     padding: 0 15px;
     border-radius: 30px;

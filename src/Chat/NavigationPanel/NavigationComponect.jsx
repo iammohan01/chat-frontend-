@@ -8,6 +8,7 @@ export function NavBar(){
     const {focusState} = useContext(context);
     const {focus,setFocus} = focusState
 
+
     function changeFocus(event){
         setFocus(event.target.dataset.name);
     }
@@ -32,7 +33,7 @@ export function NavBar(){
 
 
 
-    return <div className="nav-bar-items">
+    return <div className="nav-bar-items ">
 
         <img
             className="profile-img"

@@ -1,11 +1,15 @@
-import {useContext, useState} from "react";
+import React, {useContext, useState} from "react";
 import alert from "../Scripts/alert.js";
 import context from "../context.jsx";
+import data from '@emoji-mart/data'
+import Picker from '@emoji-mart/react'
+import EmojiPicker from "emoji-picker-react";
 // import {sendMessage, socketForMessageTransfer} from "./ChatReqRes/SocketForMessageTransfer.js";
 
 export default function ChatInput({user,setAllUsersChat}){
 
     const [input,setInput] = useState('')
+    const [emojiVisibility,setEmojiVisibility] = useState(false)
 
     //update into setAllUsers current users
     function updateAllUsersChat(){
@@ -109,6 +113,9 @@ export default function ChatInput({user,setAllUsersChat}){
                     }
 
                 }
+                xhr.onprogress =(progress)=>{
+                    console.log(Math.floor((progress.loaded/progress.total)*100))
+                }
                 xhr.send(formData);
 
 
@@ -160,10 +167,6 @@ export default function ChatInput({user,setAllUsersChat}){
 
 
 
-
-
-
-
     return (
         <div className="chat--input">
             <svg onClick={uploadFile}
@@ -171,9 +174,34 @@ export default function ChatInput({user,setAllUsersChat}){
                 <path d="M11.97 12V15.5C11.97 17.43 13.54 19 15.47 19C17.4 19 18.97 17.43 18.97 15.5V10C18.97 6.13 15.84 3 11.97 3C8.1 3 4.97 6.13 4.97 10V16C4.97 19.31 7.66 22 10.97 22" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeinejoin="round"/>
             </svg>
 
+            <div
+                className={emojiVisibility ?' emoji-icon select' :'emoji-icon'}
+                 onClick={()=>{
+                setEmojiVisibility(!emojiVisibility)
+            }}
+            >
+                <svg width="24px" height="24px" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path><path d="M16.5 14.5s-1.5 2-4.5 2-4.5-2-4.5-2" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path><path d="M15.5 9a.5.5 0 110-1 .5.5 0 010 1zM8.5 9a.5.5 0 110-1 .5.5 0 010 1z" fill="#000000" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+            </div>
+
+            <div className={ emojiVisibility ? "emoji-visible emoji-list":"emoji-list"}>
+                <Picker
+                    theme={"light"}
+                    onClickOutside={(event)=>{
+                        // console.log(event)
+                        // setEmojiVisibility(!emojiVisibility)
+                        }
+                }
+                    icons={"outline"}
+                    data={data}
+                    onEmojiSelect={(event)=>{
+                        setInput(input+event.native)
+                    }}
+
+                />
+            </div>
+
             <textarea
                 autoFocus={true}
-                type="text"
                 id="chat--input--box"
                 placeholder="Type a message"
                 value={input}
@@ -183,6 +211,7 @@ export default function ChatInput({user,setAllUsersChat}){
                 onKeyDown={(event)=>{
 
                     if(event.code === "Enter"){
+                        setEmojiVisibility(false)
                         setInput('')
                         if(input.trim()){
                             updateAllUsersChat()
@@ -195,9 +224,12 @@ export default function ChatInput({user,setAllUsersChat}){
                     }
                 }}
             />
+
             <svg
                 onClick={()=>{
                     //call send message to server function
+                    setEmojiVisibility(false)
+
                     setInput('')
                     if(input){
                         updateAllUsersChat()
@@ -207,9 +239,9 @@ export default function ChatInput({user,setAllUsersChat}){
                     }
                     setInput('')
                 }
-            } className="chat--input-icons" id="sendButton" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.14 2.96001L7.11 5.96001C1.04 7.99001 1.04 11.3 7.11 13.32L9.79 14.21L10.68 16.89C12.7 22.96 16.02 22.96 18.04 16.89L21.05 7.87001C22.39 3.82001 20.19 1.61001 16.14 2.96001ZM16.46 8.34001L12.66 12.16C12.51 12.31 12.32 12.38 12.13 12.38C11.94 12.38 11.75 12.31 11.6 12.16C11.4605 12.0189 11.3823 11.8284 11.3823 11.63C11.3823 11.4316 11.4605 11.2412 11.6 11.1L15.4 7.28001C15.69 6.99001 16.17 6.99001 16.46 7.28001C16.75 7.57001 16.75 8.05001 16.46 8.34001Z" fill="#615EF0"/>
-            </svg>
+                }
+                className="chat--input-icons" id="sendButton"
+                width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M22 12L3 20l3.563-8L3 4l19 8zM6.5 12H22" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 
         </div>
     )

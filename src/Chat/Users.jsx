@@ -2,7 +2,7 @@ import React from "react";
 export default function Users({className ,user ,setSelectedUser}){
 
     let [sec,setSec] = React.useState(Math.ceil((Date.now() - Number(user.time))/1000))
-    let interval = 1000 ;
+    let interval = 5000 ;
 
 
     let x
@@ -13,7 +13,7 @@ export default function Users({className ,user ,setSelectedUser}){
     React.useEffect(()=>{
         sec = Math.ceil((Date.now() - Number(user.time))/1000)
     if(sec < 60){
-        interval = 1000
+        interval = 5000
     }
     else if((sec / 60) < 60){
         interval = 1000 * 60
@@ -27,6 +27,7 @@ export default function Users({className ,user ,setSelectedUser}){
     let message = CryptoJS.AES.decrypt(user.Message, user.time).toString(CryptoJS.enc.Utf8) ;
 
     return (
+        <>
         <div className={`user--chat--box ${className}`}
             onClick={()=>{
                 setSelectedUser(user)
@@ -52,11 +53,13 @@ export default function Users({className ,user ,setSelectedUser}){
                 <p className="message">
                     {message.length > 15 ? message.slice(0,14)+'...':message}
                     {/* todo : i think some problems here*/}
-                    {user.isByMe === '1' ? <i className="bi arrow bi-arrow-down"></i> :<i className="bi arrow bi-arrow-up"></i>  }
+                    {/*{user.isByMe === '1' ? <i className="bi arrow bi-arrow-down"></i> :<i className="bi arrow bi-arrow-up"></i>  }*/}
 
                 </p>
             </div>
+
         </div>
+        </>
     )
 
 }
