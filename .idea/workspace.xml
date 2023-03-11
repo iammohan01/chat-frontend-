@@ -4,27 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="can reset password if password was forgotten">
-      <change afterPath="$PROJECT_DIR$/dist/assets/index-34fc29a5.js" afterDir="false" />
+    <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="added emoji picker . and some more">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/assets/index-a66c5e2a.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist" beforeDir="false" afterPath="$PROJECT_DIR$/dist" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App-Init.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App-Init.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/ChatInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatInput.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/ChatPanel/MessagePannel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/MessagePannel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/NavigationPanel/NavigationComponect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/NavigationPanel/NavigationComponect.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/UserPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/UserPanel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/Users.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/Users.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/chatComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/chatComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles/Chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/Chat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles/SearchComponent.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/SearchComponent.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles/message.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/message.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,24 +44,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/mohanasundaram/Zoho WorkDrive (Enterprise)/My Folders/ZS/Projects/Messenger-App&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/mohanasundaram/Zoho WorkDrive (Enterprise)/My Folders/ZS/Projects/Messenger-App",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Console Font",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -138,7 +123,7 @@
       <workItem from="1677233720541" duration="21209000" />
       <workItem from="1677595420365" duration="14401000" />
       <workItem from="1677819394934" duration="13077000" />
-      <workItem from="1678362018562" duration="32213000" />
+      <workItem from="1678362018562" duration="34909000" />
     </task>
     <task id="LOCAL-00001" summary="Can send and update ui in react . almost all issues fixed . Only problem here is can't update in other person's chat">
       <created>1676383810530</created>
@@ -252,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678511340317</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="added emoji picker . and some more">
+      <created>1678548684470</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1678548684470</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,6 +291,7 @@
     <MESSAGE value="can delete chat in both side in realtime" />
     <MESSAGE value="fixed another side recent chat updates issue" />
     <MESSAGE value="can reset password if password was forgotten" />
-    <option name="LAST_COMMIT_MESSAGE" value="can reset password if password was forgotten" />
+    <MESSAGE value="added emoji picker . and some more" />
+    <option name="LAST_COMMIT_MESSAGE" value="added emoji picker . and some more" />
   </component>
 </project>

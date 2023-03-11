@@ -165,6 +165,11 @@ export default function ChatInput({user,setAllUsersChat}){
     }
 
 
+    window.addEventListener("keydown",(event)=>{
+        if(event.code === "Escape"){
+            setEmojiVisibility(false)
+        }
+    })
 
 
     return (
