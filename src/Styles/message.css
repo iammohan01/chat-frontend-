@@ -102,6 +102,19 @@
     background-color: #615EF0;
     color: white;
 }
+.msg  a{
+    text-decoration: underline;
+
+}
+.end  a{
+    color: white;
+    text-decoration: underline;
+}
+.end a:hover{
+    color: white;
+}
+
+
 .chat--list > .end{
     text-align: right;
 }
@@ -207,4 +220,66 @@
 .arrow{
     font-size: 12px;
     padding: 0 10px;
+}
+
+
+.recording{
+    display: flex;
+    align-items: center;
+}
+.url-image{
+    width: 100%;
+    object-fit: contain;
+    object-position: top;
+    max-height: 200px;
+    border-radius: 10px;
+}
+.link-preview-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.link-preview-wrapper >div:first-child{
+    min-width: 300px;
+    width: 100%;
+    display: flex;
+    /*justify-content: center;*/
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.link-preview-wrapper > div > p {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.53);
+    text-align: left;
+    width: 100%;
+    /*border-radius: 0px;*/
+    padding-left: 15px;
+    transition: top 500ms ,bottom  500ms ;
+    transition-delay: 500ms;
+    transition-timing-function: ease-in-out ;
+}
+
+.link-preview-wrapper > div > p:first-child{
+    top: -100%;
+    overflow: hidden;
+    padding: 10px 15px;
+    font-size: 20px;
+}
+.link-preview-wrapper:hover > div > p:first-child{
+    transition-delay: 500ms;
+
+    top: 0;
+}
+.link-preview-wrapper:hover > div > p:last-child{
+    transition-delay: 500ms;
+
+    bottom: 0;
+}
+.link-preview-wrapper > div > p:last-child{
+    bottom: -100%;
+    padding-top: 10px ;
+
+}
+.msg .link-preview-wrapper p{
+    color: white;
 }

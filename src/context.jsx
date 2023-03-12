@@ -13,11 +13,13 @@ const ContextProvider = ({ children }) => {
     const [AllUsersChats,setAllUsersChats] = useState({});
     const [recentUsers,setRecentUsers] = useState([]);
     const [focus,setFocus] = useState('chat');
+    let [urlHistory,setUrlHistory] = useState({})
 
     const selectedUserState = {selectedUser,setSelectedUser}
     const allUsersState = {AllUsersChats,setAllUsersChats}
     const recentUsersState = {recentUsers,setRecentUsers}
     const focusState = {focus,setFocus}
+    const  url_History = {urlHistory,setUrlHistory}
 
     //for selected search user
     const changeSearch = {setSelectedUser,setFocus}
@@ -133,7 +135,7 @@ const ContextProvider = ({ children }) => {
 
 
     return (
-        <Context.Provider value={{socket,selectedUserState,allUsersState,recentUsersState,focusState,changeSearch}}>
+        <Context.Provider value={{socket,url_History,selectedUserState,allUsersState,recentUsersState,focusState,changeSearch}}>
             { children }
         </Context.Provider>
     )

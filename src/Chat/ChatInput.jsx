@@ -1,25 +1,25 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import alert from "../Scripts/alert.js";
 import context from "../context.jsx";
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
-import EmojiPicker from "emoji-picker-react";
-// import {sendMessage, socketForMessageTransfer} from "./ChatReqRes/SocketForMessageTransfer.js";
+import Lottie from 'react-lottie-player'
+import {waveData} from "../../public/wave.js";
+import useRecorder from "../Recorder.jsx";
 
 export default function ChatInput({user,setAllUsersChat}){
 
     const [input,setInput] = useState('')
     const [emojiVisibility,setEmojiVisibility] = useState(false)
+    const [isRecordingStarted,setRecording]=useState(false)
+    const [audioURL,audioBLOB, isRecording, startRecording, stopRecording] = useRecorder();
 
     //update into setAllUsers current users
     function updateAllUsersChat(){
 
         let time = Date.now()
-        // console.log(time,input)
 
         let encryptedMessage = CryptoJS.AES.encrypt(input,time+'').toString()
-        // console.log(encryptedMessage)
-        // console.log(encryptedMessage.toString())
 
         let UpdateObject = {
             fromUser : '' ,
@@ -38,9 +38,6 @@ export default function ChatInput({user,setAllUsersChat}){
         })
 
 
-        //send data to server
-
-
         let obj = {
             type : 'chat',
             from : localStorage.getItem('uid'),
@@ -55,9 +52,6 @@ export default function ChatInput({user,setAllUsersChat}){
 
 
 
-
-        // sendMessage(UpdateObject)
-        // socketForMessageTransfer.send('Hello');
     }
 
 
@@ -82,7 +76,6 @@ export default function ChatInput({user,setAllUsersChat}){
                 alert('warning','File Size Should be less than 1GB')
                 return
             }
-            // alert(input.files[0].size / 1024 ** 2)
             console.log(input.files[0].name)
 
 
@@ -171,13 +164,28 @@ export default function ChatInput({user,setAllUsersChat}){
         }
     })
 
+    function recordAudio(event){
+        console.log(isRecording)
+        setRecording(!isRecordingStarted)
+        if(!isRecording ) {
+            startRecording()
+            console.log('recording started')
+        } else{
+            stopRecording()
+            console.log('recording stopped')
+            console.log(audioBLOB)
+            console.log(audioURL)
+        }
+
+    }
+
 
     return (
         <div className="chat--input">
-            <svg onClick={uploadFile}
-                className="chat--input-icons" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.97 12V15.5C11.97 17.43 13.54 19 15.47 19C17.4 19 18.97 17.43 18.97 15.5V10C18.97 6.13 15.84 3 11.97 3C8.1 3 4.97 6.13 4.97 10V16C4.97 19.31 7.66 22 10.97 22" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeinejoin="round"/>
-            </svg>
+            <svg
+                onClick={uploadFile}
+                className="chat--input-icons"
+                width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M21.438 11.662l-9.19 9.19a6.003 6.003 0 11-8.49-8.49l9.19-9.19a4.002 4.002 0 015.66 5.66l-9.2 9.19a2.001 2.001 0 11-2.83-2.83l8.49-8.48" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 
             <div
                 className={emojiVisibility ?' emoji-icon select' :'emoji-icon'}
@@ -217,20 +225,33 @@ export default function ChatInput({user,setAllUsersChat}){
 
                     if(event.code === "Enter"){
                         setEmojiVisibility(false)
-                        setInput('')
+                        setInput(''.trim())
                         if(input.trim()){
                             updateAllUsersChat()
                         }
-                        else{
-                            // setInput(Date.now()+'')
-                        }
-                        // console.log(Boolean(input))
-                        //call send message to server function
                     }
                 }}
             />
 
-            <svg
+
+            <div className={'recording'}
+
+                 style={ {
+                     display : isRecordingStarted ? "flex" : "none"
+                 } }
+            >
+
+                <Lottie
+                    loop
+                    animationData={waveData}
+                    play
+                    style={{ width: 50, height: 50 }}
+
+                />
+                Recording Audio
+            </div>
+
+            {input &&<svg
                 onClick={()=>{
                     //call send message to server function
                     setEmojiVisibility(false)
@@ -246,8 +267,32 @@ export default function ChatInput({user,setAllUsersChat}){
                 }
                 }
                 className="chat--input-icons" id="sendButton"
-                width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M22 12L3 20l3.563-8L3 4l19 8zM6.5 12H22" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M22 12L3 20l3.563-8L3 4l19 8zM6.5 12H22" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            }
 
+
+            {(!input && !isRecordingStarted) &&
+                <svg
+                    onClick={recordAudio}
+                    className="chat--input-icons" id="micButton"
+                    width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><rect x="9" y="2" width="6" height="12" rx="3" stroke="#000000" stroke-width="1.5"></rect><path d="M5 10v1a7 7 0 007 7v0a7 7 0 007-7v-1M12 18v4m0 0H9m3 0h3" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>}
+
+            {!input && isRecordingStarted &&
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red"
+                     className="chat--input-icons" viewBox="0 0 16 16"
+                     onClick={recordAudio}
+                    style={
+                        {
+                            border : "1px solid ",
+                            margin : "20px",
+                            padding : '5px',
+                            borderRadius : '50%'
+                        }
+                    }>
+                    <path
+                        d="M5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11V5A1.5 1.5 0 0 1 5 3.5z"/>
+                </svg>}
         </div>
     )
 

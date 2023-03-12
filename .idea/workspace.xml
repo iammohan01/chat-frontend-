@@ -4,11 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="added emoji picker . and some more">
+    <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="url previews added">
+      <change afterPath="$PROJECT_DIR$/dist/assets/index-6ac01bf8.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/assets/index-b39f9f7c.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/24510-recording.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/Voice (1).js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/wave.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/LinkPreview.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Recorder.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/wave.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Messenger-App.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Messenger-App.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist" beforeDir="false" afterPath="$PROJECT_DIR$/dist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/index-34fc29a5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/index-e7b3bca4.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index-dev.html" beforeDir="false" afterPath="$PROJECT_DIR$/index-dev.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/ChatInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatInput.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Styles/message.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/message.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +71,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/mohanasundaram/Zoho WorkDrive (Enterprise)/My Folders/ZS/Projects/Messenger-App",
+    "last_opened_file_path": "/Users/mohanasundaram/Zoho WorkDrive (Enterprise)/My Folders/ZS/Projects/Messenger-App/public",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -65,15 +85,17 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/src/assets" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/Styles" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/src/assets" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/Chat/ChatPanel" />
       <recent name="$PROJECT_DIR$/src/Chat/ChatReqRes" />
-      <recent name="$PROJECT_DIR$/src/Chat" />
     </key>
   </component>
   <component name="RunManager" selected="npm.dev">
@@ -124,6 +146,8 @@
       <workItem from="1677595420365" duration="14401000" />
       <workItem from="1677819394934" duration="13077000" />
       <workItem from="1678362018562" duration="34909000" />
+      <workItem from="1678552162838" duration="3486000" />
+      <workItem from="1678557548215" duration="19790000" />
     </task>
     <task id="LOCAL-00001" summary="Can send and update ui in react . almost all issues fixed . Only problem here is can't update in other person's chat">
       <created>1676383810530</created>
@@ -244,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678548684470</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="some issues in dependencies need to solve">
+      <created>1678552315248</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1678552315248</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,6 +323,8 @@
     <MESSAGE value="fixed another side recent chat updates issue" />
     <MESSAGE value="can reset password if password was forgotten" />
     <MESSAGE value="added emoji picker . and some more" />
-    <option name="LAST_COMMIT_MESSAGE" value="added emoji picker . and some more" />
+    <MESSAGE value="some issues in dependencies need to solve" />
+    <MESSAGE value="url previews added" />
+    <option name="LAST_COMMIT_MESSAGE" value="url previews added" />
   </component>
 </project>

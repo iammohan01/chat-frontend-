@@ -1,50 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href='./src/Styles/ROOT.css'>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/pbkdf2.min.js" integrity="sha512-E1FCVqEhkBCsxW0xRseAo/Mf/u+7cqKxQQ5R4RNHMHH3CxYpQmeSnXL9Tcf6amYSgy/dR3/utZt2TFY05OGabQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-    <script>
-      // const socket = new WebSocket(`ws://${window.location.host}/chat/${localStorage.getItem("uid")}`)
-      const socket = new WebSocket(`ws://localhost:8081/demo2_war_exploded/chat/${localStorage.getItem("uid")}`)
-      // const connectionSocket = new WebSocket(`ws://${window.location.host}/getOnlineStatus/${localStorage.getItem("uid")}`)
-      const connectionSocket = new WebSocket(`ws://localhost:8081/demo2_war_exploded/getOnlineStatus/${localStorage.getItem("uid")}`)
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href='./src/Styles/ROOT.css'>
+  <link rel="stylesheet" href='./src/Styles/App.css'>
+  <link rel="stylesheet" href='./src/Styles/Auth.css'>
+  <link rel="stylesheet" href='./src/Styles/Chat.css'>
+  <link rel="stylesheet" href='./src/Styles/DateView.css'>
+  <link rel="stylesheet" href="./src/Styles/index.css">
+  <link rel="stylesheet" href="./src/Styles/MainPage.css">
+  <link rel="stylesheet" href="./src/Styles/message.css">
+  <link rel="stylesheet" href="./src/Styles/SearchComponent.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/pbkdf2.min.js" integrity="sha512-E1FCVqEhkBCsxW0xRseAo/Mf/u+7cqKxQQ5R4RNHMHH3CxYpQmeSnXL9Tcf6amYSgy/dR3/utZt2TFY05OGabQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <title>Chatter Box</title>
+</head>
+<body>
+<div id="root"></div>
+<script type="module" src="/src/main.jsx"></script>
+<script>
+  // const socket = new WebSocket(`ws://${window.location.host}/chat/${localStorage.getItem("uid")}`)
+  const socket = new WebSocket(`ws://localhost:8081/demo2_war_exploded/chat/${localStorage.getItem("uid")}`)
+  // const connectionSocket = new WebSocket(`ws://${window.location.host}/getOnlineStatus/${localStorage.getItem("uid")}`)
+  const connectionSocket = new WebSocket(`ws://localhost:8081/demo2_war_exploded/getOnlineStatus/${localStorage.getItem("uid")}`)
 
-      const endURL = 'http://localhost:8081/demo2_war_exploded'
-      // const endURL = ""
-      function getProfile(){
+  const endURL = 'http://localhost:8081/demo2_war_exploded'
+  // const endURL = ""
+  function getProfile(){
 
-        let xhr = new XMLHttpRequest();
-        // xhr.open("GET","/GetProfileImg",true)
-        // xhr.open("GET","http://localhost:8080/demo2_war_exploded/GetProfileImg",true)
-        xhr.open("GET",`${endURL}/GetProfileImg`,true)
+    let xhr = new XMLHttpRequest();
+    // xhr.open("GET","/GetProfileImg",true)
+    // xhr.open("GET","http://localhost:8080/demo2_war_exploded/GetProfileImg",true)
+    xhr.open("GET",`${endURL}/GetProfileImg`,true)
 
-        xhr.responseType = "arraybuffer";
-        xhr.onreadystatechange = ()=>{
-            // console.log(this);
-            var arrayBuffer = xhr.response;
-            var blob = new Blob([arrayBuffer], { type: "image/jpeg" });
-            var url = URL.createObjectURL(blob);
-            console.log(blob);
+    xhr.responseType = "arraybuffer";
+    xhr.onreadystatechange = ()=>{
+      // console.log(this);
+      var arrayBuffer = xhr.response;
+      var blob = new Blob([arrayBuffer], { type: "image/jpeg" });
+      var url = URL.createObjectURL(blob);
+      console.log(blob);
 
-            document.getElementsByClassName("profile-img")[0].src = url ;
-        }
-        xhr.send();
+      document.getElementsByClassName("profile-img")[0].src = url ;
     }
+    xhr.send();
+  }
 
 
 
-    </script>
-   
-  </body>
+</script>
+
+</body>
 </html>
