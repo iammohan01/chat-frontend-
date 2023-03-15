@@ -7,7 +7,7 @@ import {downloadFile} from "./downloadFile.js";
 import context from "../context.jsx";
 import fixWebmDuration from "webm-duration-fix";
 
-export default function VoicePlayer({ audioSrc}) {
+export default function VoicePlayer({ audioSrc ,color}) {
     const [audio, setAudio] = useState("");
     const [audioEle,setAudioEle] = useState(new Audio(''))
     const [playingStatus,setPlayingStatus] = useState(0) //pause : 0 , playing : 1 , load : 2
@@ -53,21 +53,18 @@ export default function VoicePlayer({ audioSrc}) {
 
       if(Object.keys(blobUrls).includes(audioSrc.message)){
           let downEle = document.createElement('a');
-          console.log('in local base')
-          console.log(blobUrls)
+
           let audio = new Audio(blobUrls[audioSrc.message])
           audio.setAttribute("preload", "metadata")
           audio.onloadedmetadata = function() {
               function getDuration() {
                   audio.currentTime = 0
                   audio.removeEventListener('timeupdate', getDuration)
-                  console.log(audio.duration)
                   setDuration(audio.duration)
               }
               setDuration(Math.floor(audio.duration))
               if (audio.duration === Infinity) {
                   audio.currentTime = 1e101
-
                   audio.addEventListener('timeupdate', getDuration)
               }
           };
@@ -119,8 +116,10 @@ export default function VoicePlayer({ audioSrc}) {
       }
       xhr.onprogress =(progress)=>{
 
-          console.log(Math.floor((progress.loaded/progress.total)*100))
-          alert("success",`${Math.floor((progress.loaded/progress.total)*100)}% downloaded`)
+          let loaded = Math.floor((progress.loaded/progress.total)*100)
+          if(loaded === 100){
+            alert("success",`${Math.floor((progress.loaded/progress.total)*100)}% downloaded`)
+          }
       }
       xhr.send(form)
   }
@@ -148,20 +147,13 @@ export default function VoicePlayer({ audioSrc}) {
               xmlns="http://www.w3.org/2000/svg"
               color="#000000"
               onClick={() => {
-                  if (audio !== '' && audioEle.duration !== 0) {
-
-                      alert('success', 'audio playing')
-                  } else {
-                      alert('success', 'audio request')
                       loadAudio()
-
-                  }
               }
               }
           >
               <path
                   d="M6.906 4.537A.6.6 0 006 5.053v13.894a.6.6 0 00.906.516l11.723-6.947a.6.6 0 000-1.032L6.906 4.537z"
-                  stroke="#fff"
+                  stroke={color}
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -197,7 +189,7 @@ export default function VoicePlayer({ audioSrc}) {
         >
           <path
             d="M6 18.4V5.6a.6.6 0 01.6-.6h2.8a.6.6 0 01.6.6v12.8a.6.6 0 01-.6.6H6.6a.6.6 0 01-.6-.6zM14 18.4V5.6a.6.6 0 01.6-.6h2.8a.6.6 0 01.6.6v12.8a.6.6 0 01-.6.6h-2.8a.6.6 0 01-.6-.6z"
-            stroke="#fff"
+            stroke={color}
             strokeWidth="1.5"
           ></path>
         </svg>

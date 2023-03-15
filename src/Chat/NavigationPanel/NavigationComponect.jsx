@@ -38,16 +38,16 @@ export function NavBar(){
         <img
             className="profile-img"
             src="/profile-test.svg"
-            onClick={()=>{
-                const input = document.createElement('input');
-                input.type = 'file';
-                input.click();
-                input.onchange = ()=>{
-                    console.log(input.files[0]);
-                    changeProfileImg(input.files[0])
-                    getProfile()
-                }
-            }}
+            // onClick={()=>{
+            //     const input = document.createElement('input');
+            //     input.type = 'file';
+            //     input.click();
+            //     input.onchange = ()=>{
+            //         console.log(input.files[0]);
+            //         changeProfileImg(input.files[0])
+            //         // getProfile()
+            //     }
+            // }}
             alt="profile-img"/>
 
 

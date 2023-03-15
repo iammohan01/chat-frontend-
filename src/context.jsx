@@ -57,7 +57,7 @@ const ContextProvider = ({ children }) => {
         let EncryptMessage = fromUserData['message']
 
 
-        if (fromUserData['type'] === 'chat') {
+        if (fromUserData['type'] === 'chat' || fromUserData['type'] === 'file') {
             fromUserData['message'] = CryptoJS.AES.decrypt(fromUserData['message'], fromUserData['time']).toString(CryptoJS.enc.Utf8)
             let fromUser = fromUserData['from']
 

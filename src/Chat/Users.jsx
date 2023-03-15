@@ -34,7 +34,7 @@ export default function Users({className ,user ,setSelectedUser}){
             }}
             >
             <div className='user--image'>
-                <img src={'https://secure.gravatar.com/avatar/84da92f298e5b124d92fb581b82cfdf4?s=1200&d=retro&r=pg'}  alt={''}/>
+                <img src={'https://cdn.iconscout.com/icon/free/png-256/profile-1754134-1493247.png'}  alt={''}/>
             </div>
             <div className="chats">
                 <div className="user">

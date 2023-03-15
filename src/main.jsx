@@ -20,7 +20,7 @@ function RenderPage(){
     xhr.open("GET",`${endURL}/verify?uid=${getCookie("uid")}`)
     xhr.onreadystatechange =()=>{
       xhr.onloadend = ()=>{
-        console.log(xhr.response)
+        // console.log(xhr.response)
         let resJSON = JSON.parse(xhr.response);
         setVerifyUser(resJSON.verify)
       }

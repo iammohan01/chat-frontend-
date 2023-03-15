@@ -53,8 +53,10 @@ export function downloadFile(file,fileName,download,blobs){
     }
     xhr.onprogress =(progress)=>{
 
-        console.log(Math.floor((progress.loaded/progress.total)*100))
-        alert("success",`${Math.floor((progress.loaded/progress.total)*100)}% downloaded`)
+        let loaded = Math.floor((progress.loaded/progress.total)*100)
+        if(loaded === 100){
+            alert("success",`${Math.floor((progress.loaded/progress.total)*100)}% downloaded`)
+        }
     }
     xhr.send(form)
 

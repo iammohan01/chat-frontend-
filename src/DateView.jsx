@@ -51,7 +51,7 @@ export default function DateView(){
                 console.log(chat)
                 console.log()
             }}>
-                <img className={'filtered-message-dp'}  src={'https://secure.gravatar.com/avatar/84da92f298e5b124d92fb581b82cfdf4?s=1200&d=retro&r=pg'} alt={''}/>
+                <img className={'filtered-message-dp'}  src={'https://cdn.iconscout.com/icon/free/png-256/profile-1754134-1493247.png'} alt={''}/>
                 <div className={'filtered-message-details'}>
                     <div>
                         <p className={'name'}>{chat.isSentByMe ? chat['toUser-name'] : chat['fromUser-name']}</p>

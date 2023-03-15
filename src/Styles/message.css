@@ -2,7 +2,7 @@
 .UserHead{
     /*border: 1px solid green;*/
     border-radius: 0 0 15px 15px;
-    filter: drop-shadow( 1px 2px 8px hsl(0deg 0% 0% / 0.25) );
+    /*filter: drop-shadow( 1px 2px 8px hsl(0deg 0% 0% / 0.25) );*/
 
 }
 .UserHead > *{
@@ -175,7 +175,7 @@
 }
 .file{
     display: inline;
-    width: 30%;
+    /*width: 30%;*/
     /*border: 1px grey solid;*/
     /*height: 40px;*/
     /*align-items: center;*/

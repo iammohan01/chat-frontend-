@@ -55,7 +55,6 @@ function Reset({sign}) {
         xhr.onreadystatechange =()=>{
             xhr.onloadend = ()=>{
                 console.log(xhr.responseText)
-                alert("success","response from server for reset")
                 if(xhr.status === 200){
                     setReset("otp")
                     console.log("res from server ")

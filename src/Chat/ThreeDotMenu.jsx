@@ -16,15 +16,13 @@ export function  ThreeDotMenu({chatDetails,isByMe}){
             user : localStorage.getItem("userName"),
             fromUser : selectedUserState.selectedUser.userName
         }
-        console.log(JSON.stringify(delReqJson))
         let xhr = new XMLHttpRequest()
         let end = `${endURL}/delete`
         xhr.open("POST",end)
         xhr.onreadystatechange = ()=>{
             xhr.onloadend =()=>{
                     alert('success','Message deleted');
-                    // console.log(selectedUserState.selectedUser.userName, allUsersState.setAllUsersChats ,allUsersState.AllUsersChats)
-                    // reqCurrentUserChats(selectedUserState.selectedUser.userName, allUsersState.setAllUsersChat ,allUsersState.allUsersChats)
+
                     allUsersState.setAllUsersChats((prev)=>{
                         let temp = prev
                         if(delete  temp[delReqJson.fromUser]){

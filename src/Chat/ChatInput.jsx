@@ -24,11 +24,11 @@ export default function ChatInput({user,setAllUsersChat}) {
     }, [audioURL])
 
     useEffect(()=>{
-        console.log(audioEle)
+        // console.log(audioEle)
     },[audioEle])
 
     audioEle.onended=()=>{
-        alert("success",'audio ended')
+        // alert("success",'audio ended')
         setAudioPlaying(false)
     }
     function updateAllUsersChat() {
@@ -116,15 +116,13 @@ export default function ChatInput({user,setAllUsersChat}) {
     })
 
     function recordAudio(event){
-        console.log(isRecording)
         if(!isRecording ) {
             setRecordingStatus(1)
             startRecording()
-            console.log('recording started')
         } else{
+
             stopRecording()
             setRecordingStatus(2)
-            console.log('recording ended')
         }
 
     }
@@ -132,11 +130,9 @@ export default function ChatInput({user,setAllUsersChat}) {
 
         if(audioEle.paused){
             audioEle.play()
-            alert('success','playing')
         }
         else{
             audioEle.pause()
-            alert('success','paused')
 
         }
 
@@ -229,7 +225,6 @@ export default function ChatInput({user,setAllUsersChat}) {
                 </div>}
                 {audioPlaying &&
                     <div onClick={()=>{
-                        alert('success','paused')
                         setAudioPlaying(false)
                         audioEle.pause();
                     }
@@ -299,7 +294,7 @@ export default function ChatInput({user,setAllUsersChat}) {
             {
                 !input && recordingStatus === 2 && <svg
                 onClick={()=>{
-                    console.log(audioBLOB)
+                    // console.log(audioBLOB)
                     sendFile(audioBLOB,`audioMessage${Date.now()}.webm`,updateRecentChats,setAllUsersChat,user)
                     setAudioEle(new Audio(''))
                     setRecordingStatus(0);

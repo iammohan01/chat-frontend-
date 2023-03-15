@@ -37,6 +37,7 @@ export default  function sendFile(file,filename,updateRecentChats,setAllUsersCha
             let res = JSON.parse(xhr.responseText)
             if(res['status'] ===1 ){
                 socket.send(JSON.stringify(objForSocket))
+                console.log("sent file")
                 updateRecentChats(ency,timeNow)
                 let UpdateObject = {
                     fromUser : '' ,
