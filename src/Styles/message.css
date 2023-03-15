@@ -186,9 +186,7 @@
 .file > * {
     /*border: 1px grey solid;*/
 }
-.file > div{
-    background-color: #535bf2;
-}
+
 .download{
     /*border: 1px solid red;*/
     padding: 0 5px;
@@ -278,8 +276,24 @@
 .link-preview-wrapper > div > p:last-child{
     bottom: -100%;
     padding-top: 10px ;
+    font-size: 14px;
 
 }
 .msg .link-preview-wrapper p{
     color: white;
+}
+.audio-player{
+    display: flex;
+    gap: 20px;
+}
+.audio-player > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.voice-player{
+    display: flex;
+    /*width: 20%;*/
+    align-items: center;
+    justify-content: center;
 }

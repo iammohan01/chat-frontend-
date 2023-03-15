@@ -28,6 +28,7 @@ export function ChatPanel({ selectedUser, setAllUsersChat, allUsersChats }) {
         // update through setAllUsersChat as a key value key : username and value : chat details array
         selectedUser && reqCurrentUserChats(selectedUser, setAllUsersChat ,allUsersChats);
         setChatsComponent(ChatsComponent(allUsersChats[selectedUser.userName]))
+
     }, [selectedUser]);
 
 
@@ -56,7 +57,6 @@ export function ChatPanel({ selectedUser, setAllUsersChat, allUsersChats }) {
             <div ref={element}></div>
         </div>
         <ChatInput user={selectedUser} setAllUsersChat={setAllUsersChat} />
-        {/*<EmojiPicker />*/}
     </div>
 
 }

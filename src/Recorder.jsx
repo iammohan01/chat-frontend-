@@ -48,7 +48,7 @@ const useRecorder = () => {
         }
 
         const handleData = (e) => {
-            setAudioBlob(e)
+            setAudioBlob(e.data)
             setAudioURL(URL.createObjectURL(e.data));
         };
 

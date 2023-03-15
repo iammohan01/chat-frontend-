@@ -204,8 +204,14 @@ svg{
     padding: 0 10px;
 }
 .msg {
-    display: inline-block;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
 }
+.end{
+    justify-content: flex-end;
+}
+
 textarea {
     resize: none;
     outline: none;

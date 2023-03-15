@@ -8,6 +8,7 @@ import {setCookie} from "./Index/Auth.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <ContextProvider>
+
       <RenderPage/>
     </ContextProvider>
 )
@@ -29,6 +30,7 @@ function RenderPage(){
   useEffect(()=>{
     verifyUser()
   },[])
+
 
 
   return  <>

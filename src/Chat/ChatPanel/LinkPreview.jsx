@@ -10,7 +10,6 @@ export default function LinkPreview({url,message}){
 
    useEffect(()=>{
 
-       console.log(urlHistory)
        if(Object.keys(urlHistory).includes(url)){
            setUrlInfo(urlHistory[url])
        }
@@ -33,8 +32,8 @@ export default function LinkPreview({url,message}){
    },[])
 
 
-    let title =  urlInfo['title'] && urlInfo['title'].length > 30 ? urlInfo['title'].substring(0,30) + '...' : urlInfo['title']
-    let description = urlInfo['description']&&urlInfo['description'].length > 150 ? urlInfo['description'].substring(0,150)  + '...' : urlInfo['description']
+    let title =  urlInfo['title'] && urlInfo['title'].length > 25 ? urlInfo['title'].substring(0,25) + '...' : urlInfo['title']
+    let description = urlInfo['description']&&urlInfo['description'].length > 130 ? urlInfo['description'].substring(0,130)  + '...' : urlInfo['description']
 
 
 
@@ -42,7 +41,7 @@ export default function LinkPreview({url,message}){
         <>
 
             {urlInfo['title'] ?
-                <a className={'link-preview-wrapper'} href={url}>
+                <a className={'link-preview-wrapper'} target={"_blank"} href={url}>
                     <div>
                         <p>{title}</p>
                         <img className={'url-image'} src={urlInfo['image'] || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3Q6XcKFoQyHEadD_6nOv2QAQE9lA8e54bjDOsEBAoJQ&s'} alt={''}></img>

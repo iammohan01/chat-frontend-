@@ -13,19 +13,21 @@ const ContextProvider = ({ children }) => {
     const [AllUsersChats,setAllUsersChats] = useState({});
     const [recentUsers,setRecentUsers] = useState([]);
     const [focus,setFocus] = useState('chat');
-    let [urlHistory,setUrlHistory] = useState({})
+    const [urlHistory,setUrlHistory] = useState({})
+    const [blobUrls,setBlobUrls] = useState({})
 
     const selectedUserState = {selectedUser,setSelectedUser}
     const allUsersState = {AllUsersChats,setAllUsersChats}
     const recentUsersState = {recentUsers,setRecentUsers}
     const focusState = {focus,setFocus}
     const  url_History = {urlHistory,setUrlHistory}
+    const blobs = {blobUrls,setBlobUrls}
 
     //for selected search user
     const changeSearch = {setSelectedUser,setFocus}
 
     useEffect(()=>{
-        console.log(recentUsers)
+        // console.log(recentUsers)
     },[recentUsers])
 
     useEffect(()=>{
@@ -135,7 +137,7 @@ const ContextProvider = ({ children }) => {
 
 
     return (
-        <Context.Provider value={{socket,url_History,selectedUserState,allUsersState,recentUsersState,focusState,changeSearch}}>
+        <Context.Provider value={{socket,blobs,url_History,selectedUserState,allUsersState,recentUsersState,focusState,changeSearch}}>
             { children }
         </Context.Provider>
     )

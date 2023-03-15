@@ -6,50 +6,65 @@ import Picker from '@emoji-mart/react'
 import Lottie from 'react-lottie-player'
 import {waveData} from "../../public/wave.js";
 import useRecorder from "../Recorder.jsx";
+import sendFile from "../Utils/SendFile.js";
 
-export default function ChatInput({user,setAllUsersChat}){
+export default function ChatInput({user,setAllUsersChat}) {
 
-    const [input,setInput] = useState('')
-    const [emojiVisibility,setEmojiVisibility] = useState(false)
-    const [isRecordingStarted,setRecording]=useState(false)
-    const [audioURL,audioBLOB, isRecording, startRecording, stopRecording] = useRecorder();
+    const [input, setInput] = useState('')
+    const [emojiVisibility, setEmojiVisibility] = useState(false)
+    const [recordingStatus, setRecordingStatus] = useState(0)
+    const [audioURL, audioBLOB, isRecording, startRecording, stopRecording] = useRecorder();
+    const [audioEle, setAudioEle] = useState(new Audio(audioURL))
+    const [audioPlaying,setAudioPlaying] = useState(false)
 
-    //update into setAllUsers current users
-    function updateAllUsersChat(){
+
+    useEffect(() => {
+        setAudioEle(new Audio(audioURL))
+
+    }, [audioURL])
+
+    useEffect(()=>{
+        console.log(audioEle)
+    },[audioEle])
+
+    audioEle.onended=()=>{
+        alert("success",'audio ended')
+        setAudioPlaying(false)
+    }
+    function updateAllUsersChat() {
 
         let time = Date.now()
 
-        let encryptedMessage = CryptoJS.AES.encrypt(input,time+'').toString()
+        let encryptedMessage = CryptoJS.AES.encrypt(input, time + '').toString()
 
         let UpdateObject = {
-            fromUser : '' ,
-            toUser : user.userName,
-            message : input,
-            time : time ,
-            isSentByMe : true,
-            type :'chat',
-            ency : encryptedMessage
+            fromUser: '',
+            toUser: user.userName,
+            message: input,
+            time: time,
+            isSentByMe: true,
+            type: 'chat',
+            ency: encryptedMessage
         }
 
-        setAllUsersChat((prevChats)=>{
+        setAllUsersChat((prevChats) => {
             let readyToUpdateInLocalBase = prevChats[user.userName] || []
             readyToUpdateInLocalBase.push(UpdateObject)
-            return {...prevChats , [user.userName] : readyToUpdateInLocalBase}
+            return {...prevChats, [user.userName]: readyToUpdateInLocalBase}
         })
 
 
         let obj = {
-            type : 'chat',
-            from : localStorage.getItem('uid'),
-            to : user.userName,
-            time : UpdateObject.time,
-            message :encryptedMessage,
+            type: 'chat',
+            from: localStorage.getItem('uid'),
+            to: user.userName,
+            time: UpdateObject.time,
+            message: encryptedMessage,
 
         }
 
         socket.send(JSON.stringify(obj))
-        updateRecentChats(encryptedMessage,UpdateObject.time)
-
+        updateRecentChats(encryptedMessage, UpdateObject.time)
 
 
     }
@@ -60,77 +75,13 @@ export default function ChatInput({user,setAllUsersChat}){
         input.type = 'file';
         input.click();
 
+    input.onchange = () => {
 
-        let timeNow = Date.now()
-        let objForSocket = {
-            type : 'file',
-            from : localStorage.getItem('uid'),
-            to : user.userName,
-            time : timeNow,
-            message : "",
-        }
-        input.onchange = ()=>{
+        sendFile(input.files[0],input.files[0].name,updateRecentChats,setAllUsersChat,user)
 
-            console.log(input.files[0].size)
-            if (input.files[0].size > 973741824){
-                alert('warning','File Size Should be less than 1GB')
-                return
-            }
-            console.log(input.files[0].name)
+    }
 
 
-                let ency = CryptoJS.AES.encrypt(input.files[0].name, timeNow + '').toString()
-                objForSocket.message = ency
-                console.log(JSON.stringify(objForSocket))
-
-
-
-                const formData = new FormData();
-                formData.append('name', ency);
-                formData.append('by',localStorage.getItem('uid'))
-                formData.append('file', input.files[0]);
-                const xhr = new XMLHttpRequest();
-                xhr.open('POST', `${endURL}/LoadFile`, true);
-                xhr.onreadystatechange = ()=>{
-                    xhr.onloadend =()=>{
-                        console.warn(xhr.responseText)
-                        let res = JSON.parse(xhr.responseText)
-                        if(res['status'] ===1 ){
-                            socket.send(JSON.stringify(objForSocket))
-                            updateRecentChats(ency,timeNow)
-                        }
-                        else{
-                            alert('error','failed to send file')
-                        }
-
-                    }
-
-                }
-                xhr.onprogress =(progress)=>{
-                    console.log(Math.floor((progress.loaded/progress.total)*100))
-                }
-                xhr.send(formData);
-
-
-
-            let UpdateObject = {
-                fromUser : '' ,
-                toUser : user.userName,
-                message : input.files[0].name,
-                time : timeNow ,
-                isSentByMe : true,
-                type :'file',
-                ency : ency
-            }
-
-            setAllUsersChat((prevChats)=>{
-                let readyToUpdateInLocalBase = prevChats[user.userName] || []
-                readyToUpdateInLocalBase.push(UpdateObject)
-                return {...prevChats , [user.userName] : readyToUpdateInLocalBase}
-            })
-
-
-        }
 
         // var reader = new FileReader(input.files[0]);
     }
@@ -166,15 +117,27 @@ export default function ChatInput({user,setAllUsersChat}){
 
     function recordAudio(event){
         console.log(isRecording)
-        setRecording(!isRecordingStarted)
         if(!isRecording ) {
+            setRecordingStatus(1)
             startRecording()
             console.log('recording started')
         } else{
             stopRecording()
-            console.log('recording stopped')
-            console.log(audioBLOB)
-            console.log(audioURL)
+            setRecordingStatus(2)
+            console.log('recording ended')
+        }
+
+    }
+    function playAudio(event){
+
+        if(audioEle.paused){
+            audioEle.play()
+            alert('success','playing')
+        }
+        else{
+            audioEle.pause()
+            alert('success','paused')
+
         }
 
     }
@@ -237,7 +200,7 @@ export default function ChatInput({user,setAllUsersChat}){
             <div className={'recording'}
 
                  style={ {
-                     display : isRecordingStarted ? "flex" : "none"
+                     display : recordingStatus ===1 ? "flex" : "none"
                  } }
             >
 
@@ -250,6 +213,43 @@ export default function ChatInput({user,setAllUsersChat}){
                 />
                 Recording Audio
             </div>
+            { recordingStatus === 2 && <div className={'audio-player'}>
+                {!audioPlaying && <div onClick={() => {
+                    audioEle.play();
+                    setAudioPlaying(true)
+                }
+                }>
+                    <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
+                         xmlns="http://www.w3.org/2000/svg" color="#000000">
+                        <path
+                            d="M6.906 4.537A.6.6 0 006 5.053v13.894a.6.6 0 00.906.516l11.723-6.947a.6.6 0 000-1.032L6.906 4.537z"
+                            stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    Play
+                </div>}
+                {audioPlaying &&
+                    <div onClick={()=>{
+                        alert('success','paused')
+                        setAudioPlaying(false)
+                        audioEle.pause();
+                    }
+                    }>
+                    <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M6 18.4V5.6a.6.6 0 01.6-.6h2.8a.6.6 0 01.6.6v12.8a.6.6 0 01-.6.6H6.6a.6.6 0 01-.6-.6zM14 18.4V5.6a.6.6 0 01.6-.6h2.8a.6.6 0 01.6.6v12.8a.6.6 0 01-.6.6h-2.8a.6.6 0 01-.6-.6z" stroke="#000000" stroke-width="1.5"></path>
+                    </svg>
+                    Pause
+                        </div>
+                }
+
+                <div onClick={()=>{
+                    setAudioEle(new Audio(''))
+                    setRecordingStatus(0);
+                }
+                }>
+                    <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M9.879 14.121L12 12m2.121-2.121L12 12m0 0L9.879 9.879M12 12l2.121 2.121M21 3.6v16.8a.6.6 0 01-.6.6H3.6a.6.6 0 01-.6-.6V3.6a.6.6 0 01.6-.6h16.8a.6.6 0 01.6.6z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                Delete
+            </div>
+            </div>
+            }
 
             {input &&<svg
                 onClick={()=>{
@@ -272,13 +272,13 @@ export default function ChatInput({user,setAllUsersChat}){
             }
 
 
-            {(!input && !isRecordingStarted) &&
+            {(!input && recordingStatus === 0) &&
                 <svg
                     onClick={recordAudio}
                     className="chat--input-icons" id="micButton"
                     width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><rect x="9" y="2" width="6" height="12" rx="3" stroke="#000000" stroke-width="1.5"></rect><path d="M5 10v1a7 7 0 007 7v0a7 7 0 007-7v-1M12 18v4m0 0H9m3 0h3" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>}
 
-            {!input && isRecordingStarted &&
+            {!input && recordingStatus === 1  &&
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red"
                      className="chat--input-icons" viewBox="0 0 16 16"
                      onClick={recordAudio}
@@ -293,6 +293,23 @@ export default function ChatInput({user,setAllUsersChat}){
                     <path
                         d="M5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11V5A1.5 1.5 0 0 1 5 3.5z"/>
                 </svg>}
+
+
+
+            {
+                !input && recordingStatus === 2 && <svg
+                onClick={()=>{
+                    console.log(audioBLOB)
+                    sendFile(audioBLOB,`audioMessage${Date.now()}.webm`,updateRecentChats,setAllUsersChat,user)
+                    setAudioEle(new Audio(''))
+                    setRecordingStatus(0);
+                }
+                }
+                    className="chat--input-icons" id="sendButton"
+                    width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M22 12L3 20l3.563-8L3 4l19 8zM6.5 12H22" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+
+            }
         </div>
     )
 
