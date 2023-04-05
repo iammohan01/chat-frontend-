@@ -8,18 +8,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="added audio preview and fixed nan and infinity issues in that">
-      <change afterPath="$PROJECT_DIR$/test.html" afterDir="false" />
+    <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="files handling changed">
+      <change afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/ImageViewer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/ChatInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatInput.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/ThreeDotMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ThreeDotMenu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/Users.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/Users.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DateView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/DateView.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles/Chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/Chat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/AudioPlayer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/AudioPlayer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Styles/message.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/message.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utils/SendFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/SendFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/downloadFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/downloadFile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +135,7 @@
       <workItem from="1678552162838" duration="3486000" />
       <workItem from="1678557548215" duration="58800000" />
       <workItem from="1678858898348" duration="5160000" />
-      <workItem from="1680601104621" duration="20201000" />
+      <workItem from="1680601104621" duration="23932000" />
     </task>
     <task id="LOCAL-00001" summary="Can send and update ui in react . almost all issues fixed . Only problem here is can't update in other person's chat">
       <created>1676383810530</created>
@@ -283,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678853814288</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="files handling changed">
+      <created>1680716887510</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1680716887510</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,6 +336,7 @@
     <MESSAGE value="url previews added" />
     <MESSAGE value="can send voice message" />
     <MESSAGE value="added audio preview and fixed nan and infinity issues in that" />
-    <option name="LAST_COMMIT_MESSAGE" value="added audio preview and fixed nan and infinity issues in that" />
+    <MESSAGE value="files handling changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="files handling changed" />
   </component>
 </project>

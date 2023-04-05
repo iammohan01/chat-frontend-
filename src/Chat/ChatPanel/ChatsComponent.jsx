@@ -6,14 +6,11 @@ import LinkPreview from "./LinkPreview.jsx";
 import context from "../../context.jsx";
 import VoicePlayer from "../../Utils/AudioPlayer.jsx";
 import {downloadFile} from "../../Utils/downloadFile.js";
+import ImageViewer from "./ImageViewer.jsx";
 
 let month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
 
 export function ChatsComponent( chats ) {
-
-
-
-
 
 
     let s
@@ -32,8 +29,10 @@ function LoadChat({val}){
 
         const {blobs,selectedUserState} =  useContext(context);
         const {blobUrls,setBlobUrls} =  blobs
+        const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'ico', 'webp', 'avif', 'jfif']
 
-        let time = new Date(Number(val.time))
+
+    let time = new Date(Number(val.time))
         let hours = `${time.getHours()%12}:${time.getMinutes()} ${time.getHours() > 11? 'PM' : 'AM'}`
         let message = val.message.trim()
 
@@ -61,6 +60,10 @@ function LoadChat({val}){
                 // `${endURL}/files/${val.isSentByMe?localStorage.userName:selectedUserState.selectedUser.userName}/${val.message}`
         }
 
+        let fileExtension = val.message.split(".")
+        fileExtension = fileExtension[fileExtension.length - 1]
+        console.log(fileExtension.trim())
+        console.log(imageExtensions.includes(fileExtension))
 
         // console.log(val)
         return (
@@ -83,9 +86,11 @@ function LoadChat({val}){
 
                 {val['type'] === 'file' &&
                     <div className={'file msg'} style={{
-                        width : val.message.endsWith('.webm') || val.message.endsWith('.mp3') ? '30%' : 'unset'
+                        width : val.message.toLowerCase().endsWith('.webm') || val.message.toLowerCase().endsWith('.mp3') || val.message.toLowerCase().endsWith('.ogg') || imageExtensions.includes(fileExtension) ? '30%' : 'unset',
+                        aspectRatio :   imageExtensions.includes(fileExtension) ? '5/3' : 'unset'
                     }} >
-                        {(val.message.endsWith('.webm') || val.message.endsWith('.mp3'))  && <VoicePlayer  color={val.isSentByMe ? "#fff" : "#000"} audioSrc={val}/>}
+                        {(val.message.toLowerCase().endsWith('.webm') || val.message.toLowerCase().endsWith('.mp3') || val.message.toLowerCase().endsWith('.ogg'))  && <VoicePlayer  color={val.isSentByMe ? "#fff" : "#000"} audioSrc={val}/>}
+                        {imageExtensions.includes(fileExtension) && <ImageViewer src={val} />}
 
                         <div style={{
                             display: "flex",

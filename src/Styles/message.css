@@ -297,3 +297,10 @@
     align-items: center;
     justify-content: center;
 }
+
+.image > img{
+    object-fit: cover;
+    max-width: 100%;
+    margin-top:10px;
+    border-radius: 8px;
+}

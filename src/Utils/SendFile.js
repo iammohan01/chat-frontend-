@@ -10,10 +10,7 @@ export default  function sendFile(file,filename,updateRecentChats,setAllUsersCha
         message : "",
     }
 
-    if (file.size > 973741824){
-        alert('warning','File Size Should be less than 1GB')
-        return
-    }
+
 
 
     let ency = CryptoJS.AES.encrypt(filename, timeNow + '').toString()
@@ -27,12 +24,9 @@ export default  function sendFile(file,filename,updateRecentChats,setAllUsersCha
     formData.append('file', file);
     const xhr = new XMLHttpRequest();
     xhr.open('POST', `${endURL}/LoadFile`);
-
     xhr.send(formData);
-
     xhr.onreadystatechange = ()=>{
         xhr.onloadend =()=>{
-
             console.warn(xhr.responseText)
             let res = JSON.parse(xhr.responseText)
             if(res['status'] ===1 ){
@@ -47,7 +41,6 @@ export default  function sendFile(file,filename,updateRecentChats,setAllUsersCha
                     isSentByMe : true,
                     type :'file',
                     ency : ency
-
                 }
 
                 setAllUsersChat((prevChats)=>{
