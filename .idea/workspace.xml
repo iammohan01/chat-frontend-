@@ -8,12 +8,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="files handling changed">
-      <change afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/ImageViewer.jsx" afterDir="false" />
+    <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="markdown added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles/message.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/message.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/SendFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/SendFile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +134,7 @@
       <workItem from="1678552162838" duration="3486000" />
       <workItem from="1678557548215" duration="58800000" />
       <workItem from="1678858898348" duration="5160000" />
-      <workItem from="1680601104621" duration="23932000" />
+      <workItem from="1680601104621" duration="25036000" />
     </task>
     <task id="LOCAL-00001" summary="Can send and update ui in react . almost all issues fixed . Only problem here is can't update in other person's chat">
       <created>1676383810530</created>
@@ -284,7 +283,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680716887510</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="image preview added">
+      <created>1680720356028</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1680720356028</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,6 +343,8 @@
     <MESSAGE value="can send voice message" />
     <MESSAGE value="added audio preview and fixed nan and infinity issues in that" />
     <MESSAGE value="files handling changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="files handling changed" />
+    <MESSAGE value="image preview added" />
+    <MESSAGE value="markdown added" />
+    <option name="LAST_COMMIT_MESSAGE" value="markdown added" />
   </component>
 </project>

@@ -7,6 +7,7 @@ import context from "../../context.jsx";
 import VoicePlayer from "../../Utils/AudioPlayer.jsx";
 import {downloadFile} from "../../Utils/downloadFile.js";
 import ImageViewer from "./ImageViewer.jsx";
+import ReactMarkdown from 'react-markdown'
 
 let month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
 
@@ -75,11 +76,10 @@ function LoadChat({val}){
                 {val['type'] === 'chat' &&
                     <div className={`msg`} >
                         {validateUrl(message)  ? <LinkPreview  url={message} message={temp}  />
-                            :<span dangerouslySetInnerHTML={{ __html: temp}}>
+                            : <ReactMarkdown>{temp}</ReactMarkdown> }
+                        {/*{<span dangerouslySetInnerHTML={{ __html: temp}}>*/}
                                 {/*{val.message}*/}
-
-
-                                </span>}
+                                {/*</span>}*/}
 
                         {/*    {str}*/}
                     </div>}
