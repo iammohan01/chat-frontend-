@@ -1,6 +1,7 @@
 import alert from "../Scripts/alert.js";
 import {useContext} from "react";
 import context from "../context.jsx";
+import {getCookie} from "../main.jsx";
 
 export function downloadFile(file,fileName,download,blobs){
 
@@ -17,15 +18,23 @@ export function downloadFile(file,fileName,download,blobs){
             console.log()
             console.log(downEle)
         }
-        return
+        // return
     }
 
 
     let form = new FormData();
-    form.set('id',file)
+    form.set("uid",getCookie("uid"))
+    form.set('fileId',file)
+
+    let data = {
+        uid : getCookie("uid"),
+        fileId : file
+    }
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST",`${endURL}/GetFile`,true)
+    console.log(getCookie("uid"))
+    xhr.open("POST",`${endURL}/GetFile?uid=${encodeURIComponent(getCookie("uid"))}&fileId=${encodeURIComponent(file)}`) //?fileId=${file}`,true)
+    xhr.send(JSON.stringify(data))
     xhr.responseType = "blob";
     xhr.onreadystatechange = ()=>{
 
@@ -46,7 +55,7 @@ export function downloadFile(file,fileName,download,blobs){
             })
             if(download){
                 console.log('download')
-                downEle.click()
+                // downEle.click()
             }
         }
 
@@ -58,6 +67,6 @@ export function downloadFile(file,fileName,download,blobs){
             alert("success",`${Math.floor((progress.loaded/progress.total)*100)}% downloaded`)
         }
     }
-    xhr.send(form)
+    console.log(xhr)
 
-}
+ }

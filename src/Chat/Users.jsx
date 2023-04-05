@@ -31,6 +31,7 @@ export default function Users({className ,user ,setSelectedUser}){
         <div className={`user--chat--box ${className}`}
             onClick={()=>{
                 setSelectedUser(user)
+                document.getElementById("chat--input--box").focus()
             }}
             >
             <div className='user--image'>

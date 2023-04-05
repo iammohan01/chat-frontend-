@@ -11,9 +11,14 @@ export default function DateView(){
     const {selectedUserState,focusState} = useContext(Context);
 
     function change(value){
+        // console.log(value || date)
         let date = new Date(value.format('YYYY-MM-DD'))
         date = date.getTime()
-        // console.log(date)
+        console.log(date)
+        loadDateChat(date)
+
+    }
+    function loadDateChat(date){
         let user = localStorage.getItem('uid')
 
         let xhr = new XMLHttpRequest();
@@ -28,8 +33,11 @@ export default function DateView(){
 
         }
         xhr.send();
-
     }
+    useEffect(()=>{
+        let today = new Date(new Date().toDateString());
+        loadDateChat(today.getTime())
+    },[])
     useEffect(()=>{
         let month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
         let x = chat.map((chat)=>{
@@ -89,7 +97,7 @@ export default function DateView(){
     }
     return(
     <div className={'date-view'}>
-        <div className={'calender'} >
+        <div className={'calender'}  >
             <Calendar mode={'month'} onChange={change} validRange={[dayjs(new Date(2000,11,31)),dayjs()]} />
         </div>
         <div className={'calender-messages'} >

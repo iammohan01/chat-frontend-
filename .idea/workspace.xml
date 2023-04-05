@@ -9,31 +9,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="added audio preview and fixed nan and infinity issues in that">
-      <change afterPath="$PROJECT_DIR$/dist/Profile.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/assets/index-0c1d3323.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dist/assets/index-2d640aa8.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/Profile.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/assets/index-6a6d13ee.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/assets/index-87e11ed4.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/ChatInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatInput.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/ChatPanel/UserHead.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/UserHead.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/NavigationPanel/NavigationComponect.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/NavigationPanel/NavigationComponect.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Chat/NavigationPanel/SettingsComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/NavigationPanel/SettingsComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/ThreeDotMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ThreeDotMenu.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/Users.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/Users.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DateView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/DateView.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Index/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Index/MainPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Styles/Chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/Chat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles/DateView.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/DateView.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles/message.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/message.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utils/AudioPlayer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/AudioPlayer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utils/SendFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/SendFile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utils/downloadFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/downloadFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +30,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -155,6 +141,7 @@
       <workItem from="1678552162838" duration="3486000" />
       <workItem from="1678557548215" duration="58800000" />
       <workItem from="1678858898348" duration="5160000" />
+      <workItem from="1680601104621" duration="20201000" />
     </task>
     <task id="LOCAL-00001" summary="Can send and update ui in react . almost all issues fixed . Only problem here is can't update in other person's chat">
       <created>1676383810530</created>

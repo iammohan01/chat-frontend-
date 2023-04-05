@@ -9,10 +9,12 @@ export function  ThreeDotMenu({chatDetails,isByMe}){
 
     let {selectedUserState, allUsersState,recentUsersState} = useContext(Context);
     function deleteMessage(){
+        let messageDeleteConfirmation =  confirm("Delete message ?")
+        if(!messageDeleteConfirmation) return
         let delReqJson = {
 
             time : `${chatDetails.time}`,
-            msg : chatDetails.message,
+            msg : CryptoJS.AES.encrypt(chatDetails.message, `${chatDetails.time}`).toString() ,
             user : localStorage.getItem("userName"),
             fromUser : selectedUserState.selectedUser.userName
         }

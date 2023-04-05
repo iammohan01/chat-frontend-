@@ -208,6 +208,9 @@ svg{
     justify-content: flex-start;
     align-items: flex-end;
 }
+.msg > span{
+    /*max-width: 80%;*/
+}
 .end{
     justify-content: flex-end;
 }

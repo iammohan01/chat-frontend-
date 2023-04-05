@@ -16,7 +16,7 @@ export default function ChatInput({user,setAllUsersChat}) {
     const [audioURL, audioBLOB, isRecording, startRecording, stopRecording] = useRecorder();
     const [audioEle, setAudioEle] = useState(new Audio(audioURL))
     const [audioPlaying,setAudioPlaying] = useState(false)
-
+    const emojiMatch = /:\w*:/gm
 
     useEffect(() => {
         setAudioEle(new Audio(audioURL))
@@ -69,16 +69,16 @@ export default function ChatInput({user,setAllUsersChat}) {
 
     }
 
-
+    function getKeyByValue(object, value) {
+        return Object.keys(object).find(key => object[key] === value);
+    }
     function uploadFile() {
         const input = document.createElement('input');
         input.type = 'file';
         input.click();
 
     input.onchange = () => {
-
         sendFile(input.files[0],input.files[0].name,updateRecentChats,setAllUsersChat,user)
-
     }
 
 
@@ -139,6 +139,7 @@ export default function ChatInput({user,setAllUsersChat}) {
     }
 
 
+
     return (
         <div className="chat--input">
             <svg
@@ -166,6 +167,7 @@ export default function ChatInput({user,setAllUsersChat}) {
                     icons={"outline"}
                     data={data}
                     onEmojiSelect={(event)=>{
+
                         setInput(input+event.native)
                     }}
 
@@ -179,6 +181,18 @@ export default function ChatInput({user,setAllUsersChat}) {
                 value={input}
                 onChange={(event)=>{
                     setInput(event.target.value)
+
+                    //change emoji
+                    let match = input.match(emojiMatch);
+                    if( match ){
+                       let emoji = getKeyByValue(data.natives,match[0].slice(1,-1))
+                        if(emoji){
+                            setInput(prev=>{
+                                return prev.replace(match[0],emoji)
+                            })
+                        }
+
+                    }
                 }}
                 onKeyDown={(event)=>{
 
@@ -295,7 +309,10 @@ export default function ChatInput({user,setAllUsersChat}) {
                 !input && recordingStatus === 2 && <svg
                 onClick={()=>{
                     // console.log(audioBLOB)
-                    sendFile(audioBLOB,`audioMessage${Date.now()}.webm`,updateRecentChats,setAllUsersChat,user)
+                    let time = Date.now() ;
+                    sendFile(new File([audioBLOB],`audioMessage${time}.webm`),`audioMessage${time}.webm`,updateRecentChats,setAllUsersChat,user)
+                    // sendFile(input.files[0],input.files[0].name,updateRecentChats,setAllUsersChat,user)
+                    // console.log()
                     setAudioEle(new Audio(''))
                     setRecordingStatus(0);
                 }

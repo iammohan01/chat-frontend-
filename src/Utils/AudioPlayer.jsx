@@ -2,10 +2,7 @@ import {useContext, useEffect, useState} from "react";
 import Lottie from "react-lottie-player";
 import {waveData} from "../../public/wave.js";
 import {loadAnimation} from "../assets/LoadAnimation.js";
-import alert from "../Scripts/alert.js";
-import {downloadFile} from "./downloadFile.js";
 import context from "../context.jsx";
-import fixWebmDuration from "webm-duration-fix";
 
 export default function VoicePlayer({ audioSrc ,color}) {
     const [audio, setAudio] = useState("");
@@ -13,8 +10,7 @@ export default function VoicePlayer({ audioSrc ,color}) {
     const [playingStatus,setPlayingStatus] = useState(0) //pause : 0 , playing : 1 , load : 2
     const [played,setPlayed] = useState(0)
     const [duration,setDuration] = useState(0)
-    const {blobs} =  useContext(context);
-    const {blobUrls,setBlobUrls} =  blobs
+    const {blobs,selectedUserState} =  useContext(context);
 
 
 
@@ -49,12 +45,10 @@ export default function VoicePlayer({ audioSrc ,color}) {
 
   function loadAudio(){
 
-
-
-      if(Object.keys(blobUrls).includes(audioSrc.message)){
           let downEle = document.createElement('a');
-
-          let audio = new Audio(blobUrls[audioSrc.message])
+          let val = audioSrc
+          let link = `${endURL}/files/${val.isSentByMe?localStorage.userName:selectedUserState.selectedUser.userName}/${val.message}`;
+          let audio = new Audio(link)
           audio.setAttribute("preload", "metadata")
           audio.onloadedmetadata = function() {
               function getDuration() {
@@ -70,58 +64,8 @@ export default function VoicePlayer({ audioSrc ,color}) {
           };
           setAudioEle(audio)
           setPlayingStatus(1)
-          return
-      }
-
-      let form = new FormData();
-      form.set('id',audioSrc.ency)
-      setPlayingStatus(2)
 
 
-      let xhr = new XMLHttpRequest();
-      xhr.open("POST",`${endURL}/GetFile`,true)
-      xhr.responseType = "blob";
-      xhr.onreadystatechange = ()=>{
-
-          xhr.onloadend =()=>{
-              const blob = xhr.response;
-              // var blob = new Blob([arrayBuffer]);
-              // fixWebmDuration(blob).then(fixedBlob)
-              const url = URL.createObjectURL(blob);
-              let audio = new Audio(url)
-              audio.setAttribute("preload", "metadata")
-              audio.onloadedmetadata = function() {
-                  function getDuration() {
-                      audio.currentTime = 0
-                      audio.removeEventListener('timeupdate', getDuration)
-                      console.log(audio.duration)
-                      setDuration(audio.duration)
-                  }
-                  setDuration(Math.floor(audio.duration))
-                  if (audio.duration === Infinity) {
-                      audio.currentTime = 1e101
-
-                      audio.addEventListener('timeupdate', getDuration)
-                  }
-              };
-
-              setAudioEle(audio)
-              setPlayingStatus(1)
-              setBlobUrls(prev=>{
-                  return {...prev,[audioSrc.message] : url}
-              })
-
-          }
-
-      }
-      xhr.onprogress =(progress)=>{
-
-          let loaded = Math.floor((progress.loaded/progress.total)*100)
-          if(loaded === 100){
-            alert("success",`${Math.floor((progress.loaded/progress.total)*100)}% downloaded`)
-          }
-      }
-      xhr.send(form)
   }
 
     let elapsedSec = Math.floor(played%60) ;
@@ -183,8 +127,8 @@ export default function VoicePlayer({ audioSrc ,color}) {
           xmlns="http://www.w3.org/2000/svg"
           color="#000000"
           onClick={()=>{
-          setPlayingStatus(0)
-          }
+              setPlayingStatus(0)
+              }
           }
         >
           <path
