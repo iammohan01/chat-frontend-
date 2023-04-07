@@ -63,8 +63,6 @@ function LoadChat({val}){
 
         let fileExtension = val.message.split(".")
         fileExtension = fileExtension[fileExtension.length - 1]
-        console.log(fileExtension.trim())
-        console.log(imageExtensions.includes(fileExtension))
 
         // console.log(val)
         return (

@@ -17,7 +17,7 @@ export function ChatPanel({ selectedUser, setAllUsersChat, allUsersChats }) {
 
     useEffect(() => {
         element.current.scrollIntoView()//{behavior: "smooth"});
-    })
+    },[])
 
 
     //when user changed, request new chat list from server

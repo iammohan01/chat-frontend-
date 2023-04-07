@@ -1,9 +1,12 @@
 import {Calendar} from "antd";
-import '../src/Styles/DateView.css'
 import dayjs from "dayjs";
 import {useContext, useEffect, useState} from "react";
 import Context from "./context.jsx";
-export default function DateView(){
+import context from "./context.jsx";
+import ReactMarkdown from "react-markdown";
+
+let month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+export  function DateViewOne(){
 
 
     const [chat,setChat] = useState([])
@@ -112,4 +115,256 @@ export default function DateView(){
 
 
     // return <Calendar />;
+}
+
+export default function DateView(){
+
+    let d = new Date();
+    d.setUTCHours(0,0,0,0);
+    const [fromDate,setFromDate] = useState(d);
+    const [toDate,setToDate] = useState(d);
+    const [data,setData]=useState({});
+    const [reqUserChat,setReqUserChat] = useState("all");
+    const [filter,setFilter] = useState("");
+    const {recentUsersState,selectedUserState} = useContext(context);
+    let recentUsers = recentUsersState.recentUsers.map((value)=>value.userName)
+
+    function getChat(){
+
+        let user = localStorage.getItem("uid");
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET",`${endURL}/v2/getChatOfDate?from=${fromDate}&to=${toDate}&user=${user}`);
+        xhr.send();
+        xhr.onloadend =()=>{
+            let response = (JSON.parse(xhr.response));
+            let keys = Object.keys(response);
+
+            for(let i of keys){
+                response[i] = response[i].map((data)=>{
+                    return {...data,message:CryptoJS.AES.decrypt(data['message'], data['time']).toString(CryptoJS.enc.Utf8)}
+                })
+            }
+            response = reqUserChat === "all" ? response : {[reqUserChat]:response[reqUserChat]}
+            setData(response);
+
+        }
+    }
+
+
+
+    return(
+        <div className={"date-view-new"}>
+            <DateHeader
+                fromDate ={fromDate}
+                toDate={toDate}
+                setFromDate={setFromDate}
+                setToDate={setToDate}
+                recentUsersList={recentUsers}
+                setReqUserChat={setReqUserChat}
+                setFilter={setFilter}
+                search={getChat}
+            />
+            <DateViewBody filter={filter} data={data}/>
+
+        </div>
+    )
+}
+
+
+
+export function DateHeader(
+    {
+        setFromDate ,
+        setToDate ,
+        recentUsersList ,
+        setReqUserChat,
+        search,
+        setFilter,
+        fromDate,
+        toDate
+    }
+){
+
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+
+
+    useEffect(()=>{
+        setFromDate(new Date().getTime())
+        setToDate(yesterday.getTime())
+    },[])
+    return (
+    <div className={"date-header"}>
+       <div className={'date-inputs'}>
+           <p>Select Date</p>
+            <div className={"date-input"}>
+                <input type={"date"} id={"minDate"} onChange={(e)=>{
+                    setFromDate(new Date(e.target.value).getTime())
+                }
+                }
+                        value={new Date(fromDate).toISOString().substring(0,10)}
+                        defaultValue={yesterday.toISOString().substring(0,10)}
+                        max={new Date(toDate).toISOString().substring(0,10)}
+                />
+                <input type={"date"} onChange={(e)=>{
+                    setToDate(new Date(e.target.value).getTime())
+                }}
+                       value={new Date(toDate).toISOString().substring(0,10)}
+                       defaultValue={new Date().toISOString().substring(0,10)}
+                       min={new Date(fromDate).toISOString().substring(0,10)}
+                       max={new Date().toISOString().substring(0,10)}
+                       // min={document.getElementById("minDate").value}
+                />
+            </div>
+       </div>
+
+        <div className={"date-users-search"}>
+            <p>
+                Users
+            </p>
+            <div className={"date-users-options"}>
+                <select onChange={(e)=>{
+                    setReqUserChat(e.target.value)
+                }
+                }>
+                    <option>All</option>
+                    {recentUsersList.map((userName)=><option>{userName}</option>)}
+                {/*    get all recent users */}
+                </select>
+            </div>
+        </div>
+
+        <div className={"date-filter-words"}>
+            <p>Filter words</p>
+            <div>
+                <input onChange={(e)=>{
+                    setFilter(e.target.value)
+                }}/>
+            </div>
+        </div>
+
+        <div className={"date-order-by"}>
+
+        </div>
+        <div className={"date-search"}>
+            <svg onClick={search} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+        </div>
+
+    </div>
+    )
+}
+export function DateViewBody({data,filter}){
+
+    const [selectedUser,setSelectedUser] = useState("");
+    useEffect(()=>{
+    },[selectedUser])
+
+    return (
+        <div className={"date-body"}>
+            <DateViewUsers filter={filter} userData={data} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>
+            <DateViewChats filter={filter}  data={data} selectedUser={selectedUser}/>
+
+        </div>
+    )
+
+
+}
+function DateViewUsers({userData,setSelectedUser,selectedUser,filter}){
+
+    let userList = Object.keys(userData);
+
+    userList = userList.filter(user=>{
+        return userData[user].filter(val =>val.message.includes(filter)).length !==0
+    })
+
+    return(
+        <div className={"date-view-users"}>
+            <div className={"date-view-users-header"}>
+                Users
+            </div>
+            <div className={"date-view-users-list"}>
+                {userList.map(user=>{
+
+
+                    return <div className={"date-view-users-list-user"}
+                        onClick={()=>{
+                            setSelectedUser(user)
+                        }
+                        }
+                                style={{
+                                    backgroundColor : user === selectedUser ? "#615EF0" :"",
+                                    color : user === selectedUser ? "white" :""
+                                }}
+                    >
+                        {/*
+                        image
+                        name
+                        username
+                        no of messages on that day
+                    */}
+                        <img
+                            src={"https://cdn.iconscout.com/icon/free/png-256/profile-1754134-1493247.png"}
+                            alt={""}
+                        />
+                        <div>
+                            <div>@{user}</div>
+                            <div>Message count : {userData[user].filter(val=>val.message.includes(filter)).length}</div>
+                        </div>
+                    </div>
+
+                    }
+                )
+                }
+
+
+            </div>
+
+
+        </div>
+    )
+}
+
+function DateViewChats({selectedUser,data,filter}){
+
+    // ldata=data[selectedUser];
+    let tempFilteredData = data[selectedUser] && data[selectedUser].filter(val=>val.message.includes(filter)) || []
+    const {selectedUserState,focusState} = useContext(context);
+    return(
+        <div className={"date-view-chats"}>
+            <div className={"date-view-chats-header"}>
+                Chats
+            </div>
+            <div className={"date-view-chats-list"}>
+                {tempFilteredData && tempFilteredData.map(value =>{
+
+                    let time = new Date(Number(value.time))
+                    let hours = `${time.getHours()%12}:${time.getMinutes()} ${time.getHours() > 11? 'PM' : 'AM'}`
+                        return <div
+                        className={"date-view-chats-list-chat"}
+                        style={{
+                            justifyContent : localStorage.getItem("userName") === value.toUser ? "flex-end" : "flex-start"
+                        }
+                        }
+                        onClick={()=>{
+                            selectedUserState.setSelectedUser(prev=> {
+                                return {...prev,userName:selectedUser}
+                            })
+                            focusState.setFocus('chat');
+                            }
+                        }
+                        >
+                                <p><ReactMarkdown>{value['message']}</ReactMarkdown>
+                                    <p className={"date-view-chats-list-chat-time"}><span>{month[time.getMonth()]} {time.getDate()} {hours}</span></p>
+                                </p>
+                        </div>
+                }
+
+                )
+                }
+            </div>
+
+        </div>
+    )
+
 }

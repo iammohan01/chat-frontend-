@@ -9,10 +9,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="657729a5-88fa-4776-98e4-fd834e8b45a5" name="Changes" comment="markdown added">
+      <change afterPath="$PROJECT_DIR$/test.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/ChatsComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Chat/ChatPanel/MessagePannel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat/ChatPanel/MessagePannel.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DateView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/DateView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Styles/DateView.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Styles/DateView.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +136,7 @@
       <workItem from="1678552162838" duration="3486000" />
       <workItem from="1678557548215" duration="58800000" />
       <workItem from="1678858898348" duration="5160000" />
-      <workItem from="1680601104621" duration="25036000" />
+      <workItem from="1680601104621" duration="56052000" />
     </task>
     <task id="LOCAL-00001" summary="Can send and update ui in react . almost all issues fixed . Only problem here is can't update in other person's chat">
       <created>1676383810530</created>
@@ -290,7 +292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680720356028</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="markdown added">
+      <created>1680721216927</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1680721216927</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
