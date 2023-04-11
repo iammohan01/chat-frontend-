@@ -119,10 +119,17 @@ export  function DateViewOne(){
 
 export default function DateView(){
 
-    let d = new Date();
-    d.setUTCHours(0,0,0,0);
-    const [fromDate,setFromDate] = useState(d);
-    const [toDate,setToDate] = useState(d);
+
+
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setUTCHours(0,0,0,0);
+
+    yesterday.setDate(yesterday.getDate() - 1);
+
+
+    const [fromDate,setFromDate] = useState(yesterday);
+    const [toDate,setToDate] = useState(today);
     const [data,setData]=useState({});
     const [reqUserChat,setReqUserChat] = useState("all");
     const [filter,setFilter] = useState("");
@@ -150,6 +157,8 @@ export default function DateView(){
         }
     }
 
+    console.log(yesterday)
+    console.log(today)
 
 
     return(
@@ -191,9 +200,10 @@ export function DateHeader(
 
 
     useEffect(()=>{
-        setFromDate(new Date().getTime())
-        setToDate(yesterday.getTime())
+        setFromDate(yesterday.getTime())
+        setToDate(new Date().getTime())
     },[])
+    console.log()
     return (
     <div className={"date-header"}>
        <div className={'date-inputs'}>
@@ -204,14 +214,13 @@ export function DateHeader(
                 }
                 }
                         value={new Date(fromDate).toISOString().substring(0,10)}
-                        defaultValue={yesterday.toISOString().substring(0,10)}
+                        // defaultValue={yesterday.toISOString().substring(0,10)}
                         max={new Date(toDate).toISOString().substring(0,10)}
                 />
                 <input type={"date"} onChange={(e)=>{
                     setToDate(new Date(e.target.value).getTime())
                 }}
                        value={new Date(toDate).toISOString().substring(0,10)}
-                       defaultValue={new Date().toISOString().substring(0,10)}
                        min={new Date(fromDate).toISOString().substring(0,10)}
                        max={new Date().toISOString().substring(0,10)}
                        // min={document.getElementById("minDate").value}
@@ -261,7 +270,10 @@ export function DateViewBody({data,filter}){
     },[selectedUser])
 
     return (
-        <div className={"date-body"}>
+        <div className={"date-body"}
+             style={{
+                 overflow:"scroll"
+             }}>
             <DateViewUsers filter={filter} userData={data} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>
             <DateViewChats filter={filter}  data={data} selectedUser={selectedUser}/>
 
@@ -273,6 +285,7 @@ export function DateViewBody({data,filter}){
 function DateViewUsers({userData,setSelectedUser,selectedUser,filter}){
 
     let userList = Object.keys(userData);
+
 
     userList = userList.filter(user=>{
         return userData[user].filter(val =>val.message.includes(filter)).length !==0

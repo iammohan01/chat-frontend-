@@ -3,10 +3,8 @@ import ChatInput from "../ChatInput.jsx";
 import { ThreeDotMenu } from "../ThreeDotMenu.jsx";
 import { UserHead } from "./UserHead.jsx";
 import { reqCurrentUserChats } from "../ChatReqRes/ReqChat.jsx";
-import alert from "../../Scripts/alert.js";
 import {ChatsComponent} from "./ChatsComponent.jsx";
-import Context from "../../context.jsx";
-import EmojiPicker from "emoji-picker-react";
+
 
 
 export function ChatPanel({ selectedUser, setAllUsersChat, allUsersChats }) {
@@ -17,7 +15,7 @@ export function ChatPanel({ selectedUser, setAllUsersChat, allUsersChats }) {
 
     useEffect(() => {
         element.current.scrollIntoView()//{behavior: "smooth"});
-    },[])
+    })
 
 
     //when user changed, request new chat list from server
